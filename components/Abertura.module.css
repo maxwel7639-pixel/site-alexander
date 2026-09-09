@@ -6,7 +6,9 @@
 .interno {
   max-width: var(--largura);
   margin: 0 auto;
-  padding: 2.25rem 1.25rem 2.75rem;
+  /* O topo soma a pilula: ela e `fixed` e nao ocupa espaco nenhum no fluxo.
+     Sem isto o "CRP 05/55353" nasce colado na borda de baixo dela. */
+  padding: calc(var(--altura-topo) + 1.5rem) 1.25rem 2.75rem;
   display: grid;
   gap: 2rem;
 }
@@ -90,7 +92,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 3.5rem;
-    padding: 4rem 1.25rem 4.5rem;
+    padding: calc(var(--altura-topo) + 2.5rem) 1.25rem 4.5rem;
   }
 
   .cta {
