@@ -1,0 +1,44 @@
+.introducao {
+  margin-bottom: 2.25rem;
+  color: var(--bronze-claro);
+  max-width: 58ch;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.15rem 1.35rem;
+  background: var(--grafite-claro);
+  border: 1px solid var(--linha-escura);
+  border-radius: var(--raio);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.icone {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 0.15rem;
+  color: var(--tiara);
+}
+
+.rodape {
+  margin-top: 2.25rem;
+}
+
+@media (min-width: 720px) {
+  .lista {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
+  }
+}

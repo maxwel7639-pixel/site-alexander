@@ -1,0 +1,144 @@
+/* ---------------------------------------------------------------------------
+   Tokens. A paleta e a que o Alexander escolheu no aplicativo da Coral.
+   Os valores vieram da amostragem dos pixels do print que ele mandou e do
+   logo dele, e foram escurecidos onde precisavam passar em contraste.
+   Regra: o ouro Tiara tem um papel so, marcar o que e clicavel.
+--------------------------------------------------------------------------- */
+:root {
+  /* superficies */
+  --creme: #f6f1e7;          /* fundo principal, Palha clareado */
+  --palha: #eae0cb;          /* fundo das secoes alternadas */
+  --grafite: #262626;        /* fundo escuro, valor exato do logo dele */
+  --grafite-claro: #34302c;  /* cartoes sobre o fundo escuro */
+
+  /* texto */
+  --tinta: #2b2724;          /* 13,1:1 sobre creme */
+  --bronze: #6e5c46;         /* secundario, 5,7:1 sobre creme */
+  --creme-texto: #f1e9da;    /* 12,5:1 sobre grafite */
+  --bronze-claro: #c7b49c;   /* secundario sobre grafite, 7,5:1 */
+
+  /* marca */
+  --tiara: #c9a227;          /* o ouro. superficies clicaveis e o simbolo */
+  --ouro-texto: #7c5f0f;     /* o mesmo ouro legivel sobre fundo claro, 5,3:1 */
+  --mate: #5e5f43;           /* Folha de Mate, so em detalhe pequeno */
+
+  /* linhas */
+  --linha: #ddd0b8;
+  --linha-escura: #46403a;
+
+  /* medidas */
+  --largura: 1120px;
+  --raio: 4px;
+  --z-topo: 30;
+  --z-flutuante: 20;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* o cabecalho fixo nao pode cobrir o titulo da secao ancorada */
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--tinta);
+  font-family: var(--fonte-corpo), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo), Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.25rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+}
+
+p {
+  margin: 0 0 1.1em;
+  max-width: 68ch;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--ouro-texto);
+  text-underline-offset: 3px;
+}
+
+/* Foco visivel em tudo que recebe teclado. O anel usa o ouro escuro sobre
+   fundo claro e o ouro cheio sobre o grafite, para nunca sumir. */
+:focus-visible {
+  outline: 3px solid var(--ouro-texto);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.sobreEscuro :focus-visible {
+  outline-color: var(--tiara);
+}
+
+/* Pular para o conteudo, para quem navega por teclado ou leitor de tela */
+.pular {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--grafite);
+  color: var(--creme-texto);
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--raio);
+}
+
+.pular:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

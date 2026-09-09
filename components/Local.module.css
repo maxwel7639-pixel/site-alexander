@@ -1,0 +1,87 @@
+.grade {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.aviso {
+  margin-bottom: 1.75rem;
+  max-width: 48ch;
+}
+
+.endereco {
+  font-style: normal;
+  display: grid;
+  gap: 1.15rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+}
+
+.linha {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin: 0;
+  font-size: 1.03rem;
+  line-height: 1.6;
+}
+
+.icone {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 0.2rem;
+  color: var(--ouro-texto);
+}
+
+.referencia {
+  font-weight: 600;
+  color: var(--ouro-texto);
+  font-style: normal;
+}
+
+.mapa {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: 1.25rem;
+  padding: 0.7rem 1.35rem;
+  border: 2px solid var(--bronze);
+  border-radius: var(--raio);
+  color: var(--tinta);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.mapa:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: var(--ouro-texto);
+}
+
+.figura {
+  margin: 0;
+}
+
+.imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--raio);
+  border: 1px solid var(--linha);
+}
+
+.legenda {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--bronze);
+}
+
+@media (min-width: 900px) {
+  .grade {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+}

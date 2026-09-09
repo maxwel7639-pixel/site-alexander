@@ -1,0 +1,40 @@
+.barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-flutuante);
+  background: var(--grafite);
+  border-top: 1px solid var(--linha-escura);
+  /* respeita a area segura do iPhone */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  box-shadow: 0 -8px 24px -16px rgba(0, 0, 0, 0.8);
+}
+
+.interno {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+}
+
+.horario {
+  margin: 0;
+  flex: 1;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: var(--bronze-claro);
+}
+
+.botao {
+  flex: none;
+  min-height: 48px;
+  padding: 0.6rem 1.35rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 900px) {
+  .barra {
+    display: none;
+  }
+}

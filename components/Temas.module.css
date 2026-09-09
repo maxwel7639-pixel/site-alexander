@@ -1,0 +1,50 @@
+.introducao {
+  margin-bottom: 2rem;
+  color: var(--bronze);
+  max-width: 58ch;
+}
+
+.grade {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.cartao {
+  padding: 1.4rem 1.5rem;
+  background: #fffdf8;
+  border: 1px solid var(--linha);
+  border-left: 3px solid var(--tiara);
+  border-radius: var(--raio);
+}
+
+.titulo {
+  margin-bottom: 0.4rem;
+}
+
+.texto {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--bronze);
+}
+
+@media (min-width: 640px) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 980px) {
+  .grade {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Sao sete temas e a grade tem tres colunas. Sem isto o setimo cartao fica
+     sozinho numa quarta linha, com cara de esquecido. Quando o ultimo cartao
+     inicia uma linha sozinho, ele ocupa a linha inteira. */
+  .cartao:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+  }
+}

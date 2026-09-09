@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+build/
+.vercel
+.env*.local
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+# gerados pelo next build, nao versionar
+AGENTS.md
+CLAUDE.md

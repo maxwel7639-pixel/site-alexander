@@ -1,0 +1,92 @@
+.rodape {
+  background: var(--grafite);
+  color: var(--creme-texto);
+  border-top: 1px solid var(--linha-escura);
+  /* espaco para a barra fixa do celular nao cobrir os creditos */
+  padding-bottom: 6rem;
+}
+
+.interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--linha-escura);
+}
+
+.logo {
+  border-radius: 3px;
+  flex: none;
+}
+
+.nome {
+  margin: 0;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: 1.2rem;
+}
+
+.papel {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: var(--bronze-claro);
+}
+
+.colunas {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.titulo {
+  margin: 0 0 0.7rem;
+  font-family: var(--fonte-corpo), system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tiara);
+}
+
+.texto {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--bronze-claro);
+}
+
+.aviso {
+  margin: 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--linha-escura);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--bronze-claro);
+  max-width: 72ch;
+}
+
+.creditos {
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--linha-escura);
+  font-size: 0.86rem;
+  color: var(--bronze-claro);
+}
+
+@media (min-width: 720px) {
+  .colunas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .rodape {
+    padding-bottom: 0;
+  }
+}

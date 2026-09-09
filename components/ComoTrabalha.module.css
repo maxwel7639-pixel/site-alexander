@@ -1,0 +1,56 @@
+.grade {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.texto p {
+  font-size: 1.05rem;
+}
+
+.formatos {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.formatos li {
+  padding: 0.4rem 0.95rem;
+  border: 1px solid var(--bronze);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--bronze);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.figura {
+  margin: 0;
+}
+
+.imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--raio);
+  border: 1px solid var(--linha);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 55% 35%;
+}
+
+.legenda {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--bronze);
+}
+
+@media (min-width: 900px) {
+  .grade {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+}

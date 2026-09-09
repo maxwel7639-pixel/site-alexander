@@ -1,0 +1,52 @@
+.secao {
+  padding: 3.25rem 0;
+}
+
+.interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.cabecalho {
+  margin-bottom: 2rem;
+  max-width: 62ch;
+}
+
+.etiqueta {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ouro-texto);
+}
+
+.claro {
+  background: var(--creme);
+}
+
+.palha {
+  background: var(--palha);
+  border-top: 1px solid var(--linha);
+  border-bottom: 1px solid var(--linha);
+}
+
+.escuro {
+  background: var(--grafite);
+  color: var(--creme-texto);
+}
+
+.escuro .etiqueta {
+  color: var(--tiara);
+}
+
+@media (min-width: 768px) {
+  .secao {
+    padding: 4.5rem 0;
+  }
+
+  .cabecalho {
+    margin-bottom: 2.75rem;
+  }
+}
