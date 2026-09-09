@@ -6,6 +6,7 @@ export default function Temas() {
   return (
     <Secao
       id="temas"
+      traco="sublinhado"
       etiqueta="O que ele atende"
       titulo="Os assuntos que aparecem com mais frequência"
     >

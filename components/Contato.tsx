@@ -8,6 +8,7 @@ export default function Contato() {
   return (
     <Secao
       id="contato"
+      traco="arco"
       etiqueta="Contato"
       titulo="Dar o primeiro passo é só mandar uma mensagem"
       fundo="escuro"

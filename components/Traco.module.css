@@ -1,0 +1,64 @@
+/* ================================ O TRACO ===================================
+   Ele mora no vazio a direita do titulo, que e o unico lugar da secao onde
+   sobra espaco em tela larga. Fica atras do conteudo e nao recebe clique.
+
+   Some abaixo de 1100px. Nessa largura o titulo ja ocupa a linha inteira e o
+   traco passaria POR CIMA do texto: ornamento que atrapalha a leitura de quem
+   esta mal nao e ornamento, e defeito.
+============================================================================ */
+.campo {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  stroke: currentColor;
+}
+
+/* Sobre creme e palha. O bronze e o mesmo tom dos textos de apoio: o traco
+   pertence a familia, so que mais claro. */
+.claro {
+  color: var(--bronze);
+  opacity: 0.3;
+}
+
+/* Sobre o grafite a tinta vira o creme, e a opacidade cai: claro sobre escuro
+   rende mais contraste percebido, e o mesmo numero apareceria demais. */
+.escuro {
+  color: var(--creme-texto);
+  opacity: 0.17;
+}
+
+/* ---- cada variante tem seu lugar ----
+   As tres estao ancoradas na ALTURA DO TITULO, nao no meio da secao: o vazio
+   que elas preenchem e o que fica ao lado do cabecalho. */
+.onda {
+  top: 3.5rem;
+  right: 4%;
+  width: min(38vw, 520px);
+}
+
+.sublinhado {
+  top: 6rem;
+  right: 5%;
+  width: min(33vw, 460px);
+}
+
+/* O arco encosta mais alto e mais na borda, porque ele cerca em vez de
+   atravessar: colado no canto, ele emoldura; centrado, viraria um risco solto. */
+.arco {
+  top: 1.5rem;
+  right: 3%;
+  width: min(26vw, 400px);
+}
+
+@media (min-width: 1100px) {
+  .campo {
+    display: block;
+  }
+}

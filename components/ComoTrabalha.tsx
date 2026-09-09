@@ -43,17 +43,20 @@ export default function ComoTrabalha() {
         </div>
 
         <figure className={s.figura}>
-          <Image
-            src="/img/consultorio.webp"
-            alt={
-              'Alexander Barnabés sentado na poltrona marrom do consultório, ' +
-              'sorrindo, com um caderno e uma caneca na mesa de apoio ao lado.'
-            }
-            width={1200}
-            height={1063}
-            sizes="(max-width: 899px) 100vw, 42vw"
-            className={s.imagem}
-          />
+          {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
+          <div className="pilha">
+            <Image
+              src="/img/consultorio.webp"
+              alt={
+                'Alexander Barnabés sentado na poltrona marrom do consultório, ' +
+                'sorrindo, com um caderno e uma caneca na mesa de apoio ao lado.'
+              }
+              width={1200}
+              height={1063}
+              sizes="(max-width: 899px) 100vw, 42vw"
+              className={s.imagem}
+            />
+          </div>
           <figcaption className={s.legenda}>
             O consultório, no Centro de Nova Iguaçu.
           </figcaption>

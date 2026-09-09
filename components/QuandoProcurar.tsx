@@ -8,6 +8,7 @@ export default function QuandoProcurar() {
   return (
     <Secao
       id="sinais"
+      traco="onda"
       etiqueta="Quando procurar ajuda"
       titulo="Quatro sinais que ele costuma apontar"
       fundo="escuro"
