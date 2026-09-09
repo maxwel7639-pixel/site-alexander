@@ -1,0 +1,72 @@
+.introducao {
+  margin-bottom: 2rem;
+  color: var(--bronze);
+  max-width: 56ch;
+}
+
+.grade {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.cartao {
+  padding: 1.75rem;
+  background: #fffdf8;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+}
+
+.figura {
+  margin: 0;
+}
+
+.estrelas {
+  display: inline-flex;
+  gap: 0.15rem;
+  color: var(--tiara);
+  margin-bottom: 0.9rem;
+}
+
+.citacao {
+  margin: 0 0 1.1rem;
+}
+
+.citacao p {
+  margin: 0;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.citacao p::before {
+  content: '\201C';
+}
+
+.citacao p::after {
+  content: '\201D';
+}
+
+.autor {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--bronze);
+}
+
+.autor::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--tiara);
+  margin-bottom: 0.7rem;
+}
+
+@media (min-width: 820px) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

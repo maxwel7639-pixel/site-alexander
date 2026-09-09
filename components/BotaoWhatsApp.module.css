@@ -1,0 +1,86 @@
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  /* 52px de altura minima. O alvo de toque de 44px e o piso, nao a meta,
+     e boa parte do publico dele le no celular com a vista cansada. */
+  min-height: 52px;
+  padding: 0.85rem 1.6rem;
+  /* Capsula, e nao o raio de 4px do resto do site. O botao e a unica coisa
+     que se PEGA na pagina, e forma redonda le como pegavel antes de qualquer
+     cor. Combina com a pilula do topo, que ja e capsula. */
+  border-radius: 999px;
+  font-family: var(--fonte-corpo), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+/* O icone guarda o ouro. Tirar o amarelo do fundo nao pode significar tirar o
+   ouro do botao: ele continua sendo o unico sinal de "aqui se clica" que a
+   paleta tem, so que agora em um ponto so, em vez de na chapa inteira. */
+.icone {
+  color: var(--tiara);
+}
+
+.icone {
+  flex: none;
+}
+
+/* ===================== VIDRO, E POR QUE CINZA E NAO OURO ====================
+   O ouro chapado fazia o botao gritar mais que o nome dele. Vidro grafite
+   sobre o creme continua sendo a coisa mais escura e mais definida da tela --
+   entao continua sendo a primeira que o olho pega -- sem competir com o
+   titulo, e a sombra baixa levanta ele da pagina.
+
+   88% de grafite e nao menos: o texto e creme, e abaixo disso o fundo da
+   pagina atravessa demais e a razao cai de 11,4:1 pra menos de 7. Vidro que
+   custa legibilidade num site de saude nao vale o efeito.
+============================================================================= */
+.cheio {
+  background: color-mix(in srgb, var(--grafite) 88%, transparent);
+  color: var(--creme-texto);
+  border: 1px solid color-mix(in srgb, var(--tiara) 34%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 10px 26px -12px rgba(38, 34, 30, 0.55),
+    inset 0 1px 0 rgba(241, 233, 218, 0.12);
+}
+
+.cheio:hover {
+  background: color-mix(in srgb, var(--grafite) 95%, transparent);
+  border-color: color-mix(in srgb, var(--tiara) 62%, transparent);
+  box-shadow: 0 14px 32px -12px rgba(38, 34, 30, 0.62),
+    inset 0 1px 0 rgba(241, 233, 218, 0.16);
+  transform: translateY(-1px);
+}
+
+/* Sobre o grafite o vidro inverte: e o creme que entra como veu, porque um
+   vidro escuro sobre fundo escuro nao existe -- fica so a borda. */
+.contorno {
+  background: rgba(241, 233, 218, 0.09);
+  color: var(--creme-texto);
+  border: 1px solid rgba(199, 180, 156, 0.28);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 10px 26px -14px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(241, 233, 218, 0.1);
+}
+
+.contorno:hover {
+  background: rgba(241, 233, 218, 0.15);
+  border-color: rgba(201, 162, 39, 0.55);
+  transform: translateY(-1px);
+}
+
+/* Quem pediu menos movimento nao recebe o pulo, so a mudanca de cor. */
+@media (prefers-reduced-motion: reduce) {
+  .cheio:hover,
+  .contorno:hover {
+    transform: none;
+  }
+}

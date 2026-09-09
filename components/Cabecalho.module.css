@@ -1,0 +1,202 @@
+/* =========================== A NAVBAR E UMA PILULA ===========================
+   Ela deixou de ocupar a largura toda e virou uma capsula centrada que mede o
+   proprio conteudo: `width: fit-content` faz o tamanho vir dos filhos.
+
+   O vidro mora na PILULA, nunca no <header>. No header, o desfoque cobriria a
+   largura inteira da tela e a capsula deixaria de flutuar.
+============================================================================= */
+.cabecalho {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-topo);
+  display: flex;
+  justify-content: center;
+  padding: 14px 0;
+  /* sem fundo e sem borda: o header aqui e so o palco */
+  transition: padding 0.3s ease;
+  pointer-events: none;
+}
+
+.pilula {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: fit-content;
+  max-width: calc(100% - 28px);
+  padding: 9px 10px 9px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--linha-escura);
+  /* A pilula da MX usa um veu da cor de FRENTE, que clareia no escuro sozinho.
+     Aqui isso quebraria: tudo dentro dela foi desenhado para fundo escuro e a
+     abertura logo abaixo e creme. Entao a base e o grafite, com transparencia
+     suficiente para o creme atravessar.
+
+     92%, e nao os 82% do desenho original, porque a 82% o subtitulo em
+     --bronze-claro cai para 4,21:1 e o contorno em --tiara para 3,50:1 quando
+     a pilula passa sobre o #FFFDF8 dos cartoes, que e o fundo mais claro do
+     site. A 92% ficam 5,92:1 e 4,92:1.
+
+     color-mix e nao rgba() porque os tokens deste projeto sao hex. rgba()
+     exigiria um --grafite-rgb com o tripleto separado por virgula, e duas
+     fontes de verdade para a mesma cor. */
+  background: color-mix(in srgb, var(--grafite) 92%, transparent);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: 0 10px 34px -14px rgba(0, 0, 0, 0.55);
+  transition: padding 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ao rolar ela so aperta um pouco. O fundo ja existe desde o topo, senao a
+   pilula apareceria do nada no primeiro scroll. */
+.rolou {
+  padding: 10px 0;
+}
+
+.rolou .pilula {
+  padding: 7px 8px 7px 18px;
+  background: color-mix(in srgb, var(--grafite) 96%, transparent);
+  border-color: rgba(199, 180, 156, 0.22);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--creme-texto);
+}
+
+.logo {
+  border-radius: 3px;
+  flex: none;
+}
+
+.nome {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.nome strong {
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.nome small {
+  font-size: 0.74rem;
+  color: var(--bronze-claro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* A navegacao some no celular. O que importa la e o botao, e uma lista de
+   cinco links roubaria a linha inteira do topo. */
+.nav {
+  display: none;
+}
+
+.lista {
+  display: flex;
+  gap: 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  white-space: nowrap;
+  color: var(--creme-texto);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0 0 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.link:hover {
+  color: var(--tiara);
+  border-bottom-color: var(--tiara);
+}
+
+/* ---- Troca de letra no hover ----
+   Cada letra vira uma janelinha de 1em de altura com DUAS copias empilhadas.
+   No hover a dupla sobe 50%, uma altura de letra, e a de baixo toma o lugar.
+   O atraso de cada letra vem do sorteio feito no componente: e a ordem
+   embaralhada que da o nome ao efeito, nao o movimento, que e igual em todas. */
+.letra {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+  vertical-align: bottom;
+}
+
+.par {
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.3, 1, 0.4, 1);
+}
+
+.par > span {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.link:hover .par,
+.link:focus-visible .par {
+  transform: translateY(-50%);
+}
+
+/* Quem pediu menos movimento recebe so a troca de cor, que ja existia. */
+@media (prefers-reduced-motion: reduce) {
+  .par {
+    transition: none;
+  }
+
+  .link:hover .par,
+  .link:focus-visible .par {
+    transform: none;
+  }
+}
+
+/* O botao do topo tambem some no celular: la existe a barra fixa de baixo,
+   e dois botoes de WhatsApp na mesma tela viram ruido. */
+.botao {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .nav {
+    display: block;
+  }
+
+  .botao {
+    display: inline-flex;
+    min-height: 44px;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Abaixo de 900px a pilula guarda so a marca, e `fit-content` a encolhe
+   sozinha. O vao de 28px nao tem mais o que separar. */
+@media (max-width: 899px) {
+  .pilula {
+    gap: 0;
+    padding: 8px 20px;
+  }
+
+  .rolou .pilula {
+    padding: 7px 18px;
+  }
+}

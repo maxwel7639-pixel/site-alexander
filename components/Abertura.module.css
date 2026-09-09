@@ -1,0 +1,214 @@
+/* ============================== A ABERTURA ==================================
+   Ela era uma coluna de texto e um retangulo com uma foto, do mesmo peso,
+   centrados lado a lado num creme chapado. Correta e sem nenhum momento.
+
+   Tres coisas mudaram, e nenhuma delas acrescenta ornamento: o campo ganhou
+   profundidade com o simbolo que ele ja usa, a foto ganhou um passe-partout
+   deslocado pra parar de parecer impressa no fundo, e a hierarquia do texto
+   passou a ter um pico so, que e o nome.
+============================================================================ */
+.abertura {
+  position: relative;
+  /* Contem a sangria dos psi da MarcaFundo. Sem isto eles empurram a largura
+     da pagina e criam rolagem lateral. */
+  overflow: hidden;
+  border-bottom: 1px solid var(--linha);
+  /* Um calor muito baixo vindo de cima e da direita, atras da foto, pra o
+     creme deixar de ser uma chapa. 6% e 4% sao propositalmente pouco: em
+     tela de celular no sol isso quase nao aparece, e e assim que tem que ser
+     -- gradiente que se ANUNCIA num site de saude parece propaganda. */
+  background:
+    radial-gradient(
+      62% 58% at 78% 8%,
+      color-mix(in srgb, var(--palha) 62%, transparent) 0%,
+      transparent 72%
+    ),
+    var(--creme);
+}
+
+.interno {
+  position: relative;
+  z-index: 1;
+  max-width: var(--largura);
+  margin: 0 auto;
+  /* O topo soma a pilula: ela e `fixed` e nao ocupa espaco nenhum no fluxo.
+     Sem isto o "CRP 05/55353" nasce colado na borda de baixo dela. */
+  padding: calc(var(--altura-topo) + 1.5rem) 1.25rem 2.75rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.registro {
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ouro-texto);
+}
+
+/* O nome e o unico pico da coluna. Antes ele dividia atencao com o "Psicologo
+   e Psicanalista" logo abaixo, que vinha quase do mesmo tamanho: dois picos
+   colados viram nenhum. A entrelinha fecha e o papel recua. */
+.titulo {
+  margin-bottom: 0.5rem;
+  line-height: 1.04;
+}
+
+.papel {
+  margin: 0 0 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  font-style: italic;
+  color: var(--bronze);
+}
+
+/* Um traco curto de ouro antes do papel. Ele nao decora: separa o nome do que
+   vem depois sem gastar mais uma linha de altura. */
+.papel::before {
+  content: '';
+  flex: none;
+  width: 26px;
+  height: 2px;
+  background: var(--tiara);
+}
+
+.linha {
+  margin-bottom: 1.75rem;
+  font-size: 1.08rem;
+  max-width: 46ch;
+}
+
+.cta {
+  width: 100%;
+}
+
+/* ---- o reconhecimento, na primeira tela ----
+   Filete de ouro a esquerda e nada mais. Sem caixa, sem selo, sem icone: e um
+   fato dito em duas linhas. Selo de premio em site de psicologo lê como
+   vaidade, e vaidade afasta exatamente quem esta fragilizado. */
+.prova {
+  margin: 1.4rem 0 0;
+  padding-left: 0.95rem;
+  border-left: 2px solid var(--tiara);
+  display: grid;
+  gap: 0.1rem;
+  line-height: 1.45;
+}
+
+.provaTitulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.provaOrgao {
+  font-size: 0.88rem;
+  color: var(--bronze);
+}
+
+.dados {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--linha);
+  display: grid;
+  gap: 0.7rem;
+  font-size: 0.98rem;
+  color: var(--bronze);
+}
+
+.dados li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.icone {
+  flex: none;
+  width: 21px;
+  height: 21px;
+  color: var(--ouro-texto);
+}
+
+/* ---- a foto e o passe-partout ----
+   O deslocamento e o que faz a foto parecer POSTA sobre a pagina em vez de
+   impressa nela. Desenhado com pseudo-elemento: nenhum byte de imagem, e o
+   contorno acompanha qualquer proporcao que a foto assuma. */
+.moldura {
+  position: relative;
+}
+
+.moldura::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translate(0.7rem, 0.7rem);
+  /* Nasce da paleta e nao de um hex solto: e o ouro puxado pra linha clara,
+     visivel sobre o creme sem competir com o botao, que e o unico --tiara
+     cheio da tela. */
+  border: 1px solid color-mix(in srgb, var(--tiara) 40%, var(--linha));
+  border-radius: var(--raio);
+  pointer-events: none;
+}
+
+.foto {
+  position: relative;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(43, 39, 36, 0.06),
+    0 12px 32px -18px rgba(43, 39, 36, 0.4);
+}
+
+.imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* o rosto dele fica no terco superior da foto */
+  object-fit: cover;
+  object-position: 50% 22%;
+  aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 900px) {
+  .interno {
+    /* 1,05fr e nao 1fr: a coluna de texto passou a carregar o reconhecimento
+       e precisa de um pouco mais de linha antes de quebrar. */
+    grid-template-columns: 1.05fr 1fr;
+    align-items: center;
+    gap: 3.5rem;
+    padding: calc(var(--altura-topo) + 2.5rem) 1.25rem 4.5rem;
+  }
+
+  .cta {
+    width: auto;
+  }
+
+  .imagem {
+    aspect-ratio: 3 / 2;
+    object-position: 50% 25%;
+  }
+
+  .moldura::before {
+    transform: translate(1rem, 1rem);
+  }
+
+  /* a foto vem depois no HTML porque o nome e o CRP sao o que precisa ser
+     lido primeiro por leitor de tela, mas no desktop ela fica a direita */
+  .moldura {
+    order: 2;
+  }
+}
+
+/* No celular o passe-partout sai. Ele precisa de folga em volta pra ler como
+   moldura, e la a foto ja vai de borda a borda da coluna: o contorno viraria
+   um risco solto na beirada da tela. */
+@media (max-width: 899px) {
+  .moldura::before {
+    display: none;
+  }
+}

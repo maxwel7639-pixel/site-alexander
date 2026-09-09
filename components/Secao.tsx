@@ -1,0 +1,42 @@
+import MarcaFundo from './MarcaFundo';
+import s from './Secao.module.css';
+
+type Props = {
+  id: string;
+  etiqueta?: string;
+  titulo: string;
+  /** 'claro' e o creme, 'palha' e o bege, 'escuro' e o grafite. */
+  fundo?: 'claro' | 'palha' | 'escuro';
+  children: React.ReactNode;
+};
+
+export default function Secao({
+  id,
+  etiqueta,
+  titulo,
+  fundo = 'claro',
+  children,
+}: Props) {
+  const tituloId = `${id}-titulo`;
+
+  return (
+    <section
+      id={id}
+      aria-labelledby={tituloId}
+      className={[s.secao, s[fundo], fundo === 'escuro' ? 'sobreEscuro' : '']
+        .filter(Boolean)
+        .join(' ')}
+    >
+      {/* Atras de tudo, em toda secao. O `interno` sobe com z-index proprio. */}
+      <MarcaFundo tom={fundo === 'escuro' ? 'escuro' : 'claro'} />
+
+      <div className={s.interno}>
+        <header className={s.cabecalho}>
+          {etiqueta ? <p className={s.etiqueta}>{etiqueta}</p> : null}
+          <h2 id={tituloId}>{titulo}</h2>
+        </header>
+        {children}
+      </div>
+    </section>
+  );
+}

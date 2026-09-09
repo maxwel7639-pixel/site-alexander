@@ -1,0 +1,52 @@
+.introducao {
+  margin-bottom: 2.25rem;
+  color: var(--bronze-claro);
+  max-width: 58ch;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+/* Vidro claro sobre o grafite: e o creme que entra como veu, porque vidro
+   escuro sobre fundo escuro nao aparece -- sobraria so a borda. Antes eram
+   quatro retangulos de --grafite-claro chapado, do mesmo tom do fundo, e a
+   unica coisa que os separava da secao era um fio de borda. */
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.15rem 1.35rem;
+  background: rgba(241, 233, 218, 0.07);
+  border: 1px solid rgba(199, 180, 156, 0.2);
+  border-radius: 14px;
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: 0 12px 28px -16px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(241, 233, 218, 0.09);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.icone {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 0.15rem;
+  color: var(--tiara);
+}
+
+.rodape {
+  margin-top: 2.25rem;
+}
+
+@media (min-width: 720px) {
+  .lista {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
+  }
+}

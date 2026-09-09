@@ -1,0 +1,140 @@
+/* ================================ O RODAPE ==================================
+   Era alto porque empilhava quatro faixas de largura inteira, e nenhuma delas
+   usava mais que metade da largura: num monitor largo sobrava um campo escuro
+   vazio a direita e uma altura que nada justificava.
+
+   Duas faixas agora. Em cima, tres colunas lado a lado. Embaixo, aviso e
+   creditos dividindo a linha em vez de um sobre o outro.
+============================================================================ */
+.rodape {
+  background: var(--grafite);
+  color: var(--creme-texto);
+  border-top: 1px solid var(--linha-escura);
+  /* espaco para a barra fixa do celular nao cobrir os creditos */
+  padding-bottom: 6rem;
+}
+
+.interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem 1.5rem;
+}
+
+.topo {
+  display: grid;
+  gap: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--linha-escura);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.logo {
+  border-radius: 3px;
+  flex: none;
+}
+
+.nome {
+  margin: 0;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.papel {
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  color: var(--bronze-claro);
+}
+
+.titulo {
+  margin: 0 0 0.55rem;
+  font-family: var(--fonte-corpo), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tiara);
+}
+
+.texto {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--bronze-claro);
+}
+
+.base {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+}
+
+/* Mesmo corpo de antes, de proposito. E a unica informacao do rodape que pode
+   importar numa emergencia: o que saiu daqui foi espaco, nunca legibilidade. */
+.aviso {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--bronze-claro);
+  max-width: 64ch;
+}
+
+.creditos {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.84rem;
+  color: var(--bronze-claro);
+}
+
+.creditos p {
+  margin: 0;
+}
+
+.mx {
+  color: var(--tiara);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease;
+}
+
+.mx:hover {
+  border-bottom-color: var(--tiara);
+}
+
+@media (min-width: 720px) {
+  .topo {
+    /* A marca pede mais linha que os dois blocos de endereco: o nome completo
+       dele nao pode quebrar em tres. */
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .base {
+    grid-template-columns: minmax(0, 1.6fr) auto;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* Os creditos encostam na direita, que era exatamente o espaco que sobrava
+     vazio antes. */
+  .creditos {
+    text-align: right;
+    justify-items: end;
+  }
+}
+
+@media (min-width: 900px) {
+  .rodape {
+    padding-bottom: 0;
+  }
+
+  .interno {
+    padding: 2.5rem 1.25rem 1.75rem;
+  }
+}
