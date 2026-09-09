@@ -32,7 +32,11 @@ export default function Secao({
         .join(' ')}
     >
       {/* Atras de tudo, em toda secao. O `interno` sobe com z-index proprio. */}
-      <MarcaFundo tom={fundo === 'escuro' ? 'escuro' : 'claro'} />
+      {/* Onde ha traco, o psi da direita sai: os dois ocupam o mesmo canto. */}
+      <MarcaFundo
+        tom={fundo === 'escuro' ? 'escuro' : 'claro'}
+        soEsquerda={Boolean(traco)}
+      />
 
       {traco ? (
         <Traco variante={traco} tom={fundo === 'escuro' ? 'escuro' : 'claro'} />
