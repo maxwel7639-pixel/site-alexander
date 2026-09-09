@@ -1,0 +1,177 @@
+/* ================================ O ESPACO ==================================
+   Foto grande com a tira de miniaturas apoiada na base dela.
+
+   A ROLAGEM DA TIRA MORA NA TIRA. `overflow-x` fica no contentor dela e nunca
+   sobe pro documento: galeria que empurra a largura da pagina e o jeito mais
+   comum de um site ganhar rolagem lateral no celular, e este ja foi medido tres
+   vezes pra garantir que nao tem.
+============================================================================ */
+.introducao {
+  margin: 0 0 2rem;
+  max-width: 56ch;
+  color: var(--bronze);
+}
+
+.galeria {
+  display: grid;
+  gap: 0.8rem;
+}
+
+/* O quadro e o contexto de posicionamento da tira, e existe so por causa disso.
+   Sem ele a tira teria que ser filha do palco, e ai nao teria como descer pra
+   baixo da foto no celular sem trocar de lugar no DOM. */
+.quadro {
+  position: relative;
+  display: grid;
+  gap: 0.7rem;
+}
+
+/* ---- o palco ----
+   16/9 e nao 16/10: a 1120px de largura, 16/10 dava 700px de altura e a secao
+   inteira deixava de caber numa tela de notebook junto com o titulo. */
+.palco {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  background: var(--palha);
+  box-shadow: 0 1px 2px rgba(43, 39, 36, 0.06),
+    0 18px 44px -26px rgba(43, 39, 36, 0.5);
+}
+
+.foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  /* 900ms e nao 300: a troca aqui e ambiente, nao resposta a um clique. Rapida
+     demais ela vira piscada e chama atencao pra si; nesta velocidade a pessoa
+     percebe que mudou sem parar de ler. */
+  transition: opacity 900ms ease;
+}
+
+.visivel {
+  opacity: 1;
+}
+
+/* O veu existe porque as fotos sao claras embaixo -- piso, tapete, sofa -- e
+   miniatura clara sobre foto clara some. Ele so escurece o terco de baixo, e
+   comeca em transparente pra nao aparecer como faixa.
+
+   So aparece onde a tira cobre a foto, ou seja, no desktop. */
+.veu {
+  display: none;
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 46%;
+  background: linear-gradient(
+    to top,
+    rgba(24, 21, 19, 0.72) 0%,
+    rgba(24, 21, 19, 0.42) 42%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ---- a tira ----
+   No celular ela fica no fluxo, embaixo da foto. Sobreposta, comia mais da
+   metade dos 197px de altura que a foto tem nessa largura: a miniatura virava
+   o assunto, e o assunto e a sala. */
+.tira {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  /* folga pro anel de foco e pro passo de 3px da ativa nao serem cortados */
+  padding: 4px;
+  margin: -4px;
+  scrollbar-width: none;
+}
+
+.tira::-webkit-scrollbar {
+  display: none;
+}
+
+.miniatura {
+  flex: none;
+  width: 104px;
+  padding: 0;
+  /* No celular a tira esta sobre o creme, entao a borda parada e a linha clara
+     do site. No desktop ela vira o veu claro, la embaixo. */
+  border: 2px solid var(--linha);
+  border-radius: 4px;
+  overflow: hidden;
+  background: none;
+  cursor: pointer;
+  scroll-snap-align: start;
+  opacity: 0.7;
+  transition: opacity 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.miniatura:hover {
+  opacity: 1;
+}
+
+/* A que esta no ar ganha borda de ouro E opacidade cheia E um passo pra cima.
+   Tres marcas e nao uma: quem nao distingue bem cor precisa do brilho e da
+   posicao tambem. */
+.ativa {
+  opacity: 1;
+  border-color: var(--tiara);
+  transform: translateY(-3px);
+}
+
+.miniaturaImagem {
+  display: block;
+  width: 100%;
+  height: 74px;
+  object-fit: cover;
+}
+
+.legenda {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--bronze);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foto,
+  .miniatura {
+    transition: none;
+  }
+
+  .ativa {
+    transform: none;
+  }
+}
+
+@media (min-width: 900px) {
+  /* Aqui a tira sobe e se apoia na base da foto. */
+  .quadro {
+    display: block;
+  }
+
+  .veu {
+    display: block;
+  }
+
+  .tira {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 0.9rem 1rem;
+    margin: 0;
+    gap: 0.7rem;
+  }
+
+  .miniatura {
+    width: 148px;
+    border-color: rgba(241, 233, 218, 0.35);
+  }
+
+  .miniaturaImagem {
+    height: 92px;
+  }
+}
