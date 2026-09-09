@@ -6,8 +6,17 @@
    comum de um site ganhar rolagem lateral no celular, e este ja foi medido tres
    vezes pra garantir que nao tem.
 ============================================================================ */
+/* ---- as duas colunas ----
+   No celular continua uma coluna so: texto em cima, galeria embaixo. Lado a
+   lado numa tela de 390px daria 175px pra cada, e nem o texto nem a foto
+   sobrevivem a isso. */
+.colunas {
+  display: grid;
+  gap: 1.75rem;
+}
+
 .introducao {
-  margin: 0 0 2rem;
+  margin: 0;
   max-width: 56ch;
   color: var(--bronze);
 }
@@ -149,6 +158,16 @@
 }
 
 @media (min-width: 900px) {
+  /* A copy fica com 1 e a galeria com 1,45: a foto continua sendo a maior
+     coisa da secao, mas para de ser a unica. Alinhadas pelo CENTRO porque o
+     texto tem quatro linhas contra os ~370px da foto -- alinhado pelo topo,
+     ele ficaria pendurado no alto de um bloco de imagem tres vezes mais alto. */
+  .colunas {
+    grid-template-columns: 1fr 1.45fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
   /* Aqui a tira sobe e se apoia na base da foto. */
   .quadro {
     display: block;
@@ -161,17 +180,20 @@
   .tira {
     position: absolute;
     inset: auto 0 0 0;
-    padding: 0.9rem 1rem;
+    padding: 0.75rem 0.85rem;
     margin: 0;
-    gap: 0.7rem;
+    gap: 0.55rem;
   }
 
+  /* 112 e nao os 148 da primeira versao: com a galeria em duas colunas a foto
+     caiu de 1120 pra ~650 de largura, e as tres miniaturas antigas ocupavam
+     460 desses -- setenta por cento da imagem virava tira. */
   .miniatura {
-    width: 148px;
+    width: 112px;
     border-color: rgba(241, 233, 218, 0.35);
   }
 
   .miniaturaImagem {
-    height: 92px;
+    height: 70px;
   }
 }

@@ -16,16 +16,20 @@ const INTERVALO = 6000;
  * a terapia pela primeira vez chega com uma pergunta que ninguem faz em voz
  * alta -- "como e la dentro?" -- e ela some quando a pessoa ja viu o lugar.
  *
- * =============================== COMO FUNCIONA ==============================
- * Uma foto grande que troca sozinha, com uma tira de miniaturas.
+ * ============================== DUAS COLUNAS ================================
+ * Copy a esquerda, galeria a direita. A primeira versao punha o texto em cima e
+ * a foto na largura toda: 1120 por 608. Grande daquele jeito ela nao dividia a
+ * atencao com o texto, ela substituia -- quando a pessoa chegava na foto, a
+ * copy ja tinha saido da tela. Lado a lado, quem para pra ler ve as imagens
+ * trocando ao lado.
  *
- * NO DESKTOP a tira se apoia na base da foto. Ela comecou embaixo, fora, e nao
- * servia: a 1120px de largura uma foto 16/10 tem 700px de altura, e a tira caia
- * fora da tela -- ninguem via que dava pra escolher.
+ * =============================== A TIRA =====================================
+ * NO DESKTOP ela se apoia na base da foto: perto o bastante pra ficar claro que
+ * uma coisa comanda a outra.
  *
- * NO CELULAR ela desce pra baixo da foto. Ali a foto tem 197px de altura e a
- * tira sobreposta comia mais da metade dela: a miniatura passava a ser o
- * assunto, e o assunto e a sala.
+ * NO CELULAR ela desce pra baixo da foto. Ali a foto e baixa e a tira
+ * sobreposta comia quase metade dela: a miniatura passava a ser o assunto, e o
+ * assunto e a sala.
  *
  * A tira rola DENTRO DELA MESMA: `overflow-x` mora no contentor dela e nunca
  * sobe pro documento. Galeria que empurra a largura da pagina e o jeito mais
@@ -63,78 +67,80 @@ export default function Espaco() {
 
   return (
     <Secao id="espaco" etiqueta="O espaço" titulo={espaco.titulo} fundo="claro">
-      <p className={s.introducao}>{espaco.texto}</p>
+      <div className={s.colunas}>
+        <p className={s.introducao}>{espaco.texto}</p>
 
-      <div
-        className={s.galeria}
-        onMouseEnter={() => setParado(true)}
-        onMouseLeave={() => setParado(false)}
-        onFocusCapture={() => setParado(true)}
-        onBlurCapture={() => setParado(false)}
-      >
-        {/*
-          O quadro e o contexto de posicionamento. A tira e IRMA do palco e nao
-          filha: assim ela pode sobrepor a foto no desktop e descer pra baixo
-          dela no celular, sem trocar de lugar no DOM e sem duplicar marcacao.
-        */}
-        <div className={s.quadro}>
-          <div className={s.palco}>
+        <div
+          className={s.galeria}
+          onMouseEnter={() => setParado(true)}
+          onMouseLeave={() => setParado(false)}
+          onFocusCapture={() => setParado(true)}
+          onBlurCapture={() => setParado(false)}
+        >
           {/*
-            As fotos ficam TODAS montadas, empilhadas, e o que muda e a
-            opacidade. Trocar o `src` de uma unica <img> daria um piscar branco
-            a cada volta, e o next/image perderia o pre-carregamento das
-            seguintes.
+            O quadro e o contexto de posicionamento da tira. Ela e IRMA do
+            palco e nao filha: assim pode sobrepor a foto no desktop e descer
+            pra baixo dela no celular, sem trocar de lugar no DOM.
           */}
-            {espaco.fotos.map((foto, i) => (
-              <Image
-                key={foto.arquivo}
-                src={`/img/${foto.arquivo}`}
-                alt={foto.alt}
-                width={1600}
-                height={1201}
-                sizes="(max-width: 899px) 100vw, 70vw"
-                // So a primeira tem prioridade: carregar as tres de uma vez
-                // atrasaria justamente a que aparece.
-                priority={i === 0}
-                className={`${s.foto} ${i === atual ? s.visivel : ''}`}
-              />
-            ))}
-
-            {/* O veu so existe onde a tira cobre a foto, ou seja, no desktop. */}
-            <div className={s.veu} aria-hidden="true" />
-          </div>
-
-          <div className={s.tira}>
-            {espaco.fotos.map((foto, i) => (
-              <button
-                key={foto.arquivo}
-                type="button"
-                onClick={() => setAtual(i)}
-                className={`${s.miniatura} ${i === atual ? s.ativa : ''}`}
-                aria-label={`Ver: ${foto.legenda}`}
-                aria-current={i === atual ? 'true' : undefined}
-              >
+          <div className={s.quadro}>
+            <div className={s.palco}>
+              {/*
+                As fotos ficam TODAS montadas, empilhadas, e o que muda e a
+                opacidade. Trocar o `src` de uma unica <img> daria um piscar
+                branco a cada volta, e o next/image perderia o pre-carregamento
+                das seguintes.
+              */}
+              {espaco.fotos.map((foto, i) => (
                 <Image
+                  key={foto.arquivo}
                   src={`/img/${foto.arquivo}`}
-                  alt=""
-                  width={320}
-                  height={240}
-                  sizes="170px"
-                  className={s.miniaturaImagem}
+                  alt={foto.alt}
+                  width={1600}
+                  height={1201}
+                  sizes="(max-width: 899px) 100vw, 58vw"
+                  // So a primeira tem prioridade: carregar as tres de uma vez
+                  // atrasaria justamente a que aparece.
+                  priority={i === 0}
+                  className={`${s.foto} ${i === atual ? s.visivel : ''}`}
                 />
-              </button>
-            ))}
-          </div>
-        </div>
+              ))}
 
-        {/*
-          A legenda muda junto, e e o unico texto que a troca move. `aria-live`
-          educado: quem usa leitor de tela recebe a mudanca sem ser
-          interrompido no meio de outra leitura.
-        */}
-        <p className={s.legenda} aria-live="polite">
-          {espaco.fotos[atual].legenda}
-        </p>
+              {/* O veu so existe onde a tira cobre a foto: no desktop. */}
+              <div className={s.veu} aria-hidden="true" />
+            </div>
+
+            <div className={s.tira}>
+              {espaco.fotos.map((foto, i) => (
+                <button
+                  key={foto.arquivo}
+                  type="button"
+                  onClick={() => setAtual(i)}
+                  className={`${s.miniatura} ${i === atual ? s.ativa : ''}`}
+                  aria-label={`Ver: ${foto.legenda}`}
+                  aria-current={i === atual ? 'true' : undefined}
+                >
+                  <Image
+                    src={`/img/${foto.arquivo}`}
+                    alt=""
+                    width={320}
+                    height={240}
+                    sizes="150px"
+                    className={s.miniaturaImagem}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/*
+            A legenda muda junto, e e o unico texto que a troca move.
+            `aria-live` educado: quem usa leitor de tela recebe a mudanca sem
+            ser interrompido no meio de outra leitura.
+          */}
+          <p className={s.legenda} aria-live="polite">
+            {espaco.fotos[atual].legenda}
+          </p>
+        </div>
       </div>
     </Secao>
   );
