@@ -28,6 +28,16 @@
 
   /* medidas */
   --largura: 1120px;
+
+  /* ALTURA DA PILULA DO TOPO, E POR QUE ELA E UM TOKEN.
+     Desde que o cabecalho virou pilula flutuante ele saiu do fluxo
+     (`position: fixed`), entao nada mais empurra o conteudo pra baixo: quem
+     tem que abrir espaco e a propria abertura. Duas medidas passaram a
+     depender desse numero -- o respiro da abertura e o `scroll-padding-top`
+     das ancoras -- e duas copias do mesmo numero em arquivos diferentes
+     divergem no primeiro ajuste de padding.
+     14px de folga em cima + 56px de pilula + 14px embaixo. */
+  --altura-topo: 84px;
   --raio: 4px;
   --z-topo: 30;
   --z-flutuante: 20;
@@ -42,7 +52,7 @@
 html {
   scroll-behavior: smooth;
   /* o cabecalho fixo nao pode cobrir o titulo da secao ancorada */
-  scroll-padding-top: 88px;
+  scroll-padding-top: calc(var(--altura-topo) + 12px);
   -webkit-text-size-adjust: 100%;
 }
 
