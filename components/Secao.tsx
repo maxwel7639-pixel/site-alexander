@@ -1,3 +1,4 @@
+import MarcaFundo from './MarcaFundo';
 import s from './Secao.module.css';
 
 type Props = {
@@ -26,6 +27,9 @@ export default function Secao({
         .filter(Boolean)
         .join(' ')}
     >
+      {/* Atras de tudo, em toda secao. O `interno` sobe com z-index proprio. */}
+      <MarcaFundo tom={fundo === 'escuro' ? 'escuro' : 'claro'} />
+
       <div className={s.interno}>
         <header className={s.cabecalho}>
           {etiqueta ? <p className={s.etiqueta}>{etiqueta}</p> : null}

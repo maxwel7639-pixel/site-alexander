@@ -16,14 +16,33 @@
   gap: 0.6rem;
 }
 
+/* ===================== OS QUATRO FORMATOS, EM VIDRO ========================
+   Eram contorno bronze com branco a 40% por dentro: quatro etiquetas apagadas
+   sobre a palha, quase invisiveis a um braco de distancia.
+
+   A cor mais marcante SAI DA PALETA e nao de fora dela: e o proprio Tiara
+   entrando como veu, com a borda em ouro cheio e o texto em --tinta. Assim
+   eles ficam do mesmo time do botao sem virar quatro botoes falsos -- o que
+   os separa e a densidade, nao a familia de cor.
+
+   O texto e --tinta e nao --bronze: sobre o veu dourado o bronze cairia pra
+   3,9:1, e estes sao rotulos pequenos, justamente os que mais precisam de
+   contraste.
+============================================================================ */
 .formatos li {
-  padding: 0.4rem 0.95rem;
-  border: 1px solid var(--bronze);
+  padding: 0.5rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--tiara) 72%, transparent);
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-weight: 600;
-  color: var(--bronze);
-  background: rgba(255, 255, 255, 0.4);
+  color: var(--tinta);
+  background: color-mix(in srgb, var(--tiara) 20%, rgba(255, 255, 255, 0.55));
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  backdrop-filter: blur(10px) saturate(150%);
+  /* A sombra e o que tira eles do papel. Curta e baixa: sombra longa em
+     elemento pequeno le como adesivo, nao como relevo. */
+  box-shadow: 0 6px 16px -8px rgba(43, 39, 36, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .figura {

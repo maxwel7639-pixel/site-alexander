@@ -1,8 +1,15 @@
 .secao {
+  position: relative;
+  /* Contem a sangria dos dois psi. Sem isto eles empurram a largura da pagina
+     e criam rolagem lateral -- o defeito mais facil de introduzir com elemento
+     posicionado e o mais chato de achar depois. */
+  overflow: hidden;
   padding: 3.25rem 0;
 }
 
 .interno {
+  position: relative;
+  z-index: 1;
   max-width: var(--largura);
   margin: 0 auto;
   padding: 0 1.25rem;
