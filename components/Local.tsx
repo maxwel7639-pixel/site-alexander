@@ -55,17 +55,20 @@ export default function Local() {
         </div>
 
         <figure className={s.figura}>
-          <Image
-            src="/img/fachada-laboratorio-dr-emerson.webp"
-            alt={
-              'Fachada do prédio na Rua Coronel Francisco Soares, com os ' +
-              'letreiros azuis do Laboratório Dr. Emerson sobre a entrada.'
-            }
-            width={992}
-            height={744}
-            sizes="(max-width: 899px) 100vw, 44vw"
-            className={s.imagem}
-          />
+          {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
+          <div className="pilha">
+            <Image
+              src="/img/fachada-laboratorio-dr-emerson.webp"
+              alt={
+                'Fachada do prédio na Rua Coronel Francisco Soares, com os ' +
+                'letreiros azuis do Laboratório Dr. Emerson sobre a entrada.'
+              }
+              width={992}
+              height={744}
+              sizes="(max-width: 899px) 100vw, 44vw"
+              className={s.imagem}
+            />
+          </div>
           <figcaption className={s.legenda}>
             A fachada, para você reconhecer da calçada.
           </figcaption>

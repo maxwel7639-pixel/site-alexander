@@ -1,4 +1,5 @@
 import MarcaFundo from './MarcaFundo';
+import Traco from './Traco';
 import s from './Secao.module.css';
 
 type Props = {
@@ -7,6 +8,8 @@ type Props = {
   titulo: string;
   /** 'claro' e o creme, 'palha' e o bege, 'escuro' e o grafite. */
   fundo?: 'claro' | 'palha' | 'escuro';
+  /** O desenho a mao no vazio ao lado do titulo. Nem toda secao leva um. */
+  traco?: 'onda' | 'sublinhado' | 'arco';
   children: React.ReactNode;
 };
 
@@ -15,6 +18,7 @@ export default function Secao({
   etiqueta,
   titulo,
   fundo = 'claro',
+  traco,
   children,
 }: Props) {
   const tituloId = `${id}-titulo`;
@@ -29,6 +33,10 @@ export default function Secao({
     >
       {/* Atras de tudo, em toda secao. O `interno` sobe com z-index proprio. */}
       <MarcaFundo tom={fundo === 'escuro' ? 'escuro' : 'claro'} />
+
+      {traco ? (
+        <Traco variante={traco} tom={fundo === 'escuro' ? 'escuro' : 'claro'} />
+      ) : null}
 
       <div className={s.interno}>
         <header className={s.cabecalho}>

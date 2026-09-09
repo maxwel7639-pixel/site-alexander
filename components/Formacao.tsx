@@ -37,18 +37,21 @@ export default function Formacao() {
         </div>
 
         <figure className={s.figura}>
-          <Image
-            src="/img/mocao-camara-nova-iguacu.webp"
-            alt={
-              'Alexander Barnabés no plenário da Câmara Municipal de Nova ' +
-              'Iguaçu, ao lado de um vereador, segurando a Moção emoldurada. ' +
-              'Atrás deles, as letras Poder Legislativo na parede de madeira.'
-            }
-            width={1400}
-            height={933}
-            sizes="(max-width: 899px) 100vw, 48vw"
-            className={s.imagem}
-          />
+          {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
+          <div className="pilha">
+            <Image
+              src="/img/mocao-camara-nova-iguacu.webp"
+              alt={
+                'Alexander Barnabés no plenário da Câmara Municipal de Nova ' +
+                'Iguaçu, ao lado de um vereador, segurando a Moção emoldurada. ' +
+                'Atrás deles, as letras Poder Legislativo na parede de madeira.'
+              }
+              width={1400}
+              height={933}
+              sizes="(max-width: 899px) 100vw, 48vw"
+              className={s.imagem}
+            />
+          </div>
           <figcaption className={s.legenda}>
             Recebendo a Moção de Congratulações e Aplausos no plenário da Câmara
             Municipal de Nova Iguaçu, processo nº 881/2023.

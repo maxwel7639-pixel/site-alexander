@@ -152,3 +152,64 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =============================== A PILHA ====================================
+   Tres fotos empilhadas e escorregadas pro lado, so a de cima visivel.
+
+   ============================ POR QUE GLOBAL ================================
+   Ela vale para as tres figuras do site -- consultorio, plenario e fachada --
+   que moram em tres modulos CSS diferentes. Como classe global existe uma vez;
+   como classe de modulo existiria tres vezes, e tres copias divergem no
+   primeiro ajuste de deslocamento.
+
+   =========================== POR QUE SO TRANSLADA ===========================
+   Sem rotacao. Foto girada le como "polaroide jogada na mesa", que e um clima
+   de album de familia; aqui a intencao e a de um arquivo bem guardado. O que
+   da a leitura de pilha e a REGULARIDADE do passo: 0,55rem e 1,1rem, o dobro
+   exato, e o olho completa a sequencia sozinho.
+============================================================================ */
+.pilha {
+  position: relative;
+}
+
+/* A imagem e a primeira filha e fica por cima das duas cartelas. */
+.pilha > :first-child {
+  position: relative;
+  z-index: 2;
+}
+
+.pilha::before,
+.pilha::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--raio);
+  border: 1px solid var(--linha);
+  /* Opaca de proposito: sao as COSTAS de outras fotos, e costas de foto nao
+     sao translucidas. Translucida deixaria o fundo da secao atravessar e a
+     pilha viraria tres contornos soltos. */
+  background: var(--creme);
+  pointer-events: none;
+}
+
+.pilha::before {
+  z-index: 1;
+  transform: translate(0.55rem, 0.55rem);
+}
+
+.pilha::after {
+  z-index: 0;
+  transform: translate(1.1rem, 1.1rem);
+  /* A do fundo perde um pouco da borda: profundidade se le pelo contraste que
+     diminui com a distancia, nao so pelo deslocamento. */
+  border-color: color-mix(in srgb, var(--linha) 62%, transparent);
+}
+
+/* No celular a figura ja vai de borda a borda da coluna e as cartelas sairiam
+   pela direita da tela. A pilha some e sobra a foto, que e o que importa. */
+@media (max-width: 719px) {
+  .pilha::before,
+  .pilha::after {
+    display: none;
+  }
+}
