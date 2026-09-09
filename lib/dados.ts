@@ -1,7 +1,26 @@
 // Conteudo real do Alexander, levantado em 08/09/2026 a partir do material
 // que ele mandou. Nada aqui e inventado. O que falta esta marcado com TODO.
 
-export const SITE_URL = 'https://site-alexander.vercel.app';
+/*
+ * ================= ESTE ENDERECO NAO E COSMETICO ==========================
+ * Ele manda no canonical, no og:image, no @id e no `url` do JSON-LD, no
+ * sitemap.xml e na linha de Sitemap do robots.txt. Errado, todos apontam pro
+ * lugar errado ao mesmo tempo.
+ *
+ * E estava errado. Ate 09/09/2026 ele dizia `site-alexander.vercel.app`, que
+ * NAO E DESTE PROJETO: aquele subdominio ja pertence a outra conta da Vercel e
+ * serve um curso de edicao de video. O nome estava tomado, entao a Vercel deu
+ * a este projeto o sufixo `-mu`.
+ *
+ * O estrago, medido: /og-image.jpg naquele dominio devolvia 404, ou seja
+ * nenhum link deste site abria com imagem no WhatsApp; e o canonical, o @id e
+ * o sitemap declaravam ao Google um dominio de terceiro.
+ *
+ * PENDENTE: dominio proprio. `.vercel.app` num site de profissional de saude
+ * e fraco pra confianca e pra busca local, e o dia em que ele comprar um, esta
+ * linha e a unica que muda.
+ * ========================================================================== */
+export const SITE_URL = 'https://site-alexander-mu.vercel.app';
 
 export const profissional = {
   nome: 'Alexander Barnabés',
