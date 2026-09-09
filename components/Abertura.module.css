@@ -1,0 +1,110 @@
+.abertura {
+  background: var(--creme);
+  border-bottom: 1px solid var(--linha);
+}
+
+.interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem 2.75rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.registro {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ouro-texto);
+}
+
+.titulo {
+  margin-bottom: 0.35rem;
+}
+
+.papel {
+  margin: 0 0 1.25rem;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  font-style: italic;
+  color: var(--bronze);
+}
+
+.linha {
+  margin-bottom: 1.75rem;
+  font-size: 1.08rem;
+  max-width: 46ch;
+}
+
+.cta {
+  width: 100%;
+}
+
+.dados {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--linha);
+  display: grid;
+  gap: 0.7rem;
+  font-size: 0.98rem;
+  color: var(--bronze);
+}
+
+.dados li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.icone {
+  flex: none;
+  width: 21px;
+  height: 21px;
+  color: var(--ouro-texto);
+}
+
+.foto {
+  /* a moldura fina de ouro amarra a foto na identidade, sem filtro por cima */
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(43, 39, 36, 0.06),
+    0 12px 32px -18px rgba(43, 39, 36, 0.4);
+}
+
+.imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* o rosto dele fica no terco superior da foto */
+  object-fit: cover;
+  object-position: 50% 22%;
+  aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 900px) {
+  .interno {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3.5rem;
+    padding: 4rem 1.25rem 4.5rem;
+  }
+
+  .cta {
+    width: auto;
+  }
+
+  .imagem {
+    aspect-ratio: 3 / 2;
+    object-position: 50% 25%;
+  }
+
+  /* a foto vem depois no HTML porque o nome e o CRP sao o que precisa ser
+     lido primeiro por leitor de tela, mas no desktop ela fica a direita */
+  .foto {
+    order: 2;
+  }
+}

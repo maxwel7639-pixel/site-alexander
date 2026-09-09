@@ -1,0 +1,46 @@
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  /* 52px de altura minima. O alvo de toque de 44px e o piso, nao a meta,
+     e boa parte do publico dele le no celular com a vista cansada. */
+  min-height: 52px;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--raio);
+  font-family: var(--fonte-corpo), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease,
+    border-color 200ms ease;
+}
+
+.icone {
+  flex: none;
+}
+
+/* Ouro cheio com texto grafite: 6,7:1 */
+.cheio {
+  background: var(--tiara);
+  color: #241f1b;
+  border: 2px solid var(--tiara);
+}
+
+.cheio:hover {
+  background: #b78f1c;
+  border-color: #b78f1c;
+}
+
+/* Contorno de ouro sobre o grafite: 6,3:1 */
+.contorno {
+  background: transparent;
+  color: var(--tiara);
+  border: 2px solid var(--tiara);
+}
+
+.contorno:hover {
+  background: var(--tiara);
+  color: #241f1b;
+}
