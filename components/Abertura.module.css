@@ -9,9 +9,8 @@
 ============================================================================ */
 .abertura {
   position: relative;
-  /* O simbolo passa da borda de baixo de proposito. Sem isto ele criaria
-     rolagem lateral -- o defeito mais facil de introduzir e mais chato de
-     achar num hero com elemento posicionado. */
+  /* Contem a sangria dos psi da MarcaFundo. Sem isto eles empurram a largura
+     da pagina e criam rolagem lateral. */
   overflow: hidden;
   border-bottom: 1px solid var(--linha);
   /* Um calor muito baixo vindo de cima e da direita, atras da foto, pra o
@@ -25,31 +24,6 @@
       transparent 72%
     ),
     var(--creme);
-}
-
-/* ---- o psi como marca d'agua ----
-   Ele ja e o logo, a assinatura dos posts e o cartao. Em escala e a 3,5% de
-   opacidade, vira textura da propria marca em vez de enfeite generico.
-
-   SANGRA PELA ESQUERDA, e nao pela direita como na primeira tentativa. Encostado
-   na direita ele ficava atras da foto e o pouco que sobrava aparecia cortado no
-   alto, sem forma reconhecivel: lia como mancha de impressao, nao como simbolo.
-   Pela esquerda ele ocupa o vazio embaixo da coluna de texto, que e onde o olho
-   descansa depois do botao, e a haste do psi fica inteira. */
-.simbolo {
-  position: absolute;
-  left: -0.34em;
-  top: 58%;
-  transform: translateY(-50%);
-  z-index: 0;
-  font-family: var(--fonte-titulo), Georgia, serif;
-  font-size: clamp(19rem, 42vw, 34rem);
-  line-height: 0.78;
-  color: var(--bronze);
-  opacity: 0.035;
-  pointer-events: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 .interno {
@@ -236,15 +210,5 @@
 @media (max-width: 899px) {
   .moldura::before {
     display: none;
-  }
-
-  /* No celular a coluna e uma so e o texto passa por cima do simbolo inteiro.
-     Ele encolhe, desce e clareia: presenca de papel, nunca de desenho. */
-  .simbolo {
-    left: auto;
-    right: -0.2em;
-    top: 64%;
-    font-size: clamp(13rem, 54vw, 19rem);
-    opacity: 0.026;
   }
 }

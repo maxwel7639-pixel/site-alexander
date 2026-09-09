@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { atendimento, profissional, reconhecimentos } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
+import MarcaFundo from './MarcaFundo';
 import { IconeLocal, IconeRelogio } from './Icones';
 import s from './Abertura.module.css';
 
@@ -34,18 +35,10 @@ export default function Abertura() {
   return (
     <section className={s.abertura} id="topo">
       {/*
-        O psi dele, grande e quase invisivel, atras da foto. E o simbolo que ja
-        esta no logo, na assinatura dos posts e no cartao: usar de novo aqui, em
-        escala, e o jeito mais barato de o campo creme parar de ser chapado sem
-        inventar ornamento nenhum.
-
-        Desenhado como TEXTO e nao com /img/simbolo-psi.webp: aquele arquivo e
-        o psi dourado SOBRE grafite, com fundo. Como marca d'agua ele apareceria
-        como um quadrado escuro.
+        A mesma marca de todas as secoes. Ela nasceu aqui, com um psi so; virou
+        componente quando passou a valer pro site inteiro.
       */}
-      <span className={s.simbolo} aria-hidden="true">
-        Ψ
-      </span>
+      <MarcaFundo />
 
       <div className={s.interno}>
         <div className={s.texto}>

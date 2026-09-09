@@ -1,0 +1,72 @@
+/* ============================ A MARCA DE FUNDO ==============================
+   Dois psi sangrando pelas laterais opostas, atras de tudo.
+
+   O campo e absoluto e cobre a secao inteira; quem contem o transbordo e a
+   secao, com `overflow: hidden`. Se o corte morasse aqui, o psi seria cortado
+   na borda do proprio campo e perderia justamente o efeito de sangria.
+============================================================================ */
+.campo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.psi {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: clamp(16rem, 34vw, 30rem);
+  line-height: 0.78;
+}
+
+.esquerda {
+  left: -0.34em;
+}
+
+/* Espelhado de verdade, e nao so reposicionado: com `scaleX(-1)` as duas
+   hastes apontam pra fora nas duas bordas, e a pagina fica simetrica em vez de
+   parecer que o mesmo desenho escorregou pro outro lado. */
+.direita {
+  right: -0.34em;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+/* Sobre creme e palha. Subiu de 0,035 pra 0,055 a pedido: era discreto demais
+   pra aparecer em tela de celular no sol. */
+.claro .psi {
+  color: var(--bronze);
+  opacity: 0.055;
+}
+
+/* Sobre o grafite o bronze some. Aqui a marca e o proprio creme, e a opacidade
+   cai porque claro sobre escuro rende mais contraste percebido que o inverso:
+   o mesmo 0,055 gritaria. */
+.escuro .psi {
+  color: var(--creme-texto);
+  opacity: 0.032;
+}
+
+/* Em tela estreita os dois psi se cruzariam no meio e virariam borrao. Fica so
+   o da direita, menor, que e o lado onde o texto termina. */
+@media (max-width: 899px) {
+  .esquerda {
+    display: none;
+  }
+
+  .psi {
+    font-size: clamp(13rem, 56vw, 20rem);
+  }
+
+  .claro .psi {
+    opacity: 0.045;
+  }
+
+  .escuro .psi {
+    opacity: 0.028;
+  }
+}
