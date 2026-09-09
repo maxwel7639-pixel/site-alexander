@@ -34,7 +34,15 @@ type Props = {
 export default function MarcaFundo({ tom = 'claro', soEsquerda }: Props) {
   return (
     <div className={`${s.campo} ${s[tom]}`} aria-hidden="true">
-      <span className={`${s.psi} ${s.esquerda}`}>Ψ</span>
+      {/*
+        `unica` marca o caso em que este e o UNICO psi da secao. Sem essa marca
+        o CSS nao tem como distinguir "sou o da esquerda, tem outro do outro
+        lado" de "sou o unico que existe aqui" -- e no celular, onde so um cabe,
+        os dois casos pedem tratamento oposto.
+      */}
+      <span className={`${s.psi} ${s.esquerda} ${soEsquerda ? s.unica : ''}`}>
+        Ψ
+      </span>
       {soEsquerda ? null : <span className={`${s.psi} ${s.direita}`}>Ψ</span>}
     </div>
   );
