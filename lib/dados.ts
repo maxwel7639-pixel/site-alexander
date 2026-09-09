@@ -37,9 +37,11 @@ export const profissional = {
 const mensagemWhatsApp =
   'Oi, vim pelo site e gostaria de agendar uma consulta.';
 
-export const whatsappUrl = `https://wa.me/5521964983557?text=${encodeURIComponent(
-  mensagemWhatsApp,
-)}`;
+/** Monta o link do WhatsApp com um texto ja escrito na caixa de mensagem. */
+export const whatsappCom = (mensagem: string) =>
+  `https://wa.me/5521964983557?text=${encodeURIComponent(mensagem)}`;
+
+export const whatsappUrl = whatsappCom(mensagemWhatsApp);
 
 export const endereco = {
   // PENDENCIA: o numero da sala tem tres versoes no material dele.
@@ -104,12 +106,56 @@ export const temas = [
   },
 ];
 
-// Os quatro sinais estao transcritos exatamente como ele publica no card dele.
+/*
+ * Os quatro sinais, transcritos exatamente como ele publica no card dele.
+ *
+ * ===================== CADA UM LEVA A PROPRIA MENSAGEM ======================
+ * Desde 09/09/2026 eles nao sao mais uma lista pra ler: cada um e um link que
+ * abre o WhatsApp com o assunto JA ESCRITO. A ideia e do Maxwel, e ela resolve
+ * as duas pontas de uma vez.
+ *
+ * Do lado de quem chega: a parte mais dificil de procurar um psicologo nao e
+ * achar o numero, e escrever a primeira frase. Aqui ela ja vem pronta, e a
+ * pessoa so precisa apertar enviar.
+ *
+ * Do lado dele: a conversa comeca sabendo do que se trata, em vez de um "oi"
+ * seco que exige tres mensagens ate chegar no assunto.
+ *
+ * ============================ COMO O TEXTO E ESCRITO ========================
+ * PRIMEIRA PESSOA, e com as palavras dela e nao com as do card. "Voce nao
+ * consegue superar uma tristeza" e uma frase que ele diz SOBRE alguem; ninguem
+ * manda isso pra si mesmo. Vira "tem uma tristeza que eu nao estou conseguindo
+ * superar".
+ *
+ * E nenhuma delas afirma diagnostico nem pede consulta: todas terminam em
+ * "queria conversar sobre isso". Quem esta mal precisa de uma porta, nao de um
+ * compromisso assinado antes de falar.
+ */
 export const sinais = [
-  'Você não consegue superar uma tristeza',
-  'Você está constantemente desanimado',
-  'Você deseja tomar uma decisão importante',
-  'Você está enfrentando dificuldades nos relacionamentos',
+  {
+    texto: 'Você não consegue superar uma tristeza',
+    mensagem:
+      'Oi. Vim pelo site. Tem uma tristeza que eu não estou conseguindo ' +
+      'superar e queria conversar sobre isso.',
+  },
+  {
+    texto: 'Você está constantemente desanimado',
+    mensagem:
+      'Oi. Vim pelo site. Ando desanimado o tempo todo e queria conversar ' +
+      'sobre isso.',
+  },
+  {
+    texto: 'Você deseja tomar uma decisão importante',
+    mensagem:
+      'Oi. Vim pelo site. Preciso tomar uma decisão importante e queria ' +
+      'conversar sobre isso.',
+  },
+  {
+    texto: 'Você está enfrentando dificuldades nos relacionamentos',
+    mensagem:
+      'Oi. Vim pelo site. Estou enfrentando dificuldades nos meus ' +
+      'relacionamentos e queria conversar sobre isso.',
+  },
 ];
 
 // PENDENCIA resolvida em 08/09/2026: ele tem dois cards com listas que nao

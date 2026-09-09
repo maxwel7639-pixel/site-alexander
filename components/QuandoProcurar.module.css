@@ -1,7 +1,17 @@
 .introducao {
-  margin-bottom: 2.25rem;
+  margin-bottom: 0.9rem;
   color: var(--bronze-claro);
   max-width: 58ch;
+}
+
+/* A instrucao vem DEPOIS da introducao e antes da lista, colada nela: ela so
+   faz sentido lendo os cartoes logo abaixo. Em ouro porque e a unica frase da
+   secao que pede uma acao. */
+.instrucao {
+  margin: 0 0 1.6rem;
+  max-width: 58ch;
+  font-size: 0.98rem;
+  color: var(--tiara);
 }
 
 .lista {
@@ -16,11 +26,21 @@
    escuro sobre fundo escuro nao aparece -- sobraria so a borda. Antes eram
    quatro retangulos de --grafite-claro chapado, do mesmo tom do fundo, e a
    unica coisa que os separava da secao era um fio de borda. */
+/* ---- cada cartao e um link ----
+   Ele precisa PARECER tocavel antes do toque: o cursor muda, a borda acende no
+   hover e o icone do WhatsApp fica sempre visivel, nunca so no hover. Em
+   celular nao existe hover, e afordancia que so aparece no mouse nao existe pra
+   metade das pessoas. */
 .item {
   display: flex;
   align-items: flex-start;
   gap: 0.9rem;
   padding: 1.15rem 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease,
+    transform 200ms ease;
   background: rgba(241, 233, 218, 0.07);
   border: 1px solid rgba(199, 180, 156, 0.2);
   border-radius: 14px;
@@ -30,6 +50,42 @@
     inset 0 1px 0 rgba(241, 233, 218, 0.09);
   font-size: 1.05rem;
   line-height: 1.5;
+}
+
+.item:hover {
+  background: rgba(241, 233, 218, 0.12);
+  border-color: rgba(201, 162, 39, 0.5);
+  transform: translateY(-2px);
+}
+
+.item:hover .destino {
+  opacity: 1;
+}
+
+.texto {
+  flex: 1;
+}
+
+/* Fica a meia luz e acende no hover: presente o bastante pra dizer pra onde
+   leva, discreto o bastante pra nao virar o assunto do cartao. */
+.destino {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.2rem;
+  color: var(--tiara);
+  opacity: 0.55;
+  transition: opacity 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .item:hover {
+    transform: none;
+  }
 }
 
 .icone {
