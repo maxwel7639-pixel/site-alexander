@@ -3,6 +3,13 @@ import s from './MarcaFundo.module.css';
 type Props = {
   /** 'claro' e sobre creme ou palha. 'escuro' e sobre o grafite. */
   tom?: 'claro' | 'escuro';
+  /**
+   * Some com o psi da direita. Serve pras secoes que tem traco: os dois moram
+   * no mesmo canto e, sobrepostos, viram emaranhado -- foi exatamente o que
+   * aconteceu no Contato. O da esquerda continua, entao a marca nao falta em
+   * secao nenhuma.
+   */
+  soEsquerda?: boolean;
 };
 
 /**
@@ -24,11 +31,11 @@ type Props = {
  * `aria-hidden` nos dois. Um leitor de tela lendo "psi psi" antes de cada secao
  * seria ruido puro: a marca aqui e textura, nao conteudo.
  */
-export default function MarcaFundo({ tom = 'claro' }: Props) {
+export default function MarcaFundo({ tom = 'claro', soEsquerda }: Props) {
   return (
     <div className={`${s.campo} ${s[tom]}`} aria-hidden="true">
       <span className={`${s.psi} ${s.esquerda}`}>Ψ</span>
-      <span className={`${s.psi} ${s.direita}`}>Ψ</span>
+      {soEsquerda ? null : <span className={`${s.psi} ${s.direita}`}>Ψ</span>}
     </div>
   );
 }

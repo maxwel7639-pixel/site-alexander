@@ -83,28 +83,40 @@ function Sublinhado() {
 }
 
 /**
- * Diferente dos outros dois, como pedido: em vez de atravessar, ele CERCA --
- * um arco aberto que abraca o canto, com um risco solto por dentro.
+ * O terceiro. Diferente dos outros dois sem sair da familia: os tres ATRAVESSAM
+ * -- o que muda e o gesto. A onda tem riscos cortando, o sublinhado volta por
+ * baixo, e este termina numa virada pra cima, como quem levanta a caneta.
+ *
+ * ============================ POR QUE NAO E MAIS UM ARCO ====================
+ * A primeira versao era um arco alto que CERCAVA o canto, com 220 de altura no
+ * viewBox contra 96 da onda. Dois problemas, e o Maxwel viu os dois:
+ *
+ * Alto daquele jeito, ele descia dentro da faixa vertical onde mora o psi da
+ * MarcaFundo, e os dois desenhos se cruzavam num emaranhado.
+ *
+ * E arco nao e gesto: ele nao vai a lugar nenhum. Lia como um pedaco de
+ * circunferencia solto, nao como um traco que alguem fez.
  */
 function Arco() {
   return (
-    <svg viewBox="0 0 400 220" fill="none" className={s.svg}>
+    <svg viewBox="0 0 540 120" fill="none" className={s.svg}>
       <path
-        d="M28 208C4 140 22 68 84 30c58-36 140-30 196 8 40 27 62 66 66 108"
-        strokeWidth="2.4"
+        d="M12 84C90 26 210 20 302 48c66 20 120 29 184 9"
+        strokeWidth="2.5"
         strokeLinecap="round"
       />
       <path
-        d="M36 206C14 142 32 74 92 38c56-34 134-28 188 8"
+        d="M20 90C98 34 214 28 302 55c64 19 116 27 178 9"
         strokeWidth="1.4"
         strokeLinecap="round"
         opacity="0.5"
       />
+      {/* A virada final. E ela que transforma a linha em gesto: sem isso o
+          traco so termina, com isso ele e SOLTO. */}
       <path
-        d="M132 168c46-52 108-64 168-40"
-        strokeWidth="2"
+        d="M486 57c17-5 27-16 24-30"
+        strokeWidth="2.3"
         strokeLinecap="round"
-        opacity="0.75"
       />
     </svg>
   );
