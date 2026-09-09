@@ -156,10 +156,56 @@ export const depoimentos = [
   },
 ];
 
+/*
+ * As fotos da sala, enviadas por ele em 09/09/2026.
+ *
+ * Vieram onze; ficaram TRES. Havia cinco do mesmo canto com pequenas variacoes
+ * de enquadramento -- galeria com cinco versoes da mesma vista nao mostra cinco
+ * coisas, mostra uma cinco vezes. Ficaram fora tambem a da escrivaninha, onde a
+ * mesa cheia e a cadeira de escritorio contam uma historia de trabalho e nao de
+ * escuta, e a da sala de espera, com luz chapada e um tapete de exercicio no
+ * chao.
+ *
+ * O texto nao promete nada sobre o atendimento, so descreve o lugar: e o que o
+ * Conselho pede e e o que a pessoa quer saber.
+ */
+export const espaco = {
+  titulo: 'Onde a conversa acontece',
+  texto:
+    'Uma sala com janela, no Centro de Nova Iguaçu. Poltrona, sofá, planta e ' +
+    'estante, e não o consultório branco que costuma vir à cabeça. Ver o lugar ' +
+    'antes de entrar nele tira uma dúvida a menos de quem vai pela primeira vez.',
+  fotos: [
+    {
+      arquivo: 'espaco-1-poltrona.webp',
+      legenda: 'A poltrona e a janela, com a luz da manhã.',
+      alt:
+        'Sala de atendimento com poltrona estampada à esquerda, sofá à ' +
+        'direita, tapete escuro no centro e uma janela ampla ao fundo com ' +
+        'plantas no parapeito.',
+    },
+    {
+      arquivo: 'espaco-2-sala.webp',
+      legenda: 'A sala inteira, vista de quem entra.',
+      alt:
+        'A mesma sala vista da porta: prateleira de livros no alto, quadros ' +
+        'na parede da direita, mesas de apoio e o sofá em primeiro plano.',
+    },
+    {
+      arquivo: 'espaco-3-balcao.webp',
+      legenda: 'O balcão ao fundo e a profundidade da sala.',
+      alt:
+        'Vista da sala em direção ao balcão de madeira ao fundo, com plantas ' +
+        'altas, mesa de apoio redonda e uma almofada amarela sobre o sofá.',
+    },
+  ],
+};
+
 export const navegacao = [
   { href: '#atendimento', label: 'Atendimento' },
   { href: '#temas', label: 'Temas' },
   { href: '#formacao', label: 'Formação' },
+  { href: '#espaco', label: 'O espaço' },
   { href: '#local', label: 'Onde fica' },
   { href: '#contato', label: 'Contato' },
 ];
