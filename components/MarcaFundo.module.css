@@ -51,22 +51,44 @@
   opacity: 0.032;
 }
 
-/* Em tela estreita os dois psi se cruzariam no meio e virariam borrao. Fica so
-   o da direita, menor, que e o lado onde o texto termina. */
+/* ============================ O CELULAR ====================================
+   Em tela estreita os dois psi se cruzariam no meio e virariam borrao, entao
+   fica UM SO -- sempre a direita, que e o lado onde as linhas de texto acabam.
+
+   ========================= O QUE ESTAVA QUEBRADO ============================
+   Medido em 09/09/2026, a 390px: em TRES das nove secoes -- temas, sinais e
+   contato -- nao aparecia psi nenhum. Sao justamente as que tem traco e por
+   isso recebem `soEsquerda`: o unico span que elas tem e o da esquerda, e a
+   regra de celular escondia o da esquerda sem perguntar se havia outro.
+
+   `:not(.unica)` e o conserto: some com o da esquerda so quando existe um par.
+   Sozinho, ele atravessa pro lado direito e faz o papel dos dois.
+
+   E nas outras seis o psi existia e nao se via: 218px a 0,045 de opacidade,
+   contra 480px a 0,055 no desktop. Menor E mais fraco ao mesmo tempo, o que em
+   tela de celular no claro do dia da invisivel. Agora cresce e sobe junto.
+============================================================================ */
 @media (max-width: 899px) {
-  .esquerda {
+  .esquerda:not(.unica) {
     display: none;
   }
 
+  /* O unico da secao vai pro lado direito e espelha, igual aos outros. */
+  .unica {
+    left: auto;
+    right: -0.34em;
+    transform: translateY(-50%) scaleX(-1);
+  }
+
   .psi {
-    font-size: clamp(13rem, 56vw, 20rem);
+    font-size: clamp(15rem, 68vw, 24rem);
   }
 
   .claro .psi {
-    opacity: 0.045;
+    opacity: 0.065;
   }
 
   .escuro .psi {
-    opacity: 0.028;
+    opacity: 0.042;
   }
 }
