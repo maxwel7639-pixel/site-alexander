@@ -285,7 +285,9 @@ export const qualificacoes = [
 export const experiencia = [
   {
     titulo: 'Atuou no CAPS-AD Vanderlei Marins',
-    orgao: 'Centro de Atenção Psicossocial de Álcool e outras Drogas',
+    // Grafia copiada da mensagem dele, entre parenteses, sem corrigir para
+    // o nome oficial do servico: quem nomeia onde trabalhou e ele.
+    orgao: 'Centro de Atenção Psicossocial de Álcool e outras drogas',
     detalhe: 'Austin, Nova Iguaçu (RJ). Serviço público de saúde mental.',
   },
 ];

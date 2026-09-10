@@ -27,7 +27,14 @@
      e o #bf9a70 do glifo.
 
      Com o logo entrando na pagina, os dois dourados lado a lado leriam como
-     erro de impressao. Este passa a ser o ouro; o #c9a227 nao existe mais.
+     erro de impressao. Este passa a ser o ouro.
+
+     COMO PROCURAR O OURO ANTIGO, se um dia sobrar algum: dois hovers o
+     guardavam escrito em TRIPLETO RGB (201 162 39) em vez de hex, e por isso
+     escaparam da primeira troca -- nem `grep c9a227` nem `grep var(--tiara)`
+     os achava. Foram consertados em 10/09/2026. Cor de paleta escrita fora do
+     token nao aparece em busca nenhuma: se precisar de transparencia, use
+     color-mix sobre o token, como o resto do projeto ja faz.
 
      O QUE A TROCA FEZ COM O CONTRASTE, medido em cada lugar onde o token toca:
        texto sobre --grafite ........ 6,26:1 -> 5,82:1   (continua AA)
