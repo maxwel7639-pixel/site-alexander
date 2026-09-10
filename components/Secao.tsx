@@ -6,8 +6,12 @@ type Props = {
   id: string;
   etiqueta?: string;
   titulo: string;
-  /** 'claro' e o creme, 'palha' e o bege, 'escuro' e o grafite. */
-  fundo?: 'claro' | 'palha' | 'escuro';
+  /**
+   * 'claro' e o creme, 'palha' e o bege, 'mate' e a Folha de Mate e 'escuro'
+   * e o grafite. Os tres primeiros sao claros e recebem o mesmo tom de marca
+   * d'agua; so o 'escuro' inverte.
+   */
+  fundo?: 'claro' | 'palha' | 'mate' | 'escuro';
   /** O desenho a mao no vazio ao lado do titulo. Nem toda secao leva um. */
   traco?: 'onda' | 'sublinhado' | 'arco';
   children: React.ReactNode;

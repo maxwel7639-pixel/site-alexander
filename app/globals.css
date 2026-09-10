@@ -18,9 +18,46 @@
   --bronze-claro: #c7b49c;   /* secundario sobre grafite, 7,5:1 */
 
   /* marca */
-  --tiara: #c9a227;          /* o ouro. superficies clicaveis e o simbolo */
+  /* ============= O OURO SAIU DO PALPITE E VEIO DO ARQUIVO DELE =============
+     Ate 09/09/2026 este token era #c9a227, um amarelo saturado tirado do print
+     do aplicativo da Coral. So que a marca dele nao e um print: e
+     `public/marca/logo-psi.jpg`, e la o Psi dourado mede #bf9a70 -- um dourado
+     amaciado, com bem menos amarelo. Amostragem dos 1000x1000 pixels do
+     arquivo: 88,7% deles sao o grafite #262626 e o segundo tom mais frequente
+     e o #bf9a70 do glifo.
+
+     Com o logo entrando na pagina, os dois dourados lado a lado leriam como
+     erro de impressao. Este passa a ser o ouro; o #c9a227 nao existe mais.
+
+     O QUE A TROCA FEZ COM O CONTRASTE, medido em cada lugar onde o token toca:
+       texto sobre --grafite ........ 6,26:1 -> 5,82:1   (continua AA)
+       texto sobre --grafite-claro .. 5,41:1 -> 5,03:1   (continua AA)
+       texto sobre a pilula do topo . 4,92:1 -> 4,58:1   (continua AA)
+       filetes e bordas sobre claro . 2,15:1 -> 2,31:1   (melhorou)
+     Nenhum lugar caiu abaixo do que prometia, entao nenhum precisou de
+     conserto local.
+
+     O papel do token nao mudou: marcar o que e clicavel e desenhar o simbolo.
+
+     ATENCAO: `scripts/gerar-imagens.mjs` LE este valor do CSS para pintar o
+     og-image e os favicons. Trocar aqui sem rodar o script deixa o icone do
+     navegador num ouro e a pagina em outro. */
+  --tiara: #bf9a70;          /* o ouro medido no logo dele */
   --ouro-texto: #7c5f0f;     /* o mesmo ouro legivel sobre fundo claro, 5,3:1 */
-  --mate: #5e5f43;           /* Folha de Mate, so em detalhe pequeno */
+
+  /* ================= FOLHA DE MATE, AGORA COM A COR CERTA ==================
+     Este token dizia #5e5f43, um oliva escuro, e nao tinha uma unica
+     referencia no projeto -- declarado e invisivel desde o primeiro commit.
+
+     A amostra "Folha de Mate" que ele mandou e #c0b8a0, um caqui claro: outra
+     cor, nao um tom vizinho. Corrigir o valor nao mexeu um pixel do que ja
+     estava no ar, justamente porque ninguem usava.
+
+     Agora usa: e o fundo da secao de servicos (`.mate` em Secao.module.css).
+     Sobre ele, --tinta da 7,48:1. Os tokens secundarios NAO passam nessa
+     altura e sao reescritos localmente na propria secao -- ver o comentario
+     de lá. */
+  --mate: #c0b8a0;           /* Folha de Mate, fundo de secao alternada */
 
   /* linhas */
   --linha: #ddd0b8;

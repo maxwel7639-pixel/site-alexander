@@ -1,0 +1,59 @@
+.introducao {
+  margin-bottom: 2rem;
+  /* O --bronze aqui nao e o --bronze de sempre: dentro da faixa mate ele foi
+     reescrito para #534535, que da 4,67:1 sobre o fundo. Ver o bloco .mate em
+     Secao.module.css. */
+  color: var(--bronze);
+  max-width: 58ch;
+}
+
+.grade {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+/* ==================== O CARTAO E A ESTREIA DA PALHA COMO SUPERFICIE =========
+   Ate aqui a --palha era so faixa de fundo, em tres secoes. Como superficie
+   sobre a faixa mate ela ganha o papel que faltava, e a paleta que ele
+   escolheu passa a aparecer inteira em uma tela so: mate no campo, palha no
+   cartao, bronze no texto e o ouro no filete.
+
+   1,51:1 entre o cartao e a faixa e pouco para separar os dois sozinho, entao
+   quem separa e a borda -- 2,96:1 contra a palha do cartao. Vale lembrar que o
+   cartao de Temas vive com 1,11:1 contra o proprio fundo e le bem, pelo mesmo
+   motivo: o contorno e o filete e que desenham a caixa, nao a diferenca de
+   claridade.
+
+   O filete de ouro a esquerda e o mesmo dos temas, de proposito: sao duas
+   listas de cartao na mesma pagina, e duas gramaticas diferentes fariam a
+   segunda parecer outro site.
+============================================================================ */
+.cartao {
+  padding: 1.4rem 1.5rem;
+  background: var(--palha);
+  border: 1px solid color-mix(in srgb, var(--mate) 62%, var(--tinta));
+  border-left: 3px solid var(--tiara);
+  border-radius: var(--raio);
+}
+
+.titulo {
+  margin-bottom: 0.4rem;
+  /* 11,30:1 sobre a palha do cartao */
+  color: var(--tinta);
+}
+
+.texto {
+  margin: 0;
+  font-size: 1rem;
+  /* o --bronze reescrito da faixa, que sobre a palha sobe para 7,06:1 */
+  color: var(--bronze);
+}
+
+@media (min-width: 640px) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

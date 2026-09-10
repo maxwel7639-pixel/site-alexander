@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { navegacao, profissional } from '@/lib/dados';
+import { marca, navegacao, profissional } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
 import s from './Cabecalho.module.css';
 
@@ -51,12 +51,36 @@ export default function Cabecalho() {
             width={38}
             height={38}
             className={s.logo}
-            priority
+            // `preload`, e nao `priority`: desde o Next 16 o `priority` esta
+            // depreciado em favor dele, com o mesmo efeito e um nome que diz o
+            // que faz. Ver node_modules/next/dist/docs/.../components/image.md.
+            preload
           />
           <span className={s.nome}>
             <strong>{profissional.nome}</strong>
             <small>{profissional.titulo}</small>
           </span>
+          {/*
+            O divã do cartao de visita dele, do outro lado do nome.
+
+            ELE ENTRA JUNTO DO PSI, NUNCA NO LUGAR DELE. O Psi e a marca
+            registrada da papelaria dele e continua onde sempre esteve, aqui e
+            atras de todas as secoes. O divã e a segunda metade da mesma
+            papelaria, e e a unica figura do site que diz "psicanalise" sem
+            precisar escrever a palavra.
+
+            `sizes` nao e opcional aqui: o arquivo original tem 1348px de
+            largura e 284KB, e sem essa dica o next/image serviria um recorte
+            grande demais para um desenho de 72px.
+          */}
+          <Image
+            src={marca.diva.src}
+            alt=""
+            width={marca.diva.largura}
+            height={marca.diva.altura}
+            sizes="72px"
+            className={s.diva}
+          />
         </a>
 
         <nav className={s.nav} aria-label="Seções do site">

@@ -96,7 +96,8 @@ export default function Abertura() {
               }
               width={1296}
               height={864}
-              priority
+              // `preload` substituiu o `priority`, depreciado no Next 16.
+              preload
               sizes="(max-width: 899px) 100vw, 46vw"
               className={s.imagem}
             />

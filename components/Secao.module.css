@@ -39,6 +39,46 @@
   border-bottom: 1px solid var(--linha);
 }
 
+/* ========================= A FAIXA DE FOLHA DE MATE =========================
+   O --mate e a terceira cor que ele escolheu, e ate 09/09/2026 era a unica
+   declarada sem um unico uso. Aqui ela vira o que a --palha ja era: fundo de
+   secao alternada. E o tom mais escuro dos claros do site, entao a faixa
+   marca a secao de servicos sem precisar do grafite.
+
+   ==================== POR QUE OS TOKENS SAO REESCRITOS AQUI =================
+   O --mate e escuro o bastante para derrubar os secundarios. Medido:
+
+     --tinta        #2b2724 sobre mate ...... 7,48:1   passa, e o titulo
+     --bronze       #6e5c46 sobre mate ...... 3,23:1   REPROVA
+     --ouro-texto   #7c5f0f sobre mate ...... 3,03:1   REPROVA
+
+   Os dois reprovados sao usados por componentes que nao sabem em que faixa
+   foram postos -- a .etiqueta daqui mesmo e qualquer texto secundario que
+   entre como filho. Passar cor por prop a cada um espalharia a decisao; um
+   override local dos tokens resolve uma vez e desce por heranca para tudo que
+   estiver dentro da secao.
+
+   Os substitutos sao os mesmos tons escurecidos, nao cores novas:
+
+     --bronze       #534535 sobre mate ...... 4,67:1
+     --ouro-texto   #57430b sobre mate ...... 4,79:1
+
+   Sobre a --palha dos cartoes que ficam dentro desta faixa eles sobem para
+   7,06:1 e 7,24:1, ou seja o override so aperta o contraste, nunca afrouxa.
+============================================================================ */
+.mate {
+  background: var(--mate);
+  /* O --linha padrao e mais CLARO que o mate e sumiria contra a secao de cima.
+     Este filete nasce do proprio mate puxado pra tinta: 1,45:1 contra a faixa
+     e 2,19:1 contra a palha de cima, na mesma discricao do --linha sobre
+     palha, que e 1,16:1. */
+  border-top: 1px solid color-mix(in srgb, var(--mate) 78%, var(--tinta));
+  border-bottom: 1px solid color-mix(in srgb, var(--mate) 78%, var(--tinta));
+
+  --bronze: #534535;
+  --ouro-texto: #57430b;
+}
+
 .escuro {
   background: var(--grafite);
   color: var(--creme-texto);

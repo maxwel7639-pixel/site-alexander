@@ -44,6 +44,11 @@ export const metadata: Metadata = {
     'psicólogo Baixada Fluminense',
     'terapia de casal Nova Iguaçu',
     'psicoterapia breve',
+    // As duas entraram com o conteudo novo de 09/09/2026. Ambas descrevem o
+    // que a pagina passou a dizer -- e so isso: palavra-chave que promete o
+    // que o texto nao entrega derruba a pagina em vez de levantar.
+    'psicólogo álcool e outras drogas Nova Iguaçu',
+    'coaching de relacionamentos',
     'Alexander Barnabés',
   ],
   authors: [{ name: profissional.nomeCompleto }],
@@ -129,11 +134,27 @@ const dadosEstruturados = {
       closes: '19:00',
     },
   ],
+  /*
+   * As quatro primeiras sao abordagens e formatos clinicos, e por isso sao
+   * MedicalTherapy. As tres ultimas entraram em 09/09/2026 junto com o
+   * conteudo novo.
+   *
+   * O atendimento em alcool e outras drogas e clinico e fica como
+   * MedicalTherapy. Coaching e consultoria NAO SAO: sao Service comum, e
+   * declarar os dois como terapia diria ao Google uma coisa que o proprio site
+   * toma o cuidado de nao dizer ao leitor.
+   */
   availableService: [
     { '@type': 'MedicalTherapy', name: 'Psicanálise' },
     { '@type': 'MedicalTherapy', name: 'Psicoterapia breve' },
     { '@type': 'MedicalTherapy', name: 'Terapia de casal' },
     { '@type': 'MedicalTherapy', name: 'Terapia familiar' },
+    {
+      '@type': 'MedicalTherapy',
+      name: 'Atendimento em álcool e outras drogas',
+    },
+    { '@type': 'Service', name: 'Coaching de relacionamentos' },
+    { '@type': 'Service', name: 'Consultorias' },
   ],
   sameAs: [profissional.instagram],
   hasCredential: {

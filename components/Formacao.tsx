@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { qualificacoes, reconhecimentos } from '@/lib/dados';
+import { experiencia, qualificacoes, reconhecimentos } from '@/lib/dados';
 import Secao from './Secao';
 import { SimboloPsi } from './Icones';
 import s from './Formacao.module.css';
@@ -20,6 +20,24 @@ export default function Formacao() {
               <li key={item}>
                 <SimboloPsi className={s.psi} />
                 <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/*
+            Entre a formacao e o reconhecimento, e nao dentro da formacao.
+            Diploma e o que ele e; o CAPS-AD e onde ele esteve. Na mesma lista,
+            um servico publico de saude viraria mais um titulo -- e e
+            justamente o contrario: e a linha que explica de onde vem a
+            especialidade em alcool e outras drogas logo acima.
+          */}
+          <h3 className={s.subtitulo}>Experiência</h3>
+          <ul className={s.reconhecimentos}>
+            {experiencia.map((item) => (
+              <li key={item.titulo} className={s.reconhecimento}>
+                <strong>{item.titulo}</strong>
+                <span className={s.orgao}>{item.orgao}</span>
+                <span className={s.detalhe}>{item.detalhe}</span>
               </li>
             ))}
           </ul>
