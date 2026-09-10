@@ -33,7 +33,12 @@
   font-size: 1rem;
 }
 
-@media (min-width: 900px) {
+/* Ela se esconde exatamente onde o botao do topo aparece, e nem um pixel
+   antes. O numero mora tambem em Cabecalho.module.css e no padding de baixo do
+   Rodape, e os tres tem que dizer a mesma coisa: mudou de 900 para 1120 em
+   09/09/2026, quando a medicao mostrou que a pilula do topo nao cabia em
+   900px. A nota com os numeros esta no Cabecalho. */
+@media (min-width: 1120px) {
   .barra {
     display: none;
   }

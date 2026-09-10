@@ -37,7 +37,11 @@
      92%, e nao os 82% do desenho original, porque a 82% o subtitulo em
      --bronze-claro cai para 4,21:1 e o contorno em --tiara para 3,50:1 quando
      a pilula passa sobre o #FFFDF8 dos cartoes, que e o fundo mais claro do
-     site. A 92% ficam 5,92:1 e 4,92:1.
+     site. A 92% ficam 5,92:1 e 4,58:1.
+
+     O segundo numero era 4,92:1 enquanto o --tiara foi #c9a227. Com o ouro
+     alinhado ao logo dele, #bf9a70, ele desceu para 4,58:1 -- continua acima
+     de 4,5, entao a escolha dos 92% segue de pe pelo mesmo motivo.
 
      color-mix e nao rgba() porque os tokens deste projeto sao hex. rgba()
      exigiria um --grafite-rgb com o tripleto separado por virgula, e duas
@@ -96,8 +100,47 @@
   white-space: nowrap;
 }
 
-/* A navegacao some no celular. O que importa la e o botao, e uma lista de
-   cinco links roubaria a linha inteira do topo. */
+/* ============================= O DIVÃ NA PILULA =============================
+   Do outro lado do nome, com o Psi de um lado e ele do outro: os dois pedacos
+   da papelaria dele emoldurando a assinatura.
+
+   ================================ O TAMANHO =================================
+   72px de largura da 38px de altura, exatamente a altura do Psi ao lado. A
+   pilula nao cresce um pixel por causa dele, e --altura-topo continua valendo.
+
+   E 72 e nao menos porque o desenho e feito de traco fino: a 56px, testado
+   contra o arquivo, as pernas do divã comecam a se dissolver na reamostragem.
+   Menor que isso ele deixa de ser um divã e vira um risco.
+
+   ============================== SEM ENFEITE =================================
+   Sem sombra, sem moldura e sem opacidade. A tinta dele e #9d9876 e da 5,18:1
+   sobre o grafite da pilula -- ja aparece sozinha, e qualquer veu por cima so
+   apagaria um traco que ja e fino.
+
+   A folga a esquerda e maior que o gap de 0,7rem do resto da marca: desenho de
+   linha encostado em texto le como sujeira, e este precisa de ar para ser
+   lido como objeto.
+============================================================================ */
+.diva {
+  flex: none;
+  width: 72px;
+  height: auto;
+  margin-left: 0.45rem;
+}
+
+/* Abaixo de 900px a pilula guarda so a marca, e cada pixel de largura conta
+   numa tela de 360. O divã encolhe junto, mas nao some: ele e metade do pedido
+   do cliente e o celular e onde a maioria vai ver. */
+@media (max-width: 599px) {
+  .diva {
+    width: 58px;
+    margin-left: 0.25rem;
+  }
+}
+
+/* A navegacao some na tela estreita. O que importa la e o botao, e a lista de
+   links roubaria a linha inteira do topo. Ela volta em 1120px -- ver a nota
+   sobre a troca de guarda, mais abaixo. */
 .nav {
   display: none;
 }
@@ -169,13 +212,43 @@
   }
 }
 
-/* O botao do topo tambem some no celular: la existe a barra fixa de baixo,
-   e dois botoes de WhatsApp na mesma tela viram ruido. */
+/* O botao do topo tambem some na tela estreita: la existe a barra fixa de
+   baixo, e dois botoes de WhatsApp na mesma tela viram ruido. */
 .botao {
   display: none;
 }
 
-@media (min-width: 900px) {
+/* ================== A TROCA DE GUARDA SAIU DE 900 E FOI PRA 1120 ============
+   Este numero nao e de layout, e de CAPACIDADE: e a largura a partir da qual a
+   pilula inteira cabe na tela. Acima dele o topo mostra a navegacao e o botao;
+   abaixo, quem mostra o botao e a BarraFixa do rodape. Um so dos dois aparece
+   por vez, e essa troca so pode acontecer onde a pilula couber.
+
+   ============================ POR QUE 900 NAO SERVIA MAIS ===================
+   Medido em 09/09/2026 com a pagina servida em producao, a 900px de janela:
+
+     a pilula precisava de .......... 1053px
+     a janela oferecia (100% - 28) ..  872px
+
+   Ou seja "Contato" saia cortado ao meio e o botao de WhatsApp ficava
+   INTEIRO fora da tela -- justamente na faixa em que a BarraFixa ja tinha se
+   escondido confiando que o topo assumiria. A conta so fechava a partir de
+   937px, entao a faixa 900-936 ja estava quebrada antes deste trabalho.
+
+   Com o divã ao lado do nome (72px) e o item Serviços na navegacao (75px com
+   o vao), a pilula passou a pedir 1063px, e a conta so fecha a partir de
+   1091px de janela.
+
+   1120 e nao 1091 por dois motivos: e a folga de 29px para o dia em que a
+   fonte de sistema entrar antes da Source Sans e as palavras medirem um pouco
+   mais, e e o mesmo numero do --largura, a coluna de conteudo do site. A
+   navegacao aparece exatamente quando a tela e pelo menos tao larga quanto a
+   pagina.
+
+   ATENCAO: 1120 e um contrato entre TRES arquivos -- este, BarraFixa.module
+   .css e o padding de baixo do Rodape. Mudar aqui sozinho deixa a tela sem
+   nenhum botao de WhatsApp, ou com dois. */
+@media (min-width: 1120px) {
   .nav {
     display: block;
   }
@@ -188,9 +261,9 @@
   }
 }
 
-/* Abaixo de 900px a pilula guarda so a marca, e `fit-content` a encolhe
-   sozinha. O vao de 28px nao tem mais o que separar. */
-@media (max-width: 899px) {
+/* Abaixo de 1120px a pilula guarda so a marca e o divã, e `fit-content` a
+   encolhe sozinha. O vao de 28px nao tem mais o que separar. */
+@media (max-width: 1119px) {
   .pilula {
     gap: 0;
     padding: 8px 20px;

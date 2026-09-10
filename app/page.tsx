@@ -9,6 +9,7 @@ import Formacao from '@/components/Formacao';
 import Local from '@/components/Local';
 import QuandoProcurar from '@/components/QuandoProcurar';
 import Rodape from '@/components/Rodape';
+import Servicos from '@/components/Servicos';
 import Temas from '@/components/Temas';
 
 export default function Pagina() {
@@ -18,6 +19,12 @@ export default function Pagina() {
       <main id="conteudo">
         <Abertura />
         <ComoTrabalha />
+        {/*
+          O que ele OFERECE vem antes do que DOI. Quem acabou de ler como ele
+          trabalha pergunta "da pra contratar o que?" antes de perguntar "o
+          meu caso cabe aqui?", e e nessa ordem que as duas secoes respondem.
+        */}
+        <Servicos />
         <Temas />
         <QuandoProcurar />
         <Formacao />

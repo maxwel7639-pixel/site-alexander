@@ -27,10 +27,27 @@
   border-bottom: 1px solid var(--linha-escura);
 }
 
+/* A coluna da marca virou duas linhas: a assinatura em cima, o divã embaixo.
+   Continua sendo UMA celula da grade de tres, entao o rodape nao mudou de
+   forma -- ganhou uma segunda linha dentro da celula que ja existia. */
+.colunaMarca {
+  display: grid;
+  gap: 1.35rem;
+  justify-items: start;
+}
+
 .marca {
   display: flex;
   align-items: center;
   gap: 0.9rem;
+}
+
+/* Sem sombra, sem moldura e sem veu: a tinta do desenho e #9d9876 e da 5,18:1
+   sobre o grafite do rodape. O 1,35rem de folga acima e o que impede o traco
+   fino de encostar no CRP e virar continuacao da linha de texto. */
+.diva {
+  width: 132px;
+  height: auto;
 }
 
 .logo {
@@ -129,7 +146,10 @@
   }
 }
 
-@media (min-width: 900px) {
+/* O respiro de 6rem existe para a BarraFixa nao cobrir os creditos, entao ele
+   tem que durar exatamente enquanto ela durar: 1120px, o mesmo numero do
+   Cabecalho. Zerar antes deixaria a barra em cima do texto. */
+@media (min-width: 1120px) {
   .rodape {
     padding-bottom: 0;
   }

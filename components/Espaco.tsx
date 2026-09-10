@@ -98,9 +98,10 @@ export default function Espaco() {
                   width={1600}
                   height={1201}
                   sizes="(max-width: 899px) 100vw, 58vw"
-                  // So a primeira tem prioridade: carregar as tres de uma vez
-                  // atrasaria justamente a que aparece.
-                  priority={i === 0}
+                  // So a primeira e pre-carregada: puxar as tres de uma vez
+                  // atrasaria justamente a que aparece. `preload` e o nome que
+                  // o Next 16 deu ao antigo `priority`, que ficou depreciado.
+                  preload={i === 0}
                   className={`${s.foto} ${i === atual ? s.visivel : ''}`}
                 />
               ))}

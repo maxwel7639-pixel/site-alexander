@@ -34,6 +34,32 @@ export const profissional = {
   instagramHandle: '@psicologoalexanderbarnabes',
 };
 
+/*
+ * A MARCA DELE, os arquivos que vieram em 09/09/2026.
+ *
+ * `logo-psi.jpg` e o Psi dourado sobre grafite com o nome completo. E de onde
+ * saiu o valor do --grafite e, desde 09/09, o do --tiara: os dois foram
+ * amostrados pixel a pixel nesse arquivo.
+ *
+ * `diva.png` e o divã do cartao de visita, ja recortado e com o fundo branco
+ * removido -- 1348x712 com canal alfa, tinta em #9d9876, um caqui esverdeado
+ * que e praticamente a Folha de Mate da paleta dele. Sobre o --grafite ele da
+ * 5,18:1, entao aparece sem precisar de brilho nem de sombra.
+ *
+ * `cartao-diva.jpg` NAO ENTRA NA PAGINA e nao esta declarado aqui de
+ * proposito: e o cartao inteiro, com e-mail, telefone e endereco queimados na
+ * imagem. Publicar o cartao seria publicar dado de contato num formato que
+ * ninguem consegue corrigir depois. Ele fica no repositorio so como
+ * referencia de onde o divã foi recortado.
+ */
+export const marca = {
+  diva: {
+    src: '/marca/diva.png',
+    largura: 1348,
+    altura: 712,
+  },
+};
+
 const mensagemWhatsApp =
   'Oi, vim pelo site e gostaria de agendar uma consulta.';
 
@@ -67,6 +93,56 @@ export const atendimento = {
   modalidades: 'Presencial em Nova Iguaçu e online',
 };
 
+/*
+ * ===================== SERVICO NAO E TEMA, E NAO E CANAL ====================
+ * Pedido dele em 09/09/2026: "acrescentar em algum lugar Coaching de
+ * relacionamentos e Consultorias".
+ *
+ * Nao cabia em `temas`, que e o que DOI em quem procura -- escrito na voz de
+ * quem sente. E nao cabia em `atendimento.modalidades`, que ate aqui era o
+ * unico lugar do site onde algo parecido com oferta aparecia, e que na verdade
+ * diz CANAL ("presencial e online"), nao servico.
+ *
+ * Entao virou lista propria: o que ele faz, dito na terceira pessoa e em uma
+ * frase cada.
+ *
+ * ========================= O QUE NAO ENTRA NESTAS FRASES ====================
+ * Preco, duracao, numero de sessoes e qualquer promessa de resultado. Ele nao
+ * disse nada disso, e promessa de resultado em site de profissional de saude e
+ * assunto de conselho profissional, nao de copy.
+ *
+ * PENDENCIA: as duas primeiras frases sao remontagem do que o material dele ja
+ * afirma. As duas ultimas descrevem apenas o que as palavras "coaching de
+ * relacionamentos" e "consultorias" significam -- ele mandou os dois nomes e
+ * mais nada. TODO: pedir a ele uma linha sobre cada um.
+ */
+export const servicos = [
+  {
+    titulo: 'Psicoterapia individual',
+    texto:
+      'Um espaço próprio, conduzido pela psicanálise ou pela psicoterapia ' +
+      'breve, conforme o que a pessoa traz e o tempo de que dispõe.',
+  },
+  {
+    titulo: 'Terapia de casal',
+    texto:
+      'Os dois na mesma sala, com alguém de fora para mediar a conversa que ' +
+      'em casa não anda.',
+  },
+  {
+    titulo: 'Coaching de relacionamentos',
+    texto:
+      'Um acompanhamento voltado a objetivos combinados na vida afetiva. ' +
+      'É outro formato de trabalho, e não substitui a psicoterapia.',
+  },
+  {
+    titulo: 'Consultorias',
+    texto:
+      'Uma conversa profissional sobre uma questão específica, para quem ' +
+      'procura orientação pontual e não um processo de terapia.',
+  },
+];
+
 // Os temas vem dos posts que ele mesmo ja escreveu. Nenhum foi acrescentado.
 export const temas = [
   {
@@ -78,6 +154,25 @@ export const temas = [
     titulo: 'Depressão',
     texto:
       'Tristeza profunda que se prolonga, com perda de interesse pelo que antes dava prazer.',
+  },
+  /*
+   * Este e o unico tema que NAO saiu de um post dele: veio do pedido de
+   * 09/09/2026 para acrescentar a especialidade em alcool e outras drogas.
+   *
+   * Entra aqui em terceiro, colado na Depressao, e nao no fim da lista: os
+   * temas vao do mais pesado ao mais leve, e chegar depois de "aprender a
+   * dizer nao" faria dele um adendo.
+   *
+   * A PALAVRA "VICIO" NAO APARECE, e a frase nao acusa ninguem. Ele atendeu no
+   * servico publico de saude mental, onde a pessoa costuma chegar depois de
+   * muita gente ja ter dito o que ela e. A frase descreve o que a pessoa
+   * sente, no lugar de nomear o que ela tem.
+   */
+  {
+    titulo: 'Álcool e outras drogas',
+    texto:
+      'Quando a bebida ou outra substância passa a ocupar espaço demais no ' +
+      'dia, e tentar parar sozinho não tem dado certo.',
   },
   {
     titulo: 'Relacionamentos',
@@ -162,12 +257,32 @@ export const sinais = [
 // batem. Um traz Teologo, Coaching e PNL, o outro traz Hipnologo. Publicamos
 // apenas o que aparece nas DUAS listas, para nao criar uma terceira versao.
 // TODO: quando ele disser qual lista vale, acrescentar os itens que faltam.
+// A ultima entrou em 09/09/2026, dita por ele: "na area de atuacao acrescentar
+// especialidade em alcool e outras drogas". Nao veio de card nenhum, veio dele.
 export const qualificacoes = [
   'Psicólogo',
   'Psicanalista',
   'Professor de Psicanálise',
   'Especializado em Psicoterapia Breve',
+  'Especialista em álcool e outras drogas',
   'Técnico em Saúde Mental',
+];
+
+/*
+ * ONDE ELE JA ATUOU. Lista nova, e separada das qualificacoes de proposito:
+ * uma credencial e o que ele E hoje, e um servico onde ele trabalhou e o que
+ * ele FEZ. Misturar os dois numa lista so faria o CAPS-AD parecer um diploma.
+ *
+ * O texto esta no passado porque e passado. Ele mandou o nome e o lugar, e nao
+ * mandou o periodo -- entao "atuou" e o mais preciso que da pra dizer sem
+ * inventar data. TODO: pedir os anos a ele.
+ */
+export const experiencia = [
+  {
+    titulo: 'Atuou no CAPS-AD Vanderlei Marins',
+    orgao: 'Centro de Atenção Psicossocial de Álcool e outras Drogas',
+    detalhe: 'Austin, Nova Iguaçu (RJ). Serviço público de saúde mental.',
+  },
 ];
 
 export const reconhecimentos = [
@@ -249,6 +364,7 @@ export const espaco = {
 
 export const navegacao = [
   { href: '#atendimento', label: 'Atendimento' },
+  { href: '#servicos', label: 'Serviços' },
   { href: '#temas', label: 'Temas' },
   { href: '#formacao', label: 'Formação' },
   { href: '#espaco', label: 'O espaço' },

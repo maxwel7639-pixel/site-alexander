@@ -39,7 +39,35 @@ A paleta é a que o próprio Alexander escolheu no aplicativo da Coral: Tiara,
 Palha, Bronze Palm Springs e Folha de Mate, mais o grafite do logo dele. Os
 tokens estão em `app/globals.css`, com a razão de contraste anotada em cada um.
 
+Dois deles foram corrigidos em 09/09/2026, contra os pixels de
+`public/marca/logo-psi.jpg` e da amostra que ele mandou:
+
+- **Tiara** era `#c9a227` e passou a ser `#bf9a70`, que é o dourado do Ψ do
+  logo dele medido no arquivo. Os dois ouros lado a lado na mesma página liam
+  como erro de impressão.
+- **Folha de Mate** era `#5e5f43`, um oliva escuro, e passou a ser `#c0b8a0`,
+  o cáqui claro da amostra. O token não tinha um único uso no projeto; agora é
+  o fundo da seção de serviços.
+
 O ouro Tiara tem um papel só no site: marcar o que é clicável.
+
+`scripts/gerar-imagens.mjs` lê o Tiara e o grafite direto do CSS para pintar o
+`og-image.jpg` e os favicons. Mexeu na cor, roda o script.
+
+A marca dele tem duas metades e as duas estão no site: o **Ψ**, que é a marca
+d'água atrás de todas as seções, e o **divã** do cartão de visita
+(`public/marca/diva.png`), que aparece ao lado do nome no cabeçalho e no
+rodapé. O cartão inteiro (`cartao-diva.jpg`) fica no repositório só como
+referência e **não entra na página**: tem e-mail, telefone e endereço queimados
+na imagem.
+
+### A largura de 1120px
+
+O cabeçalho mostra a navegação e o botão de WhatsApp a partir de 1120px; abaixo
+disso quem carrega o botão é a barra fixa do rodapé. Um dos dois aparece por
+vez, e o número vive em três arquivos — `Cabecalho.module.css`,
+`BarraFixa.module.css` e o `padding-bottom` do `Rodape.module.css`. Mudar um só
+deixa a tela sem nenhum botão ou com dois.
 
 Tipografia: Newsreader nos títulos e Source Sans 3 no corpo. O corpo nunca fica
 abaixo de 17px, porque parte do público lê no celular com a vista cansada.
@@ -61,6 +89,11 @@ Estão marcadas como TODO no código, todas em `lib/dados.ts`:
 4. **A foto do Certificado de Qualidade 2025.** O arquivo que veio com esse nome
    é, na verdade, a foto do verso do cartão de visita. O certificado é citado no
    texto, mas não há imagem dele.
+5. **O período no CAPS-AD.** Ele mandou o nome do serviço e o lugar, e não os
+   anos. O site diz "atuou", que é passado sem fingir precisão.
+6. **As frases de coaching e consultoria.** Ele mandou os dois nomes e mais
+   nada. As frases publicadas descrevem só o que os dois termos significam, e
+   não prometem resultado, preço nem duração.
 
 ## Regras que não podem ser quebradas
 
