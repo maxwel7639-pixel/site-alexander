@@ -90,7 +90,12 @@ export const endereco = {
 export const atendimento = {
   horario: 'Segunda a sexta, das 7h às 19h',
   horarioCurto: '7h às 19h',
-  modalidades: 'Presencial em Nova Iguaçu e online',
+  // 'Baixada Fluminense' estava em `keywords` e em `areaServed` do JSON-LD e
+  // aparecia ZERO vez no texto da página. Pela regra que o próprio projeto
+  // escreveu, palavra que promete o que o texto não entrega não ajuda. Agora
+  // a região é dita onde ela é verdade, e esta linha aparece em três lugares:
+  // a seção de local, o rodapé e o `additionalProperty` dos dados estruturados.
+  modalidades: 'Presencial em Nova Iguaçu, Baixada Fluminense, e online',
 };
 
 /*
