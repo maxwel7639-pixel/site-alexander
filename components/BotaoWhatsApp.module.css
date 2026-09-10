@@ -73,7 +73,12 @@
 
 .contorno:hover {
   background: rgba(241, 233, 218, 0.15);
-  border-color: rgba(201, 162, 39, 0.55);
+  /* Sai do token, e nao de um rgb escrito a mao. Este valor era o ouro ANTIGO
+     escrito como tripleto (201 162 39 a 55%) -- ele sobreviveu a troca da
+     paleta de 09/09/2026 justamente porque nao estava em hex nem passava por
+     var(), e nenhuma busca por --tiara ou pelo hex velho o encontrava. No
+     hover ele acendia o amarelo antigo ao lado do ouro novo. */
+  border-color: color-mix(in srgb, var(--tiara) 55%, transparent);
   transform: translateY(-1px);
 }
 

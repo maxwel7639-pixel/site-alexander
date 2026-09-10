@@ -54,7 +54,10 @@
 
 .item:hover {
   background: rgba(241, 233, 218, 0.12);
-  border-color: rgba(201, 162, 39, 0.5);
+  /* Era o ouro ANTIGO em tripleto (201 162 39 a 50%). Mesma historia do hover
+     do botao de contorno: escrito fora do token, escapou da troca de paleta.
+     Agora vem do --tiara e acompanha o dia em que ele mudar de novo. */
+  border-color: color-mix(in srgb, var(--tiara) 50%, transparent);
   transform: translateY(-2px);
 }
 
