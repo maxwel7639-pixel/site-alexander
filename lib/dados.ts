@@ -157,6 +157,44 @@ export const servicos = [
   },
 ];
 
+/*
+ * ============================ O "SOBRE MIM" ================================
+ * Pedido dele em 11/09/2026, por audio: queria um texto na primeira pessoa,
+ * como o de um site de outro psicologo que ele mandou de referencia, e
+ * sugeriu "copiar aquela fala dele colocando o meu nome".
+ *
+ * NAO FOI COPIADO, e isso e deliberado. Texto de outro profissional descreve a
+ * trajetoria de outro profissional -- num site com CRP visivel, passa a
+ * afirmar sobre o Alexander coisas que nao sao dele. E nao precisava: o
+ * material que ele mesmo mandou da de sobra.
+ *
+ * Cada linha aqui sai de um fato que ele enviou: o CRP do contrato, o CAPS-AD
+ * da mensagem dele, as duas abordagens dos cards, os tres formatos do cartao.
+ * Nenhuma inventa sentimento, historia ou tempo de casa.
+ *
+ * A VOZ MUDA AQUI, e so aqui. O resto do site fala dele na terceira pessoa;
+ * esta secao e a unica em que ele fala. E o que o site de referencia faz, e e
+ * o que aproxima quem esta lendo.
+ *
+ * O que NAO entrou de proposito: Teologo, Coach e PNL. Estao na secao de
+ * formacao, onde sao credencial. No meio de um texto sobre o trabalho clinico
+ * eles embaralham o que ele faz no consultorio.
+ *
+ * TODO: ele precisa LER e aprovar antes de publicar. E texto na voz dele.
+ * ========================================================================== */
+export const sobre = [
+  'Meu nome é Alexander Barnabés. Sou psicólogo e psicanalista, CRP 05/55353, ' +
+    'e atendo no Centro de Nova Iguaçu.',
+  'Antes do consultório, trabalhei na rede pública, no CAPS-AD Vanderlei ' +
+    'Marins, em Austin, com dependência de álcool e outras drogas.',
+  'O trabalho aqui é conduzido pela psicanálise e pela psicoterapia breve. ' +
+    'São dois caminhos diferentes, e qual deles seguir depende do que você ' +
+    'traz e do tempo de que dispõe.',
+  'Atendo individual, casal e família, presencial e online. A primeira ' +
+    'conversa serve para entender o que está acontecendo e combinar como ' +
+    'seguir. Não existe assunto pequeno demais para ser levado à terapia.',
+];
+
 // Os temas vem dos posts que ele mesmo ja escreveu. Nenhum foi acrescentado.
 export const temas = [
   {
@@ -326,10 +364,20 @@ export const reconhecimentos = [
   {
     titulo: 'Certificado de Qualidade 2025',
     orgao: 'Otimiza Pesquisas',
+    // Os numeros vieram da folha de metodologia que ele fotografou em
+    // 11/09/2026. Sao eles que transformam "ganhou um premio" em algo que
+    // alguem pode conferir: pesquisa telefonica com 1.575 entrevistas em Nova
+    // Iguacu, resposta espontanea (sem lista de nomes na frente), e o primeiro
+    // lugar definido por 37% das citacoes.
+    //
+    // O numero vale mais que a foto. Premio sem metodologia todo mundo diz que
+    // tem; com margem de erro e tamanho de amostra, poucos.
     detalhe:
-      'Categoria Psicólogo e Psicanalista, Nova Iguaçu, Rio de Janeiro.',
-    // TODO: o arquivo que veio nomeado como certificado e, na verdade, a foto
-    // do verso do cartao de visita. Pedir ao Alexander a foto do certificado.
+      'Categoria Psicólogo e Psicanalista, Nova Iguaçu, Rio de Janeiro. ' +
+      'Pesquisa do Instituto Otimiza com 1.575 entrevistas na cidade, ' +
+      'de resposta espontânea, com margem de erro de 2,4%.',
+    // TODO: a foto do certificado em si continua faltando. O que chegou foi a
+    // folha de metodologia, fotografada torta e com a margem direita cortada.
   },
 ];
 

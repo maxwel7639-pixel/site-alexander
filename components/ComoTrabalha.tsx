@@ -1,38 +1,24 @@
 import Image from 'next/image';
 import Secao from './Secao';
+import { sobre } from '@/lib/dados';
 import s from './ComoTrabalha.module.css';
 
 export default function ComoTrabalha() {
   return (
     <Secao
       id="atendimento"
-      etiqueta="Como ele trabalha"
-      titulo="Um lugar para falar sem pressa"
+      etiqueta="Sobre mim"
+      titulo="Quem vai te escutar"
       fundo="palha"
     >
       <div className={s.grade}>
         <div className={s.texto}>
-          {/* TODO: o Alexander ainda nao mandou o paragrafo dele sobre quem e
-              e como trabalha. Ele respondeu "sou psicologo e psicanalista e
-              deixarei vcs construirem". Os textos abaixo descrevem apenas o
-              que o material dele ja afirma: as abordagens, as modalidades e o
-              formato. Trocar por um texto assinado por ele quando chegar. */}
-          <p>
-            O trabalho é conduzido pela psicanálise e pela psicoterapia breve.
-            São dois caminhos diferentes, escolhidos conforme o que a pessoa
-            traz e o tempo de que dispõe.
-          </p>
-          <p>
-            O atendimento acontece em três formatos. Individual, para quem
-            precisa de um espaço próprio. De casal, quando o que está
-            difícil é a relação entre dois. E familiar, quando o assunto
-            envolve a casa inteira.
-          </p>
-          <p>
-            A primeira conversa serve para entender o que está acontecendo e
-            combinar como seguir. Não existe assunto pequeno demais para ser
-            levado à terapia.
-          </p>
+          {/* O texto mora em lib/dados.ts, com a explicacao de por que ele
+              nao foi copiado do site de referencia. E a unica secao do site em
+              primeira pessoa: aqui quem fala e ele. */}
+          {sobre.map((paragrafo) => (
+            <p key={paragrafo.slice(0, 24)}>{paragrafo}</p>
+          ))}
 
           <ul className={s.formatos}>
             <li>Individual</li>
