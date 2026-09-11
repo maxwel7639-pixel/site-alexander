@@ -37,6 +37,7 @@ export default function Formacao() {
               <li key={item.titulo} className={s.reconhecimento}>
                 <strong>{item.titulo}</strong>
                 <span className={s.orgao}>{item.orgao}</span>
+                {item.periodo && <span className={s.periodo}>{item.periodo}</span>}
                 <span className={s.detalhe}>{item.detalhe}</span>
               </li>
             ))}

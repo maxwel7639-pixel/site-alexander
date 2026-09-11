@@ -23,7 +23,7 @@ export default function Local() {
             <p className={s.linha}>
               <IconeLocal className={s.icone} />
               <span>
-                {endereco.logradouro}
+                {endereco.logradouro}, {endereco.sala}
                 <br />
                 {endereco.bairro}, {endereco.cidade}, {endereco.estado}
                 <br />

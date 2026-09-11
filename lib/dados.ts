@@ -70,14 +70,13 @@ export const whatsappCom = (mensagem: string) =>
 export const whatsappUrl = whatsappCom(mensagemWhatsApp);
 
 export const endereco = {
-  // PENDENCIA: o numero da sala tem tres versoes no material dele.
-  // Cartao de visita impresso e contrato MX-0908 dizem Sala 605.
-  // Post de contato mais recente diz sala 704.
-  // Post "onde estamos" nao traz sala nenhuma.
-  // Decisao de 08/09/2026: publicar so a rua ate ele confirmar, porque
-  // endereco errado manda paciente pra porta errada.
-  // TODO: confirmar a sala com o Alexander e acrescentar aqui.
+  // RESOLVIDO em 11/09/2026, por audio dele: "a sala hoje e 605".
+  // O post que dizia 704 e antigo -- ele estava naquela sala quando publicou.
+  // As tres versoes que existiam no material: cartao impresso e contrato
+  // MX-0908 diziam 605, um post dizia 704, e o post "onde estamos" nao dizia
+  // sala nenhuma. Ficou o que ele confirmou agora.
   logradouro: 'Rua Coronel Francisco Soares, 71',
+  sala: 'Sala 605',
   bairro: 'Centro',
   cidade: 'Nova Iguaçu',
   estado: 'RJ',
@@ -116,10 +115,13 @@ export const atendimento = {
  * disse nada disso, e promessa de resultado em site de profissional de saude e
  * assunto de conselho profissional, nao de copy.
  *
- * PENDENCIA: as duas primeiras frases sao remontagem do que o material dele ja
- * afirma. As duas ultimas descrevem apenas o que as palavras "coaching de
- * relacionamentos" e "consultorias" significam -- ele mandou os dois nomes e
- * mais nada. TODO: pedir a ele uma linha sobre cada um.
+ * As frases foram conferidas por ele em 11/09/2026. A de Consultorias ganhou o
+ * publico, que era a duvida: ele confirmou que atende "pessoa fisica, empresa,
+ * escola ou outro profissional". As demais ele leu e aprovou como estavam.
+ *
+ * Atendimento familiar entrou na mesma conversa, a pedido dele. Ja aparecia em
+ * "como ele trabalha" e nao estava na lista de servicos, porque no cartao de
+ * visita ele nao constava.
  */
 export const servicos = [
   {
@@ -144,8 +146,53 @@ export const servicos = [
     titulo: 'Consultorias',
     texto:
       'Uma conversa profissional sobre uma questão específica, para quem ' +
-      'procura orientação pontual e não um processo de terapia.',
+      'procura orientação pontual e não um processo de terapia. Atende ' +
+      'pessoa física, empresa, escola e outros profissionais.',
   },
+  {
+    titulo: 'Atendimento familiar',
+    texto:
+      'A família na mesma sala, quando o que precisa ser dito envolve mais ' +
+      'de duas pessoas.',
+  },
+];
+
+/*
+ * ============================ O "SOBRE MIM" ================================
+ * Pedido dele em 11/09/2026, por audio: queria um texto na primeira pessoa,
+ * como o de um site de outro psicologo que ele mandou de referencia, e
+ * sugeriu "copiar aquela fala dele colocando o meu nome".
+ *
+ * NAO FOI COPIADO, e isso e deliberado. Texto de outro profissional descreve a
+ * trajetoria de outro profissional -- num site com CRP visivel, passa a
+ * afirmar sobre o Alexander coisas que nao sao dele. E nao precisava: o
+ * material que ele mesmo mandou da de sobra.
+ *
+ * Cada linha aqui sai de um fato que ele enviou: o CRP do contrato, o CAPS-AD
+ * da mensagem dele, as duas abordagens dos cards, os tres formatos do cartao.
+ * Nenhuma inventa sentimento, historia ou tempo de casa.
+ *
+ * A VOZ MUDA AQUI, e so aqui. O resto do site fala dele na terceira pessoa;
+ * esta secao e a unica em que ele fala. E o que o site de referencia faz, e e
+ * o que aproxima quem esta lendo.
+ *
+ * O que NAO entrou de proposito: Teologo, Coach e PNL. Estao na secao de
+ * formacao, onde sao credencial. No meio de um texto sobre o trabalho clinico
+ * eles embaralham o que ele faz no consultorio.
+ *
+ * TODO: ele precisa LER e aprovar antes de publicar. E texto na voz dele.
+ * ========================================================================== */
+export const sobre = [
+  'Meu nome é Alexander Barnabés. Sou psicólogo e psicanalista, CRP 05/55353, ' +
+    'e atendo no Centro de Nova Iguaçu.',
+  'Antes do consultório, trabalhei na rede pública, no CAPS-AD Vanderlei ' +
+    'Marins, em Austin, com dependência de álcool e outras drogas.',
+  'O trabalho aqui é conduzido pela psicanálise e pela psicoterapia breve. ' +
+    'São dois caminhos diferentes, e qual deles seguir depende do que você ' +
+    'traz e do tempo de que dispõe.',
+  'Atendo individual, casal e família, presencial e online. A primeira ' +
+    'conversa serve para entender o que está acontecendo e combinar como ' +
+    'seguir. Não existe assunto pequeno demais para ser levado à terapia.',
 ];
 
 // Os temas vem dos posts que ele mesmo ja escreveu. Nenhum foi acrescentado.
@@ -258,19 +305,28 @@ export const sinais = [
   },
 ];
 
-// PENDENCIA resolvida em 08/09/2026: ele tem dois cards com listas que nao
-// batem. Um traz Teologo, Coaching e PNL, o outro traz Hipnologo. Publicamos
-// apenas o que aparece nas DUAS listas, para nao criar uma terceira versao.
-// TODO: quando ele disser qual lista vale, acrescentar os itens que faltam.
-// A ultima entrou em 09/09/2026, dita por ele: "na area de atuacao acrescentar
-// especialidade em alcool e outras drogas". Nao veio de card nenhum, veio dele.
+// A duvida das duas listas foi fechada em 11/09/2026, por audio dele: vale a
+// que traz "Teologo, Coach e PNL", mais "terapeuta familiar". HIPNOLOGO NAO
+// ENTRA -- estava so no outro card, e ele nao o citou ao escolher.
+//
+// Ate aqui o site publicava apenas o que aparecia nas DUAS listas, para nao
+// inventar uma terceira versao. Agora ele disse qual vale, e os itens que
+// faltavam entram.
+//
+// A especialidade em alcool e outras drogas entrou em 09/09/2026, tambem dita
+// por ele: "na area de atuacao acrescentar especialidade em alcool e outras
+// drogas". Nao veio de card nenhum, veio dele.
 export const qualificacoes = [
   'Psicólogo',
   'Psicanalista',
   'Professor de Psicanálise',
   'Especializado em Psicoterapia Breve',
   'Especialista em álcool e outras drogas',
+  'Terapeuta familiar',
   'Técnico em Saúde Mental',
+  'Teólogo',
+  'Coach',
+  'Praticante de PNL',
 ];
 
 /*
@@ -278,13 +334,19 @@ export const qualificacoes = [
  * uma credencial e o que ele E hoje, e um servico onde ele trabalhou e o que
  * ele FEZ. Misturar os dois numa lista so faria o CAPS-AD parecer um diploma.
  *
- * O texto esta no passado porque e passado. Ele mandou o nome e o lugar, e nao
- * mandou o periodo -- entao "atuou" e o mais preciso que da pra dizer sem
- * inventar data. TODO: pedir os anos a ele.
+ * O texto esta no passado porque e passado.
+ *
+ * O periodo veio no audio de 11/09/2026. ATENCAO: ele hesitou entre dois
+ * inicios -- "de dois mil e dezessete, dois mil e dezoito a dois mil e vinte e
+ * tres". Ficou 2018 porque foi o ultimo numero que ele disse antes do "a
+ * 2023", que e a leitura mais provavel de quem se corrige no meio da frase.
+ * TODO: confirmar o ano de inicio numa mensagem, porque data em curriculo de
+ * profissional de saude nao e detalhe.
  */
 export const experiencia = [
   {
     titulo: 'Atuou no CAPS-AD Vanderlei Marins',
+    periodo: 'de 2018 a 2023',
     // Grafia copiada da mensagem dele, entre parenteses, sem corrigir para
     // o nome oficial do servico: quem nomeia onde trabalhou e ele.
     orgao: 'Centro de Atenção Psicossocial de Álcool e outras drogas',
@@ -302,10 +364,20 @@ export const reconhecimentos = [
   {
     titulo: 'Certificado de Qualidade 2025',
     orgao: 'Otimiza Pesquisas',
+    // Os numeros vieram da folha de metodologia que ele fotografou em
+    // 11/09/2026. Sao eles que transformam "ganhou um premio" em algo que
+    // alguem pode conferir: pesquisa telefonica com 1.575 entrevistas em Nova
+    // Iguacu, resposta espontanea (sem lista de nomes na frente), e o primeiro
+    // lugar definido por 37% das citacoes.
+    //
+    // O numero vale mais que a foto. Premio sem metodologia todo mundo diz que
+    // tem; com margem de erro e tamanho de amostra, poucos.
     detalhe:
-      'Categoria Psicólogo e Psicanalista, Nova Iguaçu, Rio de Janeiro.',
-    // TODO: o arquivo que veio nomeado como certificado e, na verdade, a foto
-    // do verso do cartao de visita. Pedir ao Alexander a foto do certificado.
+      'Categoria Psicólogo e Psicanalista, Nova Iguaçu, Rio de Janeiro. ' +
+      'Pesquisa do Instituto Otimiza com 1.575 entrevistas na cidade, ' +
+      'de resposta espontânea, com margem de erro de 2,4%.',
+    // TODO: a foto do certificado em si continua faltando. O que chegou foi a
+    // folha de metodologia, fotografada torta e com a margem direita cortada.
   },
 ];
 

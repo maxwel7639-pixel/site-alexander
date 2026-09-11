@@ -70,6 +70,16 @@
   color: var(--bronze);
 }
 
+/* O periodo de um servico onde ele atuou. Menor e em versalete leve, para
+   nao competir com o nome do lugar, que e o que importa na leitura rapida. */
+.periodo {
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  opacity: 0.8;
+}
+
 .figura {
   margin: 0;
 }
