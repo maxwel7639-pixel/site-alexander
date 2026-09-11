@@ -66,7 +66,7 @@ export default function Rodape() {
           <div>
             <h2 className={s.titulo}>Consultório</h2>
             <p className={s.texto}>
-              {endereco.logradouro}
+              {endereco.logradouro}, {endereco.sala}
               <br />
               {endereco.bairro}, {endereco.cidade}, {endereco.estado}
               <br />

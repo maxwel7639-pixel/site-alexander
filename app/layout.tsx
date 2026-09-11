@@ -115,7 +115,10 @@ const dadosEstruturados = {
   knowsLanguage: 'pt-BR',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: endereco.logradouro,
+    // A sala entra junto da rua no dado estruturado: o Google usa este campo
+    // inteiro pra montar o endereco no resultado de busca, e endereco pela
+    // metade manda paciente pra portaria sem saber pra onde subir.
+    streetAddress: `${endereco.logradouro}, ${endereco.sala}`,
     addressLocality: endereco.cidade,
     addressRegion: endereco.estado,
     postalCode: endereco.cep,
