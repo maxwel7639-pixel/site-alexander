@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Newsreader, Source_Sans_3 } from 'next/font/google';
+import { Cormorant_Garamond, Newsreader } from 'next/font/google';
 import {
   SITE_URL,
   atendimento,
@@ -8,19 +8,27 @@ import {
 } from '@/lib/dados';
 import './globals.css';
 
-// Newsreader foi desenhada para leitura longa e conversa com a serifa
-// classica do logo dele. Source Sans 3 e humanista e abre bem em 17px no
-// celular, que e onde a maioria vai ler.
-const titulo = Newsreader({
+// TIPOGRAFIA TROCADA em 13/09/2026, a pedido dele: "as letras do texto estão
+// como letras de Word, não teria como trabalhar uma letra mais profissional, e
+// maior". O corpo em Source Sans 3 lia como documento de escritório.
+//
+// Ele citou a referência: escrevia para a revista Psique, onde a arte era de
+// revista. O par agora é editorial, os dois com serifa:
+//   Cormorant Garamond nos títulos -- garamond de display, a mais literária
+//     das opções, e que conversa com a serifa clássica do logo dele;
+//   Newsreader no corpo -- desenhada para leitura longa na tela, o que segura
+//     parágrafo de revista em 18-19px sem cansar quem lê no celular.
+// (Par escolhido com a skill ui-ux-pro-max, linha "Editorial Classic".)
+const titulo = Cormorant_Garamond({
   subsets: ['latin', 'latin-ext'],
-  weight: ['400', '500', '600'],
+  weight: ['500', '600', '700'],
   display: 'swap',
   variable: '--fonte-titulo',
 });
 
-const corpo = Source_Sans_3({
+const corpo = Newsreader({
   subsets: ['latin', 'latin-ext'],
-  weight: ['400', '600', '700'],
+  weight: ['400', '500', '600'],
   display: 'swap',
   variable: '--fonte-corpo',
 });
