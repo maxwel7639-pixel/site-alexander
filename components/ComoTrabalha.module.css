@@ -60,6 +60,17 @@
     /* a foto é panorâmica: coluna da foto mais larga que a do texto */
     grid-template-columns: 0.85fr 1.15fr;
     gap: 3.5rem;
-    align-items: center;
+    /* start, e não center: a foto começa no topo da seção, junto do primeiro
+       parágrafo, e é dali que ela gruda */
+    align-items: start;
+  }
+
+  /* A foto fica parada enquanto o texto ao lado rola (pedido do Maxwel,
+     13/09/2026): gruda logo abaixo do cabeçalho fixo e solta quando a coluna
+     de texto termina. Só no computador: no celular as colunas empilham e não
+     há nada ao lado pra rolar. */
+  .figura {
+    position: sticky;
+    top: calc(var(--altura-topo) + 28px);
   }
 }

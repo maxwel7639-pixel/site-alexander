@@ -2,8 +2,15 @@
   position: relative;
   /* Contem a sangria dos dois psi. Sem isto eles empurram a largura da pagina
      e criam rolagem lateral -- o defeito mais facil de introduzir com elemento
-     posicionado e o mais chato de achar depois. */
+     posicionado e o mais chato de achar depois.
+
+     `clip` e nao so `hidden` desde 13/09/2026: `hidden` cria um contentor de
+     rolagem, e dentro dele `position: sticky` nao gruda em nada -- era o que
+     impedia a foto do "sobre mim" de ficar parada enquanto o texto sobe.
+     `clip` corta a sangria igual e nao cria esse contentor. O `hidden` fica
+     antes como reserva pra navegador que nao conhece `clip`. */
   overflow: hidden;
+  overflow: clip;
   padding: 3.25rem 0;
 }
 
