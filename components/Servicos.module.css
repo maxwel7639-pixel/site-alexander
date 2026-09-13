@@ -136,19 +136,30 @@
   overflow: visible;
   fill: none;
   stroke: var(--creme-texto);
-  stroke-width: 1.6;
+  /* Em unidades do desenho, que tem 520 de largura: 1,7 dá ~1,7px no
+     computador. SEM `vector-effect: non-scaling-stroke` de propósito: com ele
+     o navegador mede o tracejado em pixels de tela, o JS mede o fio em
+     unidades do desenho, e a ponta que desenrola se descola da linha que
+     desce dela. */
+  stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.cerebro path {
-  /* mesma espessura em qualquer tamanho de tela */
-  vector-effect: non-scaling-stroke;
+/* no celular o desenho encolhe pra ~60%, e a linha engrossa pra compensar */
+@media (max-width: 899px) {
+  .cerebro svg {
+    stroke-width: 2.6;
+  }
 }
 
 @media (max-width: 899px) and (max-height: 760px) {
   .cerebro {
     width: min(64vw, 280px);
+  }
+
+  .cerebro svg {
+    stroke-width: 3;
   }
 }
 
