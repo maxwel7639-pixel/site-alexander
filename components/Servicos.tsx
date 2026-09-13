@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import Image from 'next/image';
 import { servicos } from '@/lib/dados';
 import Secao from './Secao';
@@ -43,25 +45,39 @@ export default function Servicos() {
         para o que você está vivendo.
       </p>
 
+      {/*
+        Cartão com imagem desde 13/09/2026 (pedido do Maxwel e do Alexander):
+        a foto em cima, o texto embaixo. A existência do arquivo é conferida
+        no build -- o site é estático, então isso roda uma vez por deploy.
+      */}
       <ul className={s.grade}>
-        {servicos.map((servico) => (
-          <li key={servico.titulo} className={`${s.cartao} ${servico.imagem ? s.comImagem : ''}`}>
-            {servico.imagem && (
-              <Image
-                src={`/img/servicos/${servico.imagem}`}
-                alt={servico.alt || ''}
-                width={800}
-                height={533}
-                sizes="(max-width: 639px) 100vw, 50vw"
-                className={s.imagem}
-              />
-            )}
-            <div className={s.corpo}>
-              <h3 className={s.titulo}>{servico.titulo}</h3>
-              <p className={s.texto}>{servico.texto}</p>
-            </div>
-          </li>
-        ))}
+        {servicos.map((servico) => {
+          const temFoto =
+            !!servico.imagem &&
+            existsSync(path.join(process.cwd(), 'public', 'img', 'servicos', servico.imagem));
+          return (
+            <li key={servico.titulo} className={s.cartao}>
+              <div className={s.quadro}>
+                {temFoto ? (
+                  <Image
+                    src={`/img/servicos/${servico.imagem}`}
+                    alt={servico.alt || ''}
+                    width={900}
+                    height={675}
+                    sizes="(max-width: 639px) 100vw, (max-width: 999px) 50vw, 33vw"
+                    className={s.imagem}
+                  />
+                ) : (
+                  <span className={s.espera} aria-hidden="true">Ψ</span>
+                )}
+              </div>
+              <div className={s.corpo}>
+                <h3 className={s.titulo}>{servico.titulo}</h3>
+                <p className={s.texto}>{servico.texto}</p>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </Secao>
   );

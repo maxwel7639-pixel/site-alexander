@@ -138,32 +138,41 @@ export const atendimento = {
  * "um discutindo com o outro, ou virado um para o lado na cama". Coaching: uma
  * palestra, que ele pode mandar dele mesmo.
  *
- * `imagem` é o nome do arquivo em /public/img/servicos/. O cartão só desenha a
- * foto quando o campo está preenchido: dá pra subir uma de cada vez sem deixar
- * cartão quebrado no ar. Foto de banco de imagem com licença de uso livre, ou
+ * `imagem` é o nome do arquivo em /public/img/servicos/. O componente confere,
+ * na hora do build, se o arquivo existe: enquanto não existe, o cartão mostra
+ * um quadro tonal com o Ψ no lugar da foto. Dá pra subir uma de cada vez sem
+ * deixar cartão quebrado no ar -- é só salvar com o nome que está aqui. Foto de banco de imagem com licença de uso livre, ou
  * dele; nunca rosto de paciente.
  */
 export const servicos: { titulo: string; texto: string; imagem?: string; alt?: string }[] = [
   {
     titulo: 'Psicoterapia individual',
+    imagem: 'psicoterapia-individual.webp',
+    alt: 'Pessoa conversando com o psicólogo em um consultório.',
     texto:
       'Um espaço próprio, conduzido pela psicanálise ou pela psicoterapia ' +
       'breve, conforme o que a pessoa traz e o tempo de que dispõe.',
   },
   {
     titulo: 'Terapia de casal',
+    imagem: 'terapia-de-casal.webp',
+    alt: 'Casal em sessão de terapia, cada um olhando para um lado.',
     texto:
       'Os dois na mesma sala, com alguém de fora para mediar a conversa que ' +
       'em casa não anda.',
   },
   {
     titulo: 'Coaching de relacionamentos',
+    imagem: 'coaching-de-relacionamentos.webp',
+    alt: 'Palestra sobre relacionamentos para um grupo.',
     texto:
       'Um acompanhamento voltado a objetivos combinados na vida afetiva. ' +
       'É outro formato de trabalho, e não substitui a psicoterapia.',
   },
   {
     titulo: 'Consultorias',
+    imagem: 'consultorias.webp',
+    alt: 'Conversa profissional em torno de uma mesa.',
     texto:
       'Uma conversa profissional sobre uma questão específica, para quem ' +
       'procura orientação pontual e não um processo de terapia. Atende ' +
@@ -171,6 +180,8 @@ export const servicos: { titulo: string; texto: string; imagem?: string; alt?: s
   },
   {
     titulo: 'Atendimento familiar',
+    imagem: 'atendimento-familiar.webp',
+    alt: 'Família reunida em uma conversa.',
     texto:
       'A família na mesma sala, quando o que precisa ser dito envolve mais ' +
       'de duas pessoas.',

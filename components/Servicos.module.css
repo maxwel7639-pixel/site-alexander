@@ -32,32 +32,52 @@
    segunda parecer outro site.
 ============================================================================ */
 .cartao {
-  padding: 1.4rem 1.5rem;
-  background: var(--palha);
-  border: 1px solid color-mix(in srgb, var(--mate) 62%, var(--tinta));
-  border-left: 3px solid var(--tiara);
-  border-radius: var(--raio);
-}
-
-/* Com foto: a imagem ocupa o topo do cartão, sem o padding, e o texto vem
-   embaixo. Sem foto o cartão continua exatamente como era. */
-.comImagem {
-  padding: 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  background: var(--palha);
+  border: 1px solid color-mix(in srgb, var(--mate) 62%, var(--tinta));
+  border-radius: var(--raio);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.cartao:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -18px rgba(38, 38, 38, 0.45);
+}
+
+/* O quadro da foto: 4:3, com o filete de ouro embaixo (o mesmo dos temas, que
+   antes ficava na lateral do cartão). */
+.quadro {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-bottom: 3px solid var(--tiara);
+  background:
+    radial-gradient(70% 70% at 30% 20%, color-mix(in srgb, var(--creme) 70%, transparent), transparent 70%),
+    linear-gradient(160deg, var(--palha), color-mix(in srgb, var(--mate) 80%, var(--bronze)));
 }
 
 .imagem {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
+  height: 100%;
   object-fit: cover;
 }
 
-.comImagem .corpo {
-  padding: 1.25rem 1.5rem 1.4rem;
+/* Enquanto a foto não chega: o Ψ da marca, grande e apagado. Parece de
+   propósito, e não um buraco. */
+.espera {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: clamp(4rem, 9vw, 6rem);
+  color: color-mix(in srgb, var(--bronze) 30%, transparent);
+}
+
+.corpo {
+  padding: 1.25rem 1.5rem 1.45rem;
 }
 
 .titulo {
@@ -76,5 +96,20 @@
 @media (min-width: 640px) {
   .grade {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grade {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartao,
+  .cartao:hover {
+    transition: none;
+    transform: none;
   }
 }
