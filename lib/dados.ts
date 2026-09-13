@@ -132,7 +132,18 @@ export const atendimento = {
  * "como ele trabalha" e nao estava na lista de servicos, porque no cartao de
  * visita ele nao constava.
  */
-export const servicos = [
+/*
+ * IMAGEM POR SERVICO, pedido dele em 13/09/2026 (itens 2 e 12): "quando citar
+ * terapia individual e outras coloque uma figura... só para ilustrar". Casal:
+ * "um discutindo com o outro, ou virado um para o lado na cama". Coaching: uma
+ * palestra, que ele pode mandar dele mesmo.
+ *
+ * `imagem` é o nome do arquivo em /public/img/servicos/. O cartão só desenha a
+ * foto quando o campo está preenchido: dá pra subir uma de cada vez sem deixar
+ * cartão quebrado no ar. Foto de banco de imagem com licença de uso livre, ou
+ * dele; nunca rosto de paciente.
+ */
+export const servicos: { titulo: string; texto: string; imagem?: string; alt?: string }[] = [
   {
     titulo: 'Psicoterapia individual',
     texto:

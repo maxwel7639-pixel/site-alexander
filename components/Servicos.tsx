@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { servicos } from '@/lib/dados';
 import Secao from './Secao';
 import s from './Servicos.module.css';
@@ -44,9 +45,21 @@ export default function Servicos() {
 
       <ul className={s.grade}>
         {servicos.map((servico) => (
-          <li key={servico.titulo} className={s.cartao}>
-            <h3 className={s.titulo}>{servico.titulo}</h3>
-            <p className={s.texto}>{servico.texto}</p>
+          <li key={servico.titulo} className={`${s.cartao} ${servico.imagem ? s.comImagem : ''}`}>
+            {servico.imagem && (
+              <Image
+                src={`/img/servicos/${servico.imagem}`}
+                alt={servico.alt || ''}
+                width={800}
+                height={533}
+                sizes="(max-width: 639px) 100vw, 50vw"
+                className={s.imagem}
+              />
+            )}
+            <div className={s.corpo}>
+              <h3 className={s.titulo}>{servico.titulo}</h3>
+              <p className={s.texto}>{servico.texto}</p>
+            </div>
           </li>
         ))}
       </ul>

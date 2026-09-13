@@ -39,6 +39,27 @@
   border-radius: var(--raio);
 }
 
+/* Com foto: a imagem ocupa o topo do cartão, sem o padding, e o texto vem
+   embaixo. Sem foto o cartão continua exatamente como era. */
+.comImagem {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.comImagem .corpo {
+  padding: 1.25rem 1.5rem 1.4rem;
+}
+
 .titulo {
   margin-bottom: 0.4rem;
   /* 11,30:1 sobre a palha do cartao */
