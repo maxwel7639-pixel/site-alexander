@@ -46,7 +46,14 @@ export default function Abertura() {
 
           <h1 className={s.titulo}>{profissional.nome}</h1>
 
-          <p className={s.papel}>{profissional.titulo}</p>
+          <p className={s.papel}>
+            <span>
+              {profissional.titulo},{' '}
+              <span className={s.especialidade}>
+                {profissional.especialidade}
+              </span>
+            </span>
+          </p>
 
           <p className={s.linha}>
             Escuta para quem está passando por um momento difícil. Atendimento

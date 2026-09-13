@@ -26,6 +26,10 @@ export const profissional = {
   nome: 'Alexander Barnabés',
   nomeCompleto: 'Alexander de Paula Barnabés',
   titulo: 'Psicólogo e Psicanalista',
+  // Na abertura, logo abaixo do nome, desde 13/09/2026. No áudio ele pediu que o
+  // trabalho com álcool e drogas deixasse de parecer "simplório"; até então a
+  // especialidade só aparecia no meio da página, na formação.
+  especialidade: 'especialista em álcool e outras drogas',
   crp: 'CRP 05/55353',
   telefone: '(21) 96498-3557',
   telefoneE164: '+5521964983557',

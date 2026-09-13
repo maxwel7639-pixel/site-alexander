@@ -58,7 +58,9 @@
 .papel {
   margin: 0 0 1.35rem;
   display: flex;
-  align-items: center;
+  /* no alto, e nao no centro: com a especialidade o papel pode ter duas
+     linhas, e o traco acompanha a primeira */
+  align-items: flex-start;
   gap: 0.7rem;
   font-family: var(--fonte-titulo), Georgia, serif;
   font-size: clamp(1.05rem, 2.4vw, 1.25rem);
@@ -73,7 +75,16 @@
   flex: none;
   width: 26px;
   height: 2px;
+  margin-top: calc(0.875em - 1px);
   background: var(--tiara);
+}
+
+/* No celular a especialidade desce inteira pra segunda linha, em vez de
+   quebrar no meio de "outras drogas". */
+@media (max-width: 639px) {
+  .especialidade {
+    display: block;
+  }
 }
 
 .linha {
