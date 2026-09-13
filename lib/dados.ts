@@ -90,9 +90,6 @@ export const endereco = {
   // O mapa embutido não precisa de chave: é o mesmo endereço em modo embed.
   mapsEmbed:
     'https://www.google.com/maps?q=Rua+Coronel+Francisco+Soares%2C+71%2C+Centro%2C+Nova+Igua%C3%A7u%2C+RJ&output=embed',
-  // Abre o Uber com o destino preenchido; no computador cai no site do Uber.
-  uberUrl:
-    'https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff%5Bformatted_address%5D=Rua%20Coronel%20Francisco%20Soares%2C%2071%2C%20Centro%2C%20Nova%20Igua%C3%A7u%20-%20RJ%2C%2026220-030',
 };
 
 export const atendimento = {

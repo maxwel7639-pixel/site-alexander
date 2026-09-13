@@ -11,9 +11,12 @@ import s from './Local.module.css';
  * laboratório vizinho. Ele apontou o erro de leitura do público: quem faz
  * terapia com ele chega de carro ou de Uber, e aplicativo precisa do número.
  *
- * Agora é o endereço, o horário, dois caminhos (Google Maps e Uber) e o mapa.
- * O mapa substitui a foto da fachada: mostra onde é sem associar o consultório
- * à marca de outro negócio.
+ * Agora é o endereço, o horário, o botão do Google Maps e o mapa. O mapa
+ * substitui a foto da fachada: mostra onde é sem associar o consultório à
+ * marca de outro negócio.
+ *
+ * Sem botão "Ir de Uber" desde o mesmo dia: o Uber foi o exemplo dele de por
+ * que o número importa, não um pedido de botão.
  */
 export default function Local() {
   return (
@@ -59,14 +62,6 @@ export default function Local() {
               className={s.mapa}
             >
               Abrir no Google Maps
-            </a>
-            <a
-              href={endereco.uberUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={s.mapa}
-            >
-              Ir de Uber
             </a>
           </div>
         </div>
