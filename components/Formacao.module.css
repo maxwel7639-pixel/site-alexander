@@ -21,18 +21,19 @@
   gap: 0.6rem;
 }
 
+.qualificacoes {
+  gap: 0;
+}
+
+/* Lista de currículo: uma linha fina entre os itens, sem ícone. */
 .qualificacoes li {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--linha);
   font-size: 1.05rem;
 }
 
-.psi {
-  flex: none;
-  width: 19px;
-  height: 19px;
-  color: var(--ouro-texto);
+.qualificacoes li:last-child {
+  border-bottom: 0;
 }
 
 .reconhecimentos {

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { qualificacoes, reconhecimentos } from '@/lib/dados';
 import Secao from './Secao';
-import { SimboloPsi } from './Icones';
 import s from './Formacao.module.css';
 
 export default function Formacao() {
@@ -17,10 +16,9 @@ export default function Formacao() {
           <h3 className={s.subtitulo}>Formação</h3>
           <ul className={s.qualificacoes}>
             {qualificacoes.map((item) => (
-              <li key={item}>
-                <SimboloPsi className={s.psi} />
-                <span>{item}</span>
-              </li>
+              // Sem o Ψ na frente de cada linha desde 13/09/2026: ele achou
+              // infantil repetido dez vezes. O símbolo segue na marca d'água.
+              <li key={item}>{item}</li>
             ))}
           </ul>
 
