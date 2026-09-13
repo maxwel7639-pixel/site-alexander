@@ -70,7 +70,7 @@ vez, e o número vive em três arquivos — `Cabecalho.module.css`,
 deixa a tela sem nenhum botão ou com dois.
 
 Tipografia (desde 13/09/2026, pedido dele): Cormorant Garamond nos títulos e
-Newsreader no corpo, um par editorial com serifa. O corpo nunca fica abaixo de
+Manrope no corpo. O corpo nunca fica abaixo de
 18px, porque parte do público lê no celular com a vista cansada.
 
 ## Pendências com o cliente

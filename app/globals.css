@@ -104,17 +104,17 @@ body {
   margin: 0;
   background: var(--creme);
   color: var(--tinta);
-  font-family: var(--fonte-corpo), Georgia, "Times New Roman", serif;
-  /* maior desde 13/09/2026, pedido dele; e serifa, então pede entrelinha
-     um pouco mais aberta que a sans de antes */
-  font-size: 18px;
-  line-height: 1.72;
+  font-family: var(--fonte-corpo), system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* maior desde 13/09/2026, pedido dele. Manrope é larga: 17,5px nela ocupa
+     o que 18px ocupava na serifa */
+  font-size: 17.5px;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
 
 @media (min-width: 768px) {
   body {
-    font-size: 19.5px;
+    font-size: 18.5px;
   }
 }
 

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Cormorant_Garamond, Newsreader } from 'next/font/google';
+import { Cormorant_Garamond, Manrope } from 'next/font/google';
 import {
   SITE_URL,
   atendimento,
@@ -13,12 +13,13 @@ import './globals.css';
 // maior". O corpo em Source Sans 3 lia como documento de escritório.
 //
 // Ele citou a referência: escrevia para a revista Psique, onde a arte era de
-// revista. O par agora é editorial, os dois com serifa:
+// revista.
 //   Cormorant Garamond nos títulos -- garamond de display, a mais literária
 //     das opções, e que conversa com a serifa clássica do logo dele;
-//   Newsreader no corpo -- desenhada para leitura longa na tela, o que segura
-//     parágrafo de revista em 18-19px sem cansar quem lê no celular.
-// (Par escolhido com a skill ui-ux-pro-max, linha "Editorial Classic".)
+//   Manrope no corpo -- SEGUNDA TROCA, no mesmo dia. A primeira foi Newsreader,
+//     e continuou lendo como "letra de Word": serifa de texto no corpo lembra
+//     Times New Roman. Manrope é uma sans contemporânea, desenhada pra tela,
+//     e o contraste com a garamond dos títulos é o que dá cara de revista.
 const titulo = Cormorant_Garamond({
   subsets: ['latin', 'latin-ext'],
   weight: ['500', '600', '700'],
@@ -26,9 +27,9 @@ const titulo = Cormorant_Garamond({
   variable: '--fonte-titulo',
 });
 
-const corpo = Newsreader({
+const corpo = Manrope({
   subsets: ['latin', 'latin-ext'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--fonte-corpo',
 });
