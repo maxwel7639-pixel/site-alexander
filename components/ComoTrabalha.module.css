@@ -49,19 +49,6 @@
   margin: 0;
 }
 
-.imagem {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--raio);
-  border: 1px solid var(--linha);
-  /* a foto nova é panorâmica e ele está no centro: 4:5 corta a janela e a
-     estante pelas bordas e deixa ele inteiro */
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: 54% 60%;
-}
-
 .legenda {
   margin-top: 0.7rem;
   font-size: 0.9rem;
@@ -70,8 +57,9 @@
 
 @media (min-width: 900px) {
   .grade {
-    grid-template-columns: 1.15fr 1fr;
+    /* a foto é panorâmica: coluna da foto mais larga que a do texto */
+    grid-template-columns: 0.85fr 1.15fr;
     gap: 3.5rem;
-    align-items: start;
+    align-items: center;
   }
 }

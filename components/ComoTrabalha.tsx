@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import FotoProfundidade from './FotoProfundidade';
 import Secao from './Secao';
 import { sobre } from '@/lib/dados';
 import s from './ComoTrabalha.module.css';
@@ -28,30 +28,26 @@ export default function ComoTrabalha() {
           </ul>
         </div>
 
+        {/*
+          A foto de 13/09/2026, com o fundo refeito no ChatGPT. O FUNDO NÃO É
+          A SALA DELE, por isso não há legenda chamando de consultório: a sala
+          de verdade está em "O espaço".
+
+          Aparece INTEIRA desde o mesmo dia, a pedido do Maxwel: é panorâmica,
+          e o recorte 4:5 cortava a janela e a estante. A coluna da foto ficou
+          mais larga que a do texto pra ela ter tamanho sem ser cortada.
+        */}
         <figure className={s.figura}>
-          {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
-          <div className="pilha">
-            {/*
-              Foto de 13/09/2026: a do consultório com o fundo refeito no
-              ChatGPT, a pedido dele ("não daria para colocar um fundo
-              melhor?"). O FUNDO NÃO É A SALA DELE -- é um ambiente gerado. Por
-              isso a legenda que dizia "O consultório, no Centro de Nova
-              Iguaçu" saiu: a sala de verdade está na seção "O espaço", e o
-              site não pode mostrar como consultório um lugar onde o paciente
-              nunca vai entrar.
-            */}
-            <Image
-              src="/img/alexander-consultorio-poltrona.webp"
-              alt={
-                'Alexander Barnabés sentado em uma poltrona de couro, sorrindo, ' +
-                'de camisa listrada e com os óculos na mão.'
-              }
-              width={2000}
-              height={1116}
-              sizes="(max-width: 899px) 100vw, 42vw"
-              className={s.imagem}
-            />
-          </div>
+          <FotoProfundidade
+            src="/img/alexander-consultorio-poltrona.webp"
+            alt={
+              'Alexander Barnabés sentado em uma poltrona de couro, sorrindo, ' +
+              'de camisa listrada e com os óculos na mão.'
+            }
+            largura={2000}
+            altura={1116}
+            sizes="(max-width: 899px) 100vw, 56vw"
+          />
         </figure>
       </div>
     </Secao>
