@@ -32,28 +32,26 @@ export default function ComoTrabalha() {
           {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
           <div className="pilha">
             {/*
-              Tratada em 13/09/2026, a pedido dele ("não daria para colocar um
-              fundo melhor?"). Troca de fundo por recorte foi testada e
-              descartada: a poltrona perdia o encosto e a borda ficava com cara
-              de montagem. Ficou a foto verdadeira, sem a mesinha de dobrar, com
-              o fundo desfocado e a cor aquecida pra paleta do site. Original em
-              /img/consultorio.webp. Script: scratchpad alex-retrato4.py.
+              Foto de 13/09/2026: a do consultório com o fundo refeito no
+              ChatGPT, a pedido dele ("não daria para colocar um fundo
+              melhor?"). O FUNDO NÃO É A SALA DELE -- é um ambiente gerado. Por
+              isso a legenda que dizia "O consultório, no Centro de Nova
+              Iguaçu" saiu: a sala de verdade está na seção "O espaço", e o
+              site não pode mostrar como consultório um lugar onde o paciente
+              nunca vai entrar.
             */}
             <Image
-              src="/img/consultorio-retrato.webp"
+              src="/img/alexander-consultorio-poltrona.webp"
               alt={
-                'Alexander Barnabés sentado na poltrona marrom do consultório, ' +
-                'sorrindo, de camisa listrada e com os óculos na mão.'
+                'Alexander Barnabés sentado em uma poltrona de couro, sorrindo, ' +
+                'de camisa listrada e com os óculos na mão.'
               }
-              width={797}
-              height={1063}
+              width={2000}
+              height={1116}
               sizes="(max-width: 899px) 100vw, 42vw"
               className={s.imagem}
             />
           </div>
-          <figcaption className={s.legenda}>
-            O consultório, no Centro de Nova Iguaçu.
-          </figcaption>
         </figure>
       </div>
     </Secao>

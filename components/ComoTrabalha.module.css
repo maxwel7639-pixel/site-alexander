@@ -55,10 +55,11 @@
   height: auto;
   border-radius: var(--raio);
   border: 1px solid var(--linha);
-  aspect-ratio: 3 / 4;
+  /* a foto nova é panorâmica e ele está no centro: 4:5 corta a janela e a
+     estante pelas bordas e deixa ele inteiro */
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 20%;
-  max-height: 640px;
+  object-position: 54% 60%;
 }
 
 .legenda {
