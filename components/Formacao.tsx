@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import FotoProfundidade from './FotoProfundidade';
 import { qualificacoes, reconhecimentos } from '@/lib/dados';
 import Secao from './Secao';
 import s from './Formacao.module.css';
@@ -34,22 +34,23 @@ export default function Formacao() {
           </ul>
         </div>
 
+        {/*
+          Mesmo tratamento da foto do "sobre mim" desde 13/09/2026: inclina em
+          3D com o mouse, sombra em camadas, e fica parada enquanto a lista de
+          formação rola ao lado.
+        */}
         <figure className={s.figura}>
-          {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
-          <div className="pilha">
-            <Image
-              src="/img/mocao-camara-nova-iguacu.webp"
-              alt={
-                'Alexander Barnabés no plenário da Câmara Municipal de Nova ' +
-                'Iguaçu, ao lado de um vereador, segurando a Moção emoldurada. ' +
-                'Atrás deles, as letras Poder Legislativo na parede de madeira.'
-              }
-              width={1400}
-              height={933}
-              sizes="(max-width: 899px) 100vw, 48vw"
-              className={s.imagem}
-            />
-          </div>
+          <FotoProfundidade
+            src="/img/mocao-camara-nova-iguacu.webp"
+            alt={
+              'Alexander Barnabés no plenário da Câmara Municipal de Nova ' +
+              'Iguaçu, ao lado de um vereador, segurando a Moção emoldurada. ' +
+              'Atrás deles, as letras Poder Legislativo na parede de madeira.'
+            }
+            largura={1400}
+            altura={933}
+            sizes="(max-width: 899px) 100vw, 48vw"
+          />
           <figcaption className={s.legenda}>
             Recebendo a Moção de Congratulações e Aplausos no plenário da Câmara
             Municipal de Nova Iguaçu, processo nº 881/2023.

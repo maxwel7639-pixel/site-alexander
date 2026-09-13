@@ -28,4 +28,15 @@
   }
 }
 
-/* A grade de cartões e os textos moram em HaloTemas.module.css desde 13/09/2026. */
+/* O texto do tema da frente, ao lado do anel (o anel mora em Halo.module.css). */
+.titulo {
+  margin-bottom: 0.7rem;
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  line-height: 1.05;
+}
+
+.texto {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--bronze);
+}

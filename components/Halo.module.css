@@ -9,11 +9,8 @@
    anel acompanha o palco sem o JS medir nada. Por isso o palco precisa de
    altura explícita. */
 .palco {
-  --carta-l: 114px;
-  --carta-a: 156px;
-
   position: relative;
-  height: 400px;
+  height: var(--palco-a);
   container-type: size;
   touch-action: pan-y;
   cursor: grab;
@@ -74,7 +71,7 @@
   color: var(--tinta);
 }
 
-/* ------------------------------------------------ o texto do tema da frente */
+/* ------------------------------------------------ o texto do item da frente */
 .lado {
   position: relative;
   z-index: 1;
@@ -84,7 +81,7 @@
   display: grid;
 }
 
-.tema {
+.painel {
   grid-area: 1 / 1;
   opacity: 0;
   visibility: hidden;
@@ -107,18 +104,6 @@
     opacity: 1;
     transform: none;
   }
-}
-
-.titulo {
-  margin-bottom: 0.7rem;
-  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
-  line-height: 1.05;
-}
-
-.texto {
-  margin: 0;
-  max-width: 44ch;
-  color: var(--bronze);
 }
 
 .setas {
@@ -161,6 +146,23 @@
   stroke-linejoin: round;
 }
 
+/* ------------------------------------------------------------- tamanhos --- */
+/* O palco tem que ter altura pros cartões de cima e de baixo do anel caberem
+   com o raio vertical de 38%: por isso cada formato define os três juntos. */
+.retrato {
+  --carta-l: 114px;
+  --carta-a: 156px;
+  --palco-a: 400px;
+}
+
+/* As fotos da sala são 4:3. Menores que os temas de propósito: aqui o anel é
+   uma vitrine da sala, não o assunto da seção. */
+.paisagem {
+  --carta-l: 156px;
+  --carta-a: 117px;
+  --palco-a: 300px;
+}
+
 @media (min-width: 900px) {
   .halo {
     grid-template-columns: 1.15fr 1fr;
@@ -169,13 +171,16 @@
     margin-top: 0.5rem;
   }
 
-  .palco {
+  .retrato {
     --carta-l: 156px;
     --carta-a: 212px;
+    --palco-a: 600px;
+  }
 
-    /* 600 e não menos: os cartões de cima e de baixo do anel encostam na
-       borda do palco com o raio vertical de 38% */
-    height: 600px;
+  .paisagem {
+    --carta-l: 216px;
+    --carta-a: 162px;
+    --palco-a: 440px;
   }
 }
 

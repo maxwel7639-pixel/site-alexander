@@ -2,13 +2,28 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import s from './HaloTemas.module.css';
+import s from './Halo.module.css';
 
-export type ItemTema = {
-  titulo: string;
-  texto: string;
-  imagem?: string;
-  temFoto: boolean;
+export type CartaHalo = {
+  /** Caminho da foto. Sem ela, o cartão mostra o `rotulo`. */
+  src?: string;
+  rotulo?: string;
+};
+
+type Props = {
+  cartas: CartaHalo[];
+  /** O texto ao lado de cada cartão, na mesma ordem. Só o da frente aparece. */
+  paineis: React.ReactNode[];
+  /** Conteúdo fixo acima do texto que troca (a introdução, no espaço). */
+  antes?: React.ReactNode;
+  /** 'retrato' pros temas, 'paisagem' pras fotos da sala. */
+  formato?: 'retrato' | 'paisagem';
+  /** Quantas vezes cada item se repete no anel, pra ele ficar cheio. */
+  repeticoes?: number;
+  rotuloAnterior: string;
+  rotuloProximo: string;
+  /** Fotos com `sizes` coerente com o tamanho do cartão. */
+  sizes?: string;
 };
 
 const TAU = Math.PI * 2;
@@ -17,7 +32,7 @@ const RAIO_X = 0.62;
 const RAIO_Y = 0.38;
 /** Escala do cartão no fundo do anel. */
 const ESCALA_FUNDO = 0.42;
-/** Tempo parado na frente: dá pra ler as duas frases do tema antes de girar. */
+/** Tempo parado na frente: dá pra ler o texto antes de girar. */
 const PARADO = 3800;
 const GIRO = 800;
 
@@ -30,37 +45,50 @@ function pose(giro: number, i: number, passo: number) {
 const suave = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
 
 /**
- * Os temas num anel de cartões, adaptado do Halo Reel (Ruixen) em 13/09/2026,
- * pedido do Maxwel. O original é Tailwind + framer-motion; aqui é o mesmo
+ * Um anel de cartões com o texto do cartão da frente ao lado. Adaptado do Halo
+ * Reel (Ruixen) em 13/09/2026, pedido do Maxwel: nasceu nos temas e foi pro
+ * espaço no mesmo dia. O original é Tailwind + framer-motion; aqui é o mesmo
  * cálculo sem dependência nova, no padrão do resto do site.
  *
  * A GEOMETRIA: o cartão i fica no ângulo θ = i·passo + giro de uma elipse com
  * o centro na borda esquerda do palco. cos θ faz tudo: posiciona, dá a escala
  * e, pela escala, a ordem de empilhamento. O cartão com θ = 0 é o da frente.
  *
- * O ANEL TEM O DOBRO DE VAGAS QUE TEMAS. Com um cartão por tema ele ficaria
- * ralo; repetido, fica cheio como na referência. Tema da frente = vaga % N.
+ * O ANEL REPETE OS ITENS (`repeticoes`). Com um cartão por item ele ficaria
+ * ralo; repetido, fica cheio como na referência. Item da frente = vaga % N.
  *
- * O TEXTO DO TEMA DA FRENTE entra pela direita, o lado oposto ao anel, no
+ * O TEXTO DO ITEM DA FRENTE entra pela direita, o lado oposto ao anel, no
  * mesmo quadro em que a vaga da frente muda: por isso ele é trocado dentro de
  * `desenha`, e não num relógio à parte.
  *
  * POSIÇÃO EM CSS, NÃO EM PIXEL: o JS só escreve --c, --s e --k em cada cartão;
  * quem converte em pixel é o CSS, com cqw/cqh do palco. Assim o servidor já
- * entrega o anel montado (sem JS ele aparece parado, com o primeiro tema) e
+ * entrega o anel montado (sem JS ele aparece parado, com o primeiro item) e
  * redimensionar a tela não precisa de conta nenhuma.
+ *
+ * TODOS OS TEXTOS ESTÃO NO HTML, empilhados na mesma célula: a busca lê todos,
+ * e a troca não empurra o que vem embaixo.
  *
  * O GIRO SOZINHO É SÓ CONVITE: para com o mouse em cima, fora da tela, com a
  * aba escondida, e para de vez quando a pessoa usa as setas ou arrasta.
  * Com prefers-reduced-motion não gira sozinho e as setas trocam sem animar.
  */
-export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
-  const N = itens.length;
-  const vagas = N * 2;
+export default function Halo({
+  cartas,
+  paineis,
+  antes,
+  formato = 'retrato',
+  repeticoes = 2,
+  rotuloAnterior,
+  rotuloProximo,
+  sizes = '180px',
+}: Props) {
+  const N = cartas.length;
+  const vagas = N * repeticoes;
   const passo = TAU / vagas;
 
   const palco = useRef<HTMLDivElement>(null);
-  const cartas = useRef<(HTMLDivElement | null)[]>([]);
+  const elementos = useRef<(HTMLDivElement | null)[]>([]);
   const giro = useRef(0);
   const quadro = useRef(0);
   const tocou = useRef(false);
@@ -68,15 +96,15 @@ export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
   const reduzido = useRef(false);
   const arraste = useRef({ ativo: false, angulo: 0 });
   const [ativo, setAtivo] = useState(0);
+  const ativoAtual = useRef(0);
   // Anuncia a troca pro leitor de tela só depois que a pessoa usou as setas:
   // anunciar o giro sozinho, a cada quatro segundos, seria ruído.
   const [anunciar, setAnunciar] = useState(false);
-  const ativoAtual = useRef(0);
 
   const desenha = useCallback(
     (r: number) => {
       giro.current = r;
-      cartas.current.forEach((el, i) => {
+      elementos.current.forEach((el, i) => {
         if (!el) return;
         const p = pose(r, i, passo);
         el.style.setProperty('--c', p.c.toFixed(4));
@@ -85,10 +113,10 @@ export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
         el.style.zIndex = String(Math.round(p.k * 1000));
       });
       const frente = ((Math.round(-r / passo) % vagas) + vagas) % vagas;
-      const tema = frente % N;
-      if (tema !== ativoAtual.current) {
-        ativoAtual.current = tema;
-        setAtivo(tema);
+      const item = frente % N;
+      if (item !== ativoAtual.current) {
+        ativoAtual.current = item;
+        setAtivo(item);
       }
     },
     [N, passo, vagas],
@@ -117,7 +145,7 @@ export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
 
   const encaixado = () => Math.round(giro.current / passo) * passo;
 
-  /** +1 traz o próximo tema pra frente, -1 o anterior. */
+  /** +1 traz o próximo item pra frente, -1 o anterior. */
   const gira = (direcao: number) => {
     tocou.current = true;
     setAnunciar(true);
@@ -171,13 +199,13 @@ export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
   };
 
   return (
-    <div className={s.halo}>
+    <div className={`${s.halo} ${s[formato]}`}>
       <div
         ref={palco}
         className={s.palco}
         style={{ '--rx': `${RAIO_X * 100}cqw`, '--ry': `${RAIO_Y * 100}cqh` } as React.CSSProperties}
-        // Os cartões repetem os títulos que o texto ao lado já diz; pra leitor
-        // de tela o anel é decoração, e quem troca de tema são as setas.
+        // O anel repete o que o texto ao lado já diz; pra leitor de tela ele é
+        // decoração, e quem troca de item são as setas.
         aria-hidden="true"
         onPointerEnter={() => (pausado.current = true)}
         onPointerLeave={() => (pausado.current = false)}
@@ -201,13 +229,13 @@ export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
         onPointerCancel={soltar}
       >
         {Array.from({ length: vagas }, (_, i) => {
-          const item = itens[i % N];
+          const carta = cartas[i % N];
           const p = pose(0, i, passo);
           return (
             <div
               key={i}
               ref={(el) => {
-                cartas.current[i] = el;
+                elementos.current[i] = el;
               }}
               className={s.carta}
               style={
@@ -219,18 +247,17 @@ export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
                 } as React.CSSProperties
               }
             >
-              {item.temFoto && item.imagem ? (
+              {carta.src ? (
                 <Image
-                  src={`/img/temas/${item.imagem}`}
+                  src={carta.src}
                   alt=""
                   fill
-                  sizes="180px"
+                  sizes={sizes}
                   draggable={false}
                   className={s.imagem}
                 />
               ) : (
-                // sem foto ainda: o nome do tema no próprio cartão
-                <span className={s.espera}>{item.titulo}</span>
+                <span className={s.espera}>{carta.rotulo}</span>
               )}
             </div>
           );
@@ -238,29 +265,27 @@ export default function HaloTemas({ itens }: { itens: ItemTema[] }) {
       </div>
 
       <div className={s.lado}>
-        {/* Todos os temas estão no HTML, empilhados na mesma célula; só o da
-            frente aparece. Assim o texto dos oito continua na página pra
-            busca, e a troca não empurra o que vem embaixo. */}
+        {antes}
+
         <div className={s.pilha} aria-live={anunciar ? 'polite' : 'off'}>
-          {itens.map((item, i) => (
-            <article
-              key={item.titulo}
-              className={i === ativo ? `${s.tema} ${s.ativo}` : s.tema}
+          {paineis.map((painel, i) => (
+            <div
+              key={i}
+              className={i === ativo ? `${s.painel} ${s.ativo}` : s.painel}
               aria-hidden={i !== ativo}
             >
-              <h3 className={s.titulo}>{item.titulo}</h3>
-              <p className={s.texto}>{item.texto}</p>
-            </article>
+              {painel}
+            </div>
           ))}
         </div>
 
         <div className={s.setas}>
-          <button type="button" className={s.seta} onClick={() => gira(-1)} aria-label="Tema anterior">
+          <button type="button" className={s.seta} onClick={() => gira(-1)} aria-label={rotuloAnterior}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M15 5l-7 7 7 7" />
             </svg>
           </button>
-          <button type="button" className={s.seta} onClick={() => gira(1)} aria-label="Próximo tema">
+          <button type="button" className={s.seta} onClick={() => gira(1)} aria-label={rotuloProximo}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M9 5l7 7-7 7" />
             </svg>

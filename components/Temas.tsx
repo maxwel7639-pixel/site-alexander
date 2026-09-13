@@ -1,7 +1,8 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { Fragment } from 'react';
 import { temas } from '@/lib/dados';
-import HaloTemas from './HaloTemas';
+import Halo from './Halo';
 import { Eco, Letreiro } from './Letreiro';
 import s from './Temas.module.css';
 
@@ -9,7 +10,7 @@ import s from './Temas.module.css';
  * Os temas que aparecem com mais frequência.
  *
  * Desde 13/09/2026 abre com o mesmo letreiro de Serviços, agora com a palavra
- * "Psicologia", e os temas giram num anel de cartões (HaloTemas) em vez da
+ * "Psicologia", e os temas giram num anel de cartões (Halo) em vez da
  * grade de três colunas. Pedido do Maxwel, com a referência do Halo Reel.
  *
  * As fotos dos cartões ainda não chegaram: cada tema já tem o nome do arquivo
@@ -32,11 +33,21 @@ export default function Temas() {
           vivendo não aparece aqui, ainda assim vale conversar.
         </Letreiro>
 
-        <HaloTemas
-          itens={temas.map((tema) => ({
-            ...tema,
-            temFoto: existsSync(path.join(process.cwd(), 'public', 'img', 'temas', tema.imagem)),
+        <Halo
+          rotuloAnterior="Tema anterior"
+          rotuloProximo="Próximo tema"
+          cartas={temas.map((tema) => ({
+            src: existsSync(path.join(process.cwd(), 'public', 'img', 'temas', tema.imagem))
+              ? `/img/temas/${tema.imagem}`
+              : undefined,
+            rotulo: tema.titulo,
           }))}
+          paineis={temas.map((tema) => (
+            <Fragment key={tema.titulo}>
+              <h3 className={s.titulo}>{tema.titulo}</h3>
+              <p className={s.texto}>{tema.texto}</p>
+            </Fragment>
+          ))}
         />
       </div>
     </section>
