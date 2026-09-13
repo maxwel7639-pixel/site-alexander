@@ -1,8 +1,3 @@
-.grade {
-  display: grid;
-  gap: 2.25rem;
-}
-
 .texto p {
   font-size: 1.05rem;
 }
@@ -56,21 +51,13 @@
 }
 
 @media (min-width: 900px) {
-  .grade {
-    /* a foto é panorâmica: coluna da foto mais larga que a do texto */
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 3.5rem;
-    /* start, e não center: a foto começa no topo da seção, junto do primeiro
-       parágrafo, e é dali que ela gruda */
-    align-items: start;
+  /* Respiro de revista entre parágrafos: a foto ao lado fica parada enquanto
+     o texto rola, e quanto mais alto o texto, mais tempo dura o efeito. */
+  .texto p {
+    margin-bottom: 1.7em;
   }
 
-  /* A foto fica parada enquanto o texto ao lado rola (pedido do Maxwel,
-     13/09/2026): gruda logo abaixo do cabeçalho fixo e solta quando a coluna
-     de texto termina. Só no computador: no celular as colunas empilham e não
-     há nada ao lado pra rolar. */
-  .figura {
-    position: sticky;
-    top: calc(var(--altura-topo) + 28px);
+  .formatos {
+    margin-top: 2.5rem;
   }
 }

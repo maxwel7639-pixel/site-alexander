@@ -14,6 +14,14 @@ type Props = {
   fundo?: 'claro' | 'palha' | 'mate' | 'escuro';
   /** O desenho a mao no vazio ao lado do titulo. Nem toda secao leva um. */
   traco?: 'onda' | 'sublinhado' | 'arco';
+  /**
+   * Conteúdo que fica AO LADO do título e do texto, parado enquanto eles
+   * rolam (sticky). Nasceu em 13/09/2026 pra foto do "sobre mim": com a foto
+   * dentro do corpo da seção ela começava abaixo do título e grudava por pouco
+   * tempo; ao lado do título ela começa no alto da seção e segura a rolagem
+   * do texto inteiro.
+   */
+  lateral?: React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -23,6 +31,7 @@ export default function Secao({
   titulo,
   fundo = 'claro',
   traco,
+  lateral,
   children,
 }: Props) {
   const tituloId = `${id}-titulo`;
@@ -47,11 +56,26 @@ export default function Secao({
       ) : null}
 
       <div className={s.interno}>
-        <header className={s.cabecalho}>
-          {etiqueta ? <p className={s.etiqueta}>{etiqueta}</p> : null}
-          <h2 id={tituloId}>{titulo}</h2>
-        </header>
-        {children}
+        {lateral ? (
+          <div className={s.comLateral}>
+            <div>
+              <header className={s.cabecalho}>
+                {etiqueta ? <p className={s.etiqueta}>{etiqueta}</p> : null}
+                <h2 id={tituloId}>{titulo}</h2>
+              </header>
+              {children}
+            </div>
+            <div className={s.lateral}>{lateral}</div>
+          </div>
+        ) : (
+          <>
+            <header className={s.cabecalho}>
+              {etiqueta ? <p className={s.etiqueta}>{etiqueta}</p> : null}
+              <h2 id={tituloId}>{titulo}</h2>
+            </header>
+            {children}
+          </>
+        )}
       </div>
     </section>
   );
