@@ -4,6 +4,7 @@ import { CEREBRO } from '@/lib/cerebro';
 import { servicos } from '@/lib/dados';
 import CoverflowServicos from './CoverflowServicos';
 import Desenrolar from './Desenrolar';
+import { Eco, Letreiro } from './Letreiro';
 import s from './Servicos.module.css';
 
 /**
@@ -45,26 +46,22 @@ export default function Servicos() {
     <section id="servicos" aria-labelledby="servicos-titulo" className={s.servicos}>
       <div className={s.trilho} data-trilho>
         <div className={s.painel}>
-          {/* O eco gigante do cartaz: textura, entao fora do leitor de tela. */}
-          <span className={s.eco} aria-hidden="true">
-            serviços
-          </span>
+          <Eco palavra="serviços" tom="escuro" />
 
           <div className={s.interno}>
-            <div className={s.letreiro}>
-              <p className={s.etiqueta}>Psicologia e psicanálise</p>
-              <p className={s.faixa}>As formas de trabalhar com ele</p>
-              <h2 id="servicos-titulo" className={s.palavra}>
-                Serviços
-              </h2>
-              {/* Sem contar quantos sao: o numero mora no array, e texto que
-                  repete o tamanho de uma lista envelhece sozinho no dia em que
-                  ela crescer. */}
-              <p className={s.introducao}>
-                Na primeira conversa dá para entender qual destes formatos faz
-                sentido para o que você está vivendo.
-              </p>
-            </div>
+            {/* Sem contar quantos sao: o numero mora no array, e texto que
+                repete o tamanho de uma lista envelhece sozinho no dia em que
+                ela crescer. */}
+            <Letreiro
+              id="servicos-titulo"
+              tom="escuro"
+              etiqueta="Psicologia e psicanálise"
+              faixa="As formas de trabalhar com ele"
+              palavra="Serviços"
+            >
+              Na primeira conversa dá para entender qual destes formatos faz
+              sentido para o que você está vivendo.
+            </Letreiro>
 
             <Desenrolar className={s.cerebro} fioY={CEREBRO.fioY} saidaX={CEREBRO.saidaX}>
               <svg viewBox={CEREBRO.viewBox} aria-hidden="true" focusable="false">

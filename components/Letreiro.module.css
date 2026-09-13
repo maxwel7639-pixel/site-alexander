@@ -1,0 +1,90 @@
+/* ============================== O LETREIRO ==================================
+   Duas versões de cor, trocadas por tokens locais e não por regra repetida.
+
+   escuro, sobre a ardósia de Serviços (#4e5d70), medido:
+     --creme-texto #f1e9da ................ 5,6:1
+   O --tiara reprova ali (2,6:1), então a etiqueta vai em creme.
+
+   claro, sobre o --creme de Temas:
+     --tinta sobre a tarja --mate ......... 7,48:1
+     --ouro-texto na etiqueta ............. 5,3:1
+     --bronze na introdução ............... 5,7:1
+============================================================================ */
+.escuro {
+  --l-texto: var(--creme-texto);
+  --l-etiqueta: var(--creme-texto);
+  --l-tarja: color-mix(in srgb, var(--ardosia, #4e5d70) 55%, #141b26);
+  --l-tarja-texto: var(--creme-texto);
+  --l-introducao: var(--creme-texto);
+  --l-eco: 0.06;
+}
+
+.claro {
+  --l-texto: var(--tinta);
+  --l-etiqueta: var(--ouro-texto);
+  --l-tarja: var(--mate);
+  --l-tarja-texto: var(--tinta);
+  --l-introducao: var(--bronze);
+  --l-eco: 0.05;
+}
+
+.letreiro {
+  position: relative;
+  z-index: 2;
+}
+
+.etiqueta {
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--l-etiqueta);
+}
+
+/* A tarja do cartaz: a frase miúda em itálico, sobre uma faixa de outro tom. */
+.faixa {
+  display: inline-block;
+  margin: 0;
+  padding: 0.08em 0.5em 0.14em;
+  background: var(--l-tarja);
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--l-tarja-texto);
+}
+
+.palavra {
+  margin: 0.02em 0 0;
+  font-size: clamp(3.6rem, 10.5vw, 8.75rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  color: var(--l-texto);
+}
+
+.introducao {
+  margin: 1.4rem 0 0;
+  max-width: 38ch;
+  font-size: 1.05rem;
+  color: var(--l-introducao);
+}
+
+/* O "cuidado" gigante e apagado do cartaz, cortado pela borda da seção. Quem
+   usa decide a altura com `className`; por padrão ele fica embaixo. */
+.eco {
+  position: absolute;
+  left: -0.05em;
+  bottom: 2%;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: clamp(8rem, 28vw, 26rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--l-texto);
+  opacity: var(--l-eco);
+  pointer-events: none;
+  user-select: none;
+}

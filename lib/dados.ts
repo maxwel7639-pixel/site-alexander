@@ -238,9 +238,13 @@ export const sobre = [
 // "oferece um espaço", "olhar para" -- e nao "resolve", "supera" ou "cura". O
 // Conselho Federal de Psicologia veda promessa de resultado, e um texto mais
 // bonito nao pode ser o que coloca o CRP dele em risco.
+//
+// `imagem` desde 13/09/2026: a foto do cartão no anel de temas. O arquivo mora
+// em public/img/temas; enquanto não existe, o cartão mostra o nome do tema.
 export const temas = [
   {
     titulo: 'Ansiedade',
+    imagem: 'ansiedade.webp',
     texto:
       'Preocupação constante, pensamentos acelerados e um corpo que não ' +
       'consegue desligar. Na terapia, a ansiedade deixa de ser só um sintoma ' +
@@ -248,6 +252,7 @@ export const temas = [
   },
   {
     titulo: 'Depressão',
+    imagem: 'depressao.webp',
     texto:
       'Tristeza que se prolonga, cansaço e perda de interesse pelo que antes ' +
       'fazia sentido. O acompanhamento oferece um espaço de escuta para ' +
@@ -259,6 +264,7 @@ export const temas = [
    */
   {
     titulo: 'Álcool e outras drogas',
+    imagem: 'alcool-e-outras-drogas.webp',
     texto:
       'Quando a bebida ou outra substância passa a ocupar espaço demais e ' +
       'tentar parar sozinho não tem dado certo. O atendimento acolhe a pessoa ' +
@@ -266,6 +272,7 @@ export const temas = [
   },
   {
     titulo: 'Relacionamentos',
+    imagem: 'relacionamentos.webp',
     texto:
       'Conflitos que se repetem, dificuldade de diálogo e a sensação de ' +
       'distância de quem está perto. A terapia ajuda a reconhecer esses ' +
@@ -273,6 +280,7 @@ export const temas = [
   },
   {
     titulo: 'Terapia de casal',
+    imagem: 'terapia-de-casal.webp',
     texto:
       'Um espaço mediado para que os dois possam falar e ser ouvidos, olhar ' +
       'para a história construída juntos e pensar, com mais clareza, nos ' +
@@ -280,6 +288,7 @@ export const temas = [
   },
   {
     titulo: 'Procrastinação',
+    imagem: 'procrastinacao.webp',
     texto:
       'Adiar o que é importante e conviver com a culpa que vem depois. Mais do ' +
       'que falta de organização, a procrastinação costuma falar de medos e ' +
@@ -287,6 +296,7 @@ export const temas = [
   },
   {
     titulo: 'Decisões difíceis',
+    imagem: 'decisoes-dificeis.webp',
     texto:
       'Mudança de carreira, fim de um relacionamento, escolhas que envolvem a ' +
       'família. Pensar junto com um profissional ajuda a separar o que se ' +
@@ -294,6 +304,7 @@ export const temas = [
   },
   {
     titulo: 'Aprender a dizer não',
+    imagem: 'aprender-a-dizer-nao.webp',
     texto:
       'Colocar limites sem culpa, respeitando o próprio tempo e as próprias ' +
       'necessidades. Um trabalho sobre autoestima e sobre a forma de se ' +
