@@ -204,61 +204,77 @@ export const sobre = [
     'seguir. Não existe assunto pequeno demais para ser levado à terapia.',
 ];
 
-// Os temas vem dos posts que ele mesmo ja escreveu. Nenhum foi acrescentado.
+// Os temas vem dos posts que ele mesmo ja escreveu; "Alcool e outras drogas"
+// veio do pedido de 09/09/2026.
+//
+// TEXTOS REESCRITOS em 13/09/2026, a pedido dele ("os amigos colocaram de forma
+// muito simples, teria como colocar um texto mais significativo"). Cada um tem
+// agora duas frases: o que a pessoa vive, e o que a terapia faz com isso.
+//
+// A SEGUNDA FRASE DESCREVE O PROCESSO, NUNCA O RESULTADO. "Ajuda a compreender",
+// "oferece um espaço", "olhar para" -- e nao "resolve", "supera" ou "cura". O
+// Conselho Federal de Psicologia veda promessa de resultado, e um texto mais
+// bonito nao pode ser o que coloca o CRP dele em risco.
 export const temas = [
   {
     titulo: 'Ansiedade',
     texto:
-      'Quando a preocupação passa a ocupar o dia inteiro e o corpo não desliga.',
+      'Preocupação constante, pensamentos acelerados e um corpo que não ' +
+      'consegue desligar. Na terapia, a ansiedade deixa de ser só um sintoma ' +
+      'a controlar e passa a ser compreendida dentro da história de cada pessoa.',
   },
   {
     titulo: 'Depressão',
     texto:
-      'Tristeza profunda que se prolonga, com perda de interesse pelo que antes dava prazer.',
+      'Tristeza que se prolonga, cansaço e perda de interesse pelo que antes ' +
+      'fazia sentido. O acompanhamento oferece um espaço de escuta para ' +
+      'compreender esse sofrimento, no tempo de cada um.',
   },
   /*
-   * Este e o unico tema que NAO saiu de um post dele: veio do pedido de
-   * 09/09/2026 para acrescentar a especialidade em alcool e outras drogas.
-   *
-   * Entra aqui em terceiro, colado na Depressao, e nao no fim da lista: os
-   * temas vao do mais pesado ao mais leve, e chegar depois de "aprender a
-   * dizer nao" faria dele um adendo.
-   *
-   * A PALAVRA "VICIO" NAO APARECE, e a frase nao acusa ninguem. Ele atendeu no
-   * servico publico de saude mental, onde a pessoa costuma chegar depois de
-   * muita gente ja ter dito o que ela e. A frase descreve o que a pessoa
-   * sente, no lugar de nomear o que ela tem.
+   * Colado na Depressao de proposito: os temas vao do mais pesado ao mais
+   * leve. A palavra "vicio" continua de fora, e a frase nao acusa ninguem.
    */
   {
     titulo: 'Álcool e outras drogas',
     texto:
-      'Quando a bebida ou outra substância passa a ocupar espaço demais no ' +
-      'dia, e tentar parar sozinho não tem dado certo.',
+      'Quando a bebida ou outra substância passa a ocupar espaço demais e ' +
+      'tentar parar sozinho não tem dado certo. O atendimento acolhe a pessoa ' +
+      'e também a família, sem julgamento.',
   },
   {
     titulo: 'Relacionamentos',
     texto:
-      'Conflitos que se repetem, frustração recorrente e distância de quem está perto.',
+      'Conflitos que se repetem, dificuldade de diálogo e a sensação de ' +
+      'distância de quem está perto. A terapia ajuda a reconhecer esses ' +
+      'padrões e o lugar que cada um ocupa na relação.',
   },
   {
     titulo: 'Terapia de casal',
     texto:
-      'Um espaço para os dois falarem e serem ouvidos, com alguém de fora mediando.',
+      'Um espaço mediado para que os dois possam falar e ser ouvidos, olhar ' +
+      'para a história construída juntos e pensar, com mais clareza, nos ' +
+      'próximos passos.',
   },
   {
     titulo: 'Procrastinação',
     texto:
-      'Adiar o que precisa ser feito e conviver com a cobrança que vem depois.',
+      'Adiar o que é importante e conviver com a culpa que vem depois. Mais do ' +
+      'que falta de organização, a procrastinação costuma falar de medos e ' +
+      'expectativas que vale a pena compreender.',
   },
   {
     titulo: 'Decisões difíceis',
     texto:
-      'Momentos de escolha em que pensar junto com alguém ajuda a enxergar melhor.',
+      'Mudança de carreira, fim de um relacionamento, escolhas que envolvem a ' +
+      'família. Pensar junto com um profissional ajuda a separar o que se ' +
+      'deseja do que se teme.',
   },
   {
     titulo: 'Aprender a dizer não',
     texto:
-      'Colocar limites sem se sentir culpado por isso.',
+      'Colocar limites sem culpa, respeitando o próprio tempo e as próprias ' +
+      'necessidades. Um trabalho sobre autoestima e sobre a forma de se ' +
+      'relacionar com os outros.',
   },
 ];
 
@@ -338,30 +354,10 @@ export const qualificacoes = [
   'Praticante de PNL',
 ];
 
-/*
- * ONDE ELE JA ATUOU. Lista nova, e separada das qualificacoes de proposito:
- * uma credencial e o que ele E hoje, e um servico onde ele trabalhou e o que
- * ele FEZ. Misturar os dois numa lista so faria o CAPS-AD parecer um diploma.
- *
- * O texto esta no passado porque e passado.
- *
- * O periodo veio no audio de 11/09/2026. ATENCAO: ele hesitou entre dois
- * inicios -- "de dois mil e dezessete, dois mil e dezoito a dois mil e vinte e
- * tres". Ficou 2018 porque foi o ultimo numero que ele disse antes do "a
- * 2023", que e a leitura mais provavel de quem se corrige no meio da frase.
- * TODO: confirmar o ano de inicio numa mensagem, porque data em curriculo de
- * profissional de saude nao e detalhe.
- */
-export const experiencia = [
-  {
-    titulo: 'Atuou no CAPS-AD Vanderlei Marins',
-    periodo: 'de 2018 a 2023',
-    // Grafia copiada da mensagem dele, entre parenteses, sem corrigir para
-    // o nome oficial do servico: quem nomeia onde trabalhou e ele.
-    orgao: 'Centro de Atenção Psicossocial de Álcool e outras drogas',
-    detalhe: 'Austin, Nova Iguaçu (RJ). Serviço público de saúde mental.',
-  },
-];
+// A lista `experiencia` (CAPS-AD Vanderlei Marins, 2018 a 2023) saiu em
+// 13/09/2026 a pedido dele: "tire por favor os campos de exclusividade que
+// trabalhei no CAPS-AD. Eu citei no corpo do texto que irei enviar". A
+// passagem pelo CAPS continua no "sobre mim" e vai para o texto dele.
 
 export const reconhecimentos = [
   {
@@ -420,10 +416,13 @@ export const depoimentos = [
  */
 export const espaco = {
   titulo: 'Onde a conversa acontece',
+  // Reescrito em 13/09/2026. A versão anterior ("poltrona, sofá, planta e
+  // estante, e não o consultório branco") ele não entendeu, e com razão: listava
+  // móveis e comparava com um consultório imaginário.
   texto:
-    'Uma sala com janela, no Centro de Nova Iguaçu. Poltrona, sofá, planta e ' +
-    'estante, e não o consultório branco que costuma vir à cabeça. Ver o lugar ' +
-    'antes de entrar nele tira uma dúvida a menos de quem vai pela primeira vez.',
+    'Um consultório reservado e acolhedor no Centro de Nova Iguaçu, com luz ' +
+    'natural e um ambiente preparado para que a conversa aconteça com ' +
+    'privacidade e conforto.',
   fotos: [
     {
       arquivo: 'espaco-1-poltrona.webp',

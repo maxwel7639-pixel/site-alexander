@@ -7,12 +7,12 @@ export default function Temas() {
     <Secao
       id="temas"
       traco="sublinhado"
-      etiqueta="O que ele atende"
+      etiqueta="Áreas de atendimento"
       titulo="Os assuntos que aparecem com mais frequência"
     >
       <p className={s.introducao}>
-        Estes são os temas sobre os quais ele já escreve e publica. Se o seu não
-        estiver aqui, ainda assim vale conversar.
+        Alguns dos temas mais presentes no consultório. Se o que você está
+        vivendo não aparece aqui, ainda assim vale conversar.
       </p>
 
       <ul className={s.grade}>
