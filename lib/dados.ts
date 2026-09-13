@@ -81,9 +81,18 @@ export const endereco = {
   cidade: 'Nova Iguaçu',
   estado: 'RJ',
   cep: '26220-030',
-  referencia: 'Prédio do Laboratório Dr. Emerson',
+  // SEM "Prédio do Laboratório Dr. Emerson" desde 13/09/2026, a pedido dele:
+  // "é colocado diversas vezes no endereço... vamos colocar o endereço
+  // normal". E o argumento dele é bom: o público chega de carro ou de Uber, e
+  // aplicativo precisa do número, não do letreiro do vizinho.
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=Rua+Coronel+Francisco+Soares%2C+71%2C+Centro%2C+Nova+Igua%C3%A7u%2C+RJ%2C+26220-030',
+  // O mapa embutido não precisa de chave: é o mesmo endereço em modo embed.
+  mapsEmbed:
+    'https://www.google.com/maps?q=Rua+Coronel+Francisco+Soares%2C+71%2C+Centro%2C+Nova+Igua%C3%A7u%2C+RJ&output=embed',
+  // Abre o Uber com o destino preenchido; no computador cai no site do Uber.
+  uberUrl:
+    'https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff%5Bformatted_address%5D=Rua%20Coronel%20Francisco%20Soares%2C%2071%2C%20Centro%2C%20Nova%20Igua%C3%A7u%20-%20RJ%2C%2026220-030',
 };
 
 export const atendimento = {

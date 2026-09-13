@@ -71,8 +71,6 @@ export default function Rodape() {
               {endereco.bairro}, {endereco.cidade}, {endereco.estado}
               <br />
               CEP {endereco.cep}
-              <br />
-              {endereco.referencia}
             </p>
           </div>
 

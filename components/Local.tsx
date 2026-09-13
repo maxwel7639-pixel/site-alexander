@@ -1,9 +1,20 @@
-import Image from 'next/image';
 import { atendimento, endereco } from '@/lib/dados';
 import Secao from './Secao';
 import { IconeLocal, IconeRelogio } from './Icones';
 import s from './Local.module.css';
 
+/**
+ * Onde fica.
+ *
+ * Refeita em 13/09/2026 a pedido dele. A versão anterior abria com "quem chega
+ * de ônibus procura o prédio, não o número" e mostrava a fachada do
+ * laboratório vizinho. Ele apontou o erro de leitura do público: quem faz
+ * terapia com ele chega de carro ou de Uber, e aplicativo precisa do número.
+ *
+ * Agora é o endereço, o horário, dois caminhos (Google Maps e Uber) e o mapa.
+ * O mapa substitui a foto da fachada: mostra onde é sem associar o consultório
+ * à marca de outro negócio.
+ */
 export default function Local() {
   return (
     <Secao
@@ -15,8 +26,8 @@ export default function Local() {
       <div className={s.grade}>
         <div>
           <p className={s.aviso}>
-            Quem chega de ônibus procura o prédio, não o número. É o prédio do
-            Laboratório Dr. Emerson, com o letreiro azul na fachada.
+            O consultório fica no Centro de Nova Iguaçu, com acesso fácil de
+            carro, de aplicativo ou de transporte público.
           </p>
 
           <address className={s.endereco}>
@@ -28,12 +39,8 @@ export default function Local() {
                 {endereco.bairro}, {endereco.cidade}, {endereco.estado}
                 <br />
                 CEP {endereco.cep}
-                <br />
-                <em className={s.referencia}>{endereco.referencia}</em>
               </span>
             </p>
-            {/* TODO: acrescentar o numero da sala aqui quando o Alexander
-                confirmar qual e. Ver a nota em lib/dados.ts. */}
             <p className={s.linha}>
               <IconeRelogio className={s.icone} />
               <span>
@@ -44,35 +51,35 @@ export default function Local() {
             </p>
           </address>
 
-          <a
-            href={endereco.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={s.mapa}
-          >
-            Abrir no Google Maps
-          </a>
+          <div className={s.acoes}>
+            <a
+              href={endereco.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={s.mapa}
+            >
+              Abrir no Google Maps
+            </a>
+            <a
+              href={endereco.uberUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={s.mapa}
+            >
+              Ir de Uber
+            </a>
+          </div>
         </div>
 
-        <figure className={s.figura}>
-          {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
-          <div className="pilha">
-            <Image
-              src="/img/fachada-laboratorio-dr-emerson.webp"
-              alt={
-                'Fachada do prédio na Rua Coronel Francisco Soares, com os ' +
-                'letreiros azuis do Laboratório Dr. Emerson sobre a entrada.'
-              }
-              width={992}
-              height={744}
-              sizes="(max-width: 899px) 100vw, 44vw"
-              className={s.imagem}
-            />
-          </div>
-          <figcaption className={s.legenda}>
-            A fachada, para você reconhecer da calçada.
-          </figcaption>
-        </figure>
+        <div className={s.moldura}>
+          <iframe
+            src={endereco.mapsEmbed}
+            title={`Mapa: ${endereco.logradouro}, ${endereco.bairro}, ${endereco.cidade}`}
+            className={s.mapaEmbutido}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </div>
     </Secao>
   );
