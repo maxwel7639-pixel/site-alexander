@@ -105,6 +105,32 @@
   }
 }
 
+/* ============================ O DESENHO NO CANTO ============================
+   Mesmo lugar e mesma regra do traco (ver Traco.module.css): no vazio a
+   direita do titulo, atras do conteudo, e só a partir de 1100px. Abaixo disso o
+   titulo ocupa a linha inteira e o desenho passaria por cima do texto. */
+.desenho {
+  position: absolute;
+  z-index: 0;
+  top: 4.5rem;
+  right: 8%;
+  width: min(22vw, 300px);
+  pointer-events: none;
+  display: none;
+}
+
+.desenho img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1100px) {
+  .desenho {
+    display: block;
+  }
+}
+
 /* ====================== SEÇÃO COM CONTEÚDO AO LADO ==========================
    Título e texto numa coluna, o `lateral` na outra, parado enquanto a primeira
    rola. No celular empilha: o lateral vem depois do texto, sem sticky, porque

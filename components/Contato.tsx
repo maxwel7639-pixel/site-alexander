@@ -1,4 +1,5 @@
-import { profissional } from '@/lib/dados';
+import Image from 'next/image';
+import { marca, profissional } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
 import Secao from './Secao';
 import { IconeEmail, IconeInstagram } from './Icones';
@@ -8,7 +9,18 @@ export default function Contato() {
   return (
     <Secao
       id="contato"
-      traco="arco"
+      // O divã do cartão dele, no lugar do traço em arco desde 13/09/2026: saiu
+      // do rodapé, onde ficava pequeno embaixo do nome, e subiu pra cá. A
+      // tinta dele (#9d9876) dá 5,18:1 sobre o grafite, então vai sem véu.
+      desenho={
+        <Image
+          src={marca.diva.src}
+          alt=""
+          width={marca.diva.largura}
+          height={marca.diva.altura}
+          sizes="300px"
+        />
+      }
       etiqueta="Contato"
       titulo="Dar o primeiro passo é só mandar uma mensagem"
       fundo="escuro"

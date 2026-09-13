@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { atendimento, endereco, marca, profissional } from '@/lib/dados';
+import { atendimento, endereco, profissional } from '@/lib/dados';
 import s from './Rodape.module.css';
 
 /**
@@ -26,16 +26,7 @@ export default function Rodape() {
     <footer className={`${s.rodape} sobreEscuro`}>
       <div className={s.interno}>
         <div className={s.topo}>
-          {/*
-            A coluna da marca ganhou uma segunda linha. O Psi e o nome
-            continuam exatamente onde estavam, na mesma linha e no mesmo
-            tamanho; abaixo deles entra o divã do cartao de visita dele.
-
-            Aqui ele pode ser maior que no topo -- 132px -- porque o rodape tem
-            espaco e nao tem pressa. Ainda assim nao passa disso: o desenho saiu
-            de uma foto de cartao, e ampliado demais a serrilha do JPEG original
-            comeca a aparecer na borda do traco.
-          */}
+          {/* O divã que ficava embaixo do nome subiu pro Contato em 13/09/2026. */}
           <div className={s.colunaMarca}>
             <div className={s.marca}>
               <Image
@@ -52,15 +43,6 @@ export default function Rodape() {
                 </p>
               </div>
             </div>
-
-            <Image
-              src={marca.diva.src}
-              alt=""
-              width={marca.diva.largura}
-              height={marca.diva.altura}
-              sizes="132px"
-              className={s.diva}
-            />
           </div>
 
           <div>

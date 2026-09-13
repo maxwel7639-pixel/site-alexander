@@ -15,6 +15,11 @@ type Props = {
   /** O desenho a mao no vazio ao lado do titulo. Nem toda secao leva um. */
   traco?: 'onda' | 'sublinhado' | 'arco';
   /**
+   * Uma ilustracao no mesmo canto do traco, no lugar dele. Nasceu em
+   * 13/09/2026 pro divã do cartao dele, que saiu do rodape e subiu pro Contato.
+   */
+  desenho?: React.ReactNode;
+  /**
    * Conteúdo que fica AO LADO do título e do texto, parado enquanto eles
    * rolam (sticky). Nasceu em 13/09/2026 pra foto do "sobre mim": com a foto
    * dentro do corpo da seção ela começava abaixo do título e grudava por pouco
@@ -31,6 +36,7 @@ export default function Secao({
   titulo,
   fundo = 'claro',
   traco,
+  desenho,
   lateral,
   children,
 }: Props) {
@@ -48,11 +54,17 @@ export default function Secao({
       {/* Onde ha traco, o psi da direita sai: os dois ocupam o mesmo canto. */}
       <MarcaFundo
         tom={fundo === 'escuro' ? 'escuro' : 'claro'}
-        soEsquerda={Boolean(traco)}
+        soEsquerda={Boolean(traco || desenho)}
       />
 
       {traco ? (
         <Traco variante={traco} tom={fundo === 'escuro' ? 'escuro' : 'claro'} />
+      ) : null}
+
+      {desenho ? (
+        <div className={s.desenho} aria-hidden="true">
+          {desenho}
+        </div>
       ) : null}
 
       <div className={s.interno}>
