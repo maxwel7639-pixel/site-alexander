@@ -31,13 +31,21 @@ export default function ComoTrabalha() {
         <figure className={s.figura}>
           {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
           <div className="pilha">
+            {/*
+              Tratada em 13/09/2026, a pedido dele ("não daria para colocar um
+              fundo melhor?"). Troca de fundo por recorte foi testada e
+              descartada: a poltrona perdia o encosto e a borda ficava com cara
+              de montagem. Ficou a foto verdadeira, sem a mesinha de dobrar, com
+              o fundo desfocado e a cor aquecida pra paleta do site. Original em
+              /img/consultorio.webp. Script: scratchpad alex-retrato4.py.
+            */}
             <Image
-              src="/img/consultorio.webp"
+              src="/img/consultorio-retrato.webp"
               alt={
                 'Alexander Barnabés sentado na poltrona marrom do consultório, ' +
-                'sorrindo, com um caderno e uma caneca na mesa de apoio ao lado.'
+                'sorrindo, de camisa listrada e com os óculos na mão.'
               }
-              width={1200}
+              width={797}
               height={1063}
               sizes="(max-width: 899px) 100vw, 42vw"
               className={s.imagem}

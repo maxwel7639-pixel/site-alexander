@@ -55,9 +55,10 @@
   height: auto;
   border-radius: var(--raio);
   border: 1px solid var(--linha);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  object-position: 55% 35%;
+  object-position: 50% 20%;
+  max-height: 640px;
 }
 
 .legenda {
