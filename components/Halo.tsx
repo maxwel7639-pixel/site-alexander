@@ -20,6 +20,11 @@ type Props = {
   formato?: 'retrato' | 'paisagem';
   /** Quantas vezes cada item se repete no anel, pra ele ficar cheio. */
   repeticoes?: number;
+  /**
+   * Quantos cartões aparecem ao mesmo tempo, contando o da frente. Os outros
+   * somem com um fade conforme se afastam. Sem isto, aparece o anel inteiro.
+   */
+  visiveis?: number;
   rotuloAnterior: string;
   rotuloProximo: string;
   /** Fotos com `sizes` coerente com o tamanho do cartão. */
@@ -36,10 +41,20 @@ const ESCALA_FUNDO = 0.42;
 const PARADO = 3800;
 const GIRO = 800;
 
-function pose(giro: number, i: number, passo: number) {
+function pose(giro: number, i: number, passo: number, visiveis?: number) {
   const angulo = i * passo + giro;
   const c = Math.cos(angulo);
-  return { c, s: Math.sin(angulo), k: ESCALA_FUNDO + (1 - ESCALA_FUNDO) * ((c + 1) / 2) };
+  const s = Math.sin(angulo);
+  let o = 1;
+  if (visiveis) {
+    // distância angular até a frente, e o limite dos que ficam à vista: com 3,
+    // o da frente e um vizinho de cada lado. Passou do limite, some em 60% de
+    // um passo -- é o fade de quem sai enquanto o próximo entra.
+    const distancia = Math.abs(Math.atan2(s, c));
+    const limite = (passo * (visiveis - 1)) / 2;
+    o = Math.min(1, Math.max(0, 1 - (distancia - limite) / (passo * 0.6)));
+  }
+  return { c, s, o, k: ESCALA_FUNDO + (1 - ESCALA_FUNDO) * ((c + 1) / 2) };
 }
 
 const suave = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
@@ -79,6 +94,7 @@ export default function Halo({
   antes,
   formato = 'retrato',
   repeticoes = 2,
+  visiveis,
   rotuloAnterior,
   rotuloProximo,
   sizes = '180px',
@@ -106,10 +122,11 @@ export default function Halo({
       giro.current = r;
       elementos.current.forEach((el, i) => {
         if (!el) return;
-        const p = pose(r, i, passo);
+        const p = pose(r, i, passo, visiveis);
         el.style.setProperty('--c', p.c.toFixed(4));
         el.style.setProperty('--s', p.s.toFixed(4));
         el.style.setProperty('--k', p.k.toFixed(4));
+        el.style.setProperty('--o', p.o.toFixed(3));
         el.style.zIndex = String(Math.round(p.k * 1000));
       });
       const frente = ((Math.round(-r / passo) % vagas) + vagas) % vagas;
@@ -119,7 +136,7 @@ export default function Halo({
         setAtivo(item);
       }
     },
-    [N, passo, vagas],
+    [N, passo, vagas, visiveis],
   );
 
   const leva = useCallback(
@@ -230,7 +247,7 @@ export default function Halo({
       >
         {Array.from({ length: vagas }, (_, i) => {
           const carta = cartas[i % N];
-          const p = pose(0, i, passo);
+          const p = pose(0, i, passo, visiveis);
           return (
             <div
               key={i}
@@ -243,6 +260,7 @@ export default function Halo({
                   '--c': p.c.toFixed(4),
                   '--s': p.s.toFixed(4),
                   '--k': p.k.toFixed(4),
+                  '--o': p.o.toFixed(3),
                   zIndex: Math.round(p.k * 1000),
                 } as React.CSSProperties
               }

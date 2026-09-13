@@ -24,9 +24,12 @@ export default function Espaco() {
     <Secao id="espaco" etiqueta="O espaço" titulo={espaco.titulo} fundo="claro">
       <Halo
         formato="paisagem"
-        // tres fotos repetidas tres vezes: nove vagas enchem o anel sem que a
-        // mesma foto apareca colada nela mesma
-        repeticoes={3}
+        // So tres a vista, a pedido do Maxwel (13/09/2026): a da frente e uma
+        // vizinha de cada lado, que sao sempre as outras duas fotos. Seis vagas
+        // e nao nove: com passo de 60 graus as tres se afastam na vertical e
+        // quase nao se cobrem.
+        repeticoes={2}
+        visiveis={3}
         sizes="(max-width: 899px) 160px, 220px"
         rotuloAnterior="Foto anterior"
         rotuloProximo="Próxima foto"

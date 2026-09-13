@@ -39,7 +39,8 @@
     radial-gradient(80% 60% at 30% 15%, color-mix(in srgb, var(--creme) 75%, transparent), transparent 70%),
     linear-gradient(160deg, var(--palha), color-mix(in srgb, var(--mate) 82%, var(--bronze)));
   box-shadow: 0 22px 44px -26px rgba(43, 39, 36, 0.6);
-  will-change: transform;
+  opacity: var(--o, 1);
+  will-change: transform, opacity;
 }
 
 /* Quanto mais ao fundo, mais escuro: reforça a profundidade que a escala já dá. */
