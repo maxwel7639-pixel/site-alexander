@@ -12,23 +12,22 @@ export default function ComoTrabalha() {
       fundo="palha"
       lateral={
         /*
-          A foto de 13/09/2026, com o fundo refeito no ChatGPT. O FUNDO NÃO É A
-          SALA DELE, por isso não há legenda chamando de consultório: a sala de
-          verdade está em "O espaço".
+          O retrato que estava na abertura, desde 13/09/2026. A foto anterior
+          tinha o fundo refeito no ChatGPT e saiu: a MX não edita foto do
+          cliente com IA (fica artificial e mostra uma sala que não é a dele).
 
-          Aparece INTEIRA (é panorâmica) e fica AO LADO do título, parada
-          enquanto o texto rola -- pedidos do Maxwel no mesmo dia. Ver a prop
-          `lateral` em Secao.tsx.
+          Aparece INTEIRA e fica AO LADO do título, parada enquanto o texto
+          rola. Ver a prop `lateral` em Secao.tsx.
         */
         <figure className={s.figura}>
           <FotoProfundidade
-            src="/img/alexander-consultorio-poltrona.webp"
+            src="/img/alexander-barnabes-retrato.webp"
             alt={
-              'Alexander Barnabés sentado em uma poltrona de couro, sorrindo, ' +
-              'de camisa listrada e com os óculos na mão.'
+              'Alexander Barnabés sentado em um sofá, de blazer branco e ' +
+              'calça mostarda, com a mão no queixo, olhando para a câmera.'
             }
-            largura={2000}
-            altura={1116}
+            largura={1296}
+            altura={864}
             sizes="(max-width: 899px) 100vw, 56vw"
           />
         </figure>

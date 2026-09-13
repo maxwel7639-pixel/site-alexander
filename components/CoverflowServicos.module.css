@@ -126,13 +126,14 @@
   height: 8px;
   border-radius: 999px;
   transform: translate(-50%, -50%);
-  background: color-mix(in srgb, var(--bronze) 40%, transparent);
+  /* sobre a ardósia da seção de serviços, desde 13/09/2026 */
+  background: color-mix(in srgb, var(--creme-texto) 40%, transparent);
   transition: width 300ms ease, background-color 300ms ease;
 }
 
 .ligado::before {
   width: 26px;
-  background: var(--tinta);
+  background: var(--creme-texto);
 }
 
 .ponto:focus-visible::before {

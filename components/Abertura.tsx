@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { atendimento, profissional, reconhecimentos } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
 import MarcaFundo from './MarcaFundo';
@@ -26,6 +25,12 @@ import s from './Abertura.module.css';
  * sem selo e sem alarde -- vaidade em site de psicologo afasta, e o Conselho
  * tem razao em implicar com isso. O que a linha faz e responder "ele e de
  * verdade?" antes que a pessoa precise procurar a resposta.
+ *
+ * ================================ SEM FOTO ==================================
+ * Desde 13/09/2026 o retrato mora no "sobre mim", e a abertura é só texto. A
+ * coluna da direita, onde ficava a foto, passou a guardar o reconhecimento e
+ * o endereço: o mesmo conteúdo de antes, que no celular continua embaixo do
+ * botão.
  */
 export default function Abertura() {
   // O primeiro da lista e a Mocao da Camara. Ler do array em vez de escrever
@@ -64,7 +69,9 @@ export default function Abertura() {
           <BotaoWhatsApp className={s.cta}>
             Agendar pelo WhatsApp
           </BotaoWhatsApp>
+        </div>
 
+        <div className={s.lado}>
           {/*
             Logo abaixo do botao, e nao acima: quem ja decidiu falar com ele nao
             precisa ser convencido de novo, e quem hesitou acabou de encontrar o
@@ -85,30 +92,6 @@ export default function Abertura() {
               <span>{atendimento.horario}</span>
             </li>
           </ul>
-        </div>
-
-        {/*
-          A moldura existe pra foto parar de ser um retangulo colado no fundo. E
-          um passe-partout deslocado, desenhado com pseudo-elemento: a foto fica
-          POSTA sobre a pagina em vez de impressa nela, e nao custa um byte de
-          imagem.
-        */}
-        <div className={s.moldura}>
-          <div className={s.foto}>
-            <Image
-              src="/img/alexander-barnabes-retrato.webp"
-              alt={
-                'Alexander Barnabés sentado em um sofá, de blazer branco e ' +
-                'calça mostarda, com a mão no queixo, olhando para a câmera.'
-              }
-              width={1296}
-              height={864}
-              // `preload` substituiu o `priority`, depreciado no Next 16.
-              preload
-              sizes="(max-width: 899px) 100vw, 46vw"
-              className={s.imagem}
-            />
-          </div>
         </div>
       </div>
     </section>
