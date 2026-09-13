@@ -5,6 +5,7 @@ import ComoTrabalha from '@/components/ComoTrabalha';
 import Contato from '@/components/Contato';
 import Depoimentos from '@/components/Depoimentos';
 import Espaco from '@/components/Espaco';
+import Faixa from '@/components/Faixa';
 import Formacao from '@/components/Formacao';
 import Local from '@/components/Local';
 import QuandoProcurar from '@/components/QuandoProcurar';
@@ -18,6 +19,7 @@ export default function Pagina() {
       <Cabecalho />
       <main id="conteudo">
         <Abertura />
+        <Faixa />
         <ComoTrabalha />
         {/*
           O que ele OFERECE vem antes do que DOI. Quem acabou de ler como ele

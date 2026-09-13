@@ -1,0 +1,56 @@
+/* A faixa em grafite, a cor do logo dele, entre o creme da abertura e a palha
+   do "sobre mim": separa as duas seções sem precisar de linha. */
+.faixa {
+  position: relative;
+  overflow: hidden;
+  background: var(--grafite);
+  color: var(--creme-texto);
+  border-top: 1px solid color-mix(in srgb, var(--tiara) 35%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--tiara) 35%, transparent);
+  padding: 1.05rem 0;
+}
+
+.trilho {
+  display: flex;
+  width: max-content;
+  animation: rolar 42s linear infinite;
+}
+
+.faixa:hover .trilho {
+  animation-play-state: paused;
+}
+
+.lista {
+  display: flex;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.separador {
+  margin: 0 1.6rem;
+  color: var(--tiara);
+  font-size: 0.85em;
+}
+
+@keyframes rolar {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trilho {
+    animation: none;
+  }
+}
