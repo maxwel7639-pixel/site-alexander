@@ -63,12 +63,7 @@ export default function Abertura() {
           <h1 className={s.titulo}>{profissional.nome}</h1>
 
           <p className={s.papel}>
-            <span>
-              {profissional.titulo},{' '}
-              <span className={s.especialidade}>
-                {profissional.especialidade}
-              </span>
-            </span>
+            <span>{profissional.titulo}</span>
           </p>
 
           {/* Conversa com a imagem de fundo sem prometer resultado: a terapia

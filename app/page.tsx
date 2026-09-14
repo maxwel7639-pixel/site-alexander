@@ -5,6 +5,7 @@ import ComoTrabalha from '@/components/ComoTrabalha';
 import Contato from '@/components/Contato';
 import Depoimentos from '@/components/Depoimentos';
 import Espaco from '@/components/Espaco';
+import Explicando from '@/components/Explicando';
 import Faixa from '@/components/Faixa';
 import Formacao from '@/components/Formacao';
 import Local from '@/components/Local';
@@ -29,6 +30,7 @@ export default function Pagina() {
         <Servicos />
         <Temas />
         <QuandoProcurar />
+        <Explicando />
         <Formacao />
         <Depoimentos />
         {/*
