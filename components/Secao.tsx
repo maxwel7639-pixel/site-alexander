@@ -16,7 +16,7 @@ type Props = {
   traco?: 'onda' | 'sublinhado' | 'arco';
   /**
    * Uma ilustracao no mesmo canto do traco, no lugar dele. Nasceu em
-   * 13/09/2026 pro divã do cartao dele, que saiu do rodape e subiu pro Contato.
+   * 13/09/2026 no Contato (hoje o livro com o Ψ, ver LivroPsi.tsx).
    */
   desenho?: React.ReactNode;
   /**

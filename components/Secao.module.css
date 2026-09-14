@@ -108,21 +108,15 @@
 /* ============================ O DESENHO NO CANTO ============================
    Mesmo lugar e mesma regra do traco (ver Traco.module.css): no vazio a
    direita do titulo, atras do conteudo, e só a partir de 1100px. Abaixo disso o
-   titulo ocupa a linha inteira e o desenho passaria por cima do texto. */
+   titulo ocupa a linha inteira e o desenho passaria por cima do texto.
+   A largura quem define e o proprio desenho. */
 .desenho {
   position: absolute;
   z-index: 0;
-  top: 4.5rem;
-  right: 8%;
-  width: min(22vw, 300px);
+  top: 2.5rem;
+  right: 6%;
   pointer-events: none;
   display: none;
-}
-
-.desenho img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 @media (min-width: 1100px) {
