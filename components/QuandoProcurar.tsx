@@ -1,4 +1,4 @@
-import { sinais, whatsappCom } from '@/lib/dados';
+import { quandoProcurarIntro, sinais, whatsappCom } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
 import EntradaLateral from './EntradaLateral';
 import Secao from './Secao';
@@ -36,10 +36,12 @@ export default function QuandoProcurar() {
       titulo="Quatro sinais de que pode ser hora de procurar ajuda"
       fundo="escuro"
     >
-      <p className={s.introducao}>
-        Reconhecer-se em algum deles não é um diagnóstico. É um bom motivo para
-        conversar com um profissional.
-      </p>
+      {/* A introdução é o texto dele desde 14/09/2026. */}
+      {quandoProcurarIntro.map((paragrafo) => (
+        <p key={paragrafo.slice(0, 24)} className={s.introducao}>
+          {paragrafo}
+        </p>
+      ))}
 
       <p className={s.instrucao}>
         Se você se reconhece em algum, toque nele: a mensagem abre já escrita, e

@@ -5,6 +5,7 @@ import { servicos } from '@/lib/dados';
 import CoverflowServicos from './CoverflowServicos';
 import Desenrolar from './Desenrolar';
 import { Eco, Letreiro } from './Letreiro';
+import { servicosIntro } from '@/lib/dados';
 import s from './Servicos.module.css';
 
 /**
@@ -60,8 +61,7 @@ export default function Servicos() {
               faixa="As formas de trabalhar com ele"
               palavra="Serviços"
             >
-              Na primeira conversa dá para entender qual destes formatos faz
-              sentido para o que você está vivendo.
+              {servicosIntro}
             </Letreiro>
 
             <Desenrolar className={s.cerebro} fioY={CEREBRO.fioY} saidaX={CEREBRO.saidaX}>

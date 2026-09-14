@@ -26,10 +26,9 @@ export const profissional = {
   nome: 'Alexander Barnabés',
   nomeCompleto: 'Alexander de Paula Barnabés',
   titulo: 'Psicólogo e Psicanalista',
-  // Na abertura, logo abaixo do nome, desde 13/09/2026. No áudio ele pediu que o
-  // trabalho com álcool e drogas deixasse de parecer "simplório"; até então a
-  // especialidade só aparecia no meio da página, na formação.
-  especialidade: 'especialista em álcool e outras drogas',
+  // A especialidade em álcool e outras drogas saiu da abertura em 14/09/2026,
+  // pedido dele por escrito ("retire do topo"). Continua na formação e no
+  // "sobre mim", junto do CAPSad.
   crp: 'CRP 05/55353',
   telefone: '(21) 96498-3557',
   telefoneE164: '+5521964983557',
@@ -215,19 +214,75 @@ export const servicos: { titulo: string; texto: string; imagem?: string; alt?: s
  * formacao, onde sao credencial. No meio de um texto sobre o trabalho clinico
  * eles embaralham o que ele faz no consultorio.
  *
- * TODO: ele precisa LER e aprovar antes de publicar. E texto na voz dele.
+ * Desde 14/09/2026 o texto abaixo e o que ELE escreveu (ver o comentario logo
+ * acima do array). Este bloco fica como historia de por que nao se copiou.
  * ========================================================================== */
+// O TEXTO DELE, desde 14/09/2026. Ele mandou o "Sobre mim" escrito (como na
+// época da revista: ele redige, a gente produz a arte). Revisão só de
+// pontuação e repetição ("medos" aparecia duas vezes); as palavras são dele.
+// O CAPS entra como ele pediu no item 7: "Além de atender no consultório,
+// atuei na rede pública de saúde mental". O tempo de atuação é "mais de 25
+// anos", pedido do item 6 (30 com a psicanálise, quase 20 com a psicologia).
 export const sobre = [
-  'Meu nome é Alexander Barnabés. Sou psicólogo e psicanalista, CRP 05/55353, ' +
-    'e atendo no Centro de Nova Iguaçu.',
-  'Antes do consultório, trabalhei na rede pública, no CAPS-AD Vanderlei ' +
-    'Marins, em Austin, com dependência de álcool e outras drogas.',
-  'O trabalho aqui é conduzido pela psicanálise e pela psicoterapia breve. ' +
-    'São dois caminhos diferentes, e qual deles seguir depende do que você ' +
-    'traz e do tempo de que dispõe.',
-  'Atendo individual, casal e família, presencial e online. A primeira ' +
-    'conversa serve para entender o que está acontecendo e combinar como ' +
-    'seguir. Não existe assunto pequeno demais para ser levado à terapia.',
+  'Seja muito bem-vindo(a) ao meu espaço virtual dedicado ao cuidado da saúde ' +
+    'mental. Sou Alexander Barnabés, psicanalista e psicólogo, com uma paixão ' +
+    'profunda por auxiliar pessoas a alcançarem o equilíbrio emocional e o bem-estar.',
+  'Minha escolha pela psicologia nasceu do desejo de compreender melhor as ' +
+    'pessoas e auxiliá-las no enfrentamento de seus desafios de forma mais ' +
+    'consciente e saudável.',
+  'Acredito que cada fase da vida traz suas próprias demandas. Por isso, ' +
+    'trabalho com adultos, adolescentes, jovens, casais e idosos, sempre ' +
+    'respeitando a individualidade e a história de cada pessoa. São mais de 25 ' +
+    'anos, sempre com um olhar atento, ético e fundamentado na ciência.',
+  'Além de atender no consultório, atuei na rede pública de saúde mental: ' +
+    'foram 6 anos no CAPSad (Centro de Atenção Psicossocial Álcool e outras ' +
+    'Drogas), onde me especializei no manejo e na clínica de adictos, o que me ' +
+    'capacitou a traçar projetos terapêuticos a favor do usuário de entorpecentes.',
+  'Mais do que técnicas, valorizo uma escuta qualificada que acolhe, ' +
+    'compreende e favorece processos de reflexão. Aqui você encontrará um espaço ' +
+    'de escuta acolhedora, onde, trabalhando juntos, conseguiremos auxiliá-lo(a) ' +
+    'a encontrar clareza, desenvolver a autoaceitação e construir estratégias ' +
+    'para enfrentar os desafios da vida.',
+  'Acredito que cuidar da mente não se limita ao tratamento de dificuldades, ' +
+    'mas pode contribuir para o desenvolvimento de uma vida com mais consciência, ' +
+    'equilíbrio e propósito.',
+];
+
+/** A introdução de Serviços, no texto dele (14/09/2026). */
+export const servicosIntro =
+  'Atuo no atendimento psicológico online ou presencial, ajudando a lidar com ' +
+  'questões como ansiedade, depressão, baixa autoestima, fobias, crises de ' +
+  'pânico, medos, obsessões, insônia, angústias, tristezas, compulsões e ' +
+  'dificuldades nos relacionamentos interpessoais e conjugais, entre outras.';
+
+/** "Quando procurar ajuda", no texto dele (14/09/2026). */
+export const quandoProcurarIntro = [
+  'A psicoterapia e a psicanálise são caminhos que favorecem o autoconhecimento ' +
+    'e a compreensão mais profunda de si mesmo, possibilitando novas formas de ' +
+    'lidar com os relacionamentos, as emoções e os desafios da vida.',
+  'Atendo a todos, exceto crianças, respeitando a singularidade de cada pessoa e ' +
+    'construindo em conjunto um processo terapêutico pautado na confiança, no ' +
+    'sigilo e no compromisso com o cuidado.',
+  'Se você sente que é o momento de olhar para si, será um prazer te acolher em ' +
+    'meu consultório. Entre em contato para agendar uma conversa inicial e tirar ' +
+    'suas dúvidas.',
+];
+
+/** A seção "Explicando", nova em 14/09/2026, com o texto dele. */
+export const explicando = [
+  'A psicoterapia é um espaço de escuta, acolhimento e reflexão, no qual você ' +
+    'pode falar sobre aquilo que vivencia, sente e pensa, encontrando um ambiente ' +
+    'seguro e livre de julgamentos.',
+  'Por meio do diálogo, é possível compreender melhor os aspectos da sua própria ' +
+    'história, reconhecer repetições de comportamento e relacionamento, elaborar ' +
+    'conflitos e desenvolver novas formas de lidar com as situações que provocam ' +
+    'sofrimento ou insegurança.',
+  'O processo psicoterapêutico respeita o tempo e a subjetividade de cada pessoa. ' +
+    'Não se trata de oferecer respostas prontas, mas de construir um espaço que ' +
+    'possibilite a você compreender suas questões e atribuir novos sentidos às ' +
+    'suas experiências.',
+  'A psicoterapia pode ser procurada em diferentes momentos da vida: diante de ' +
+    'períodos de sofrimento emocional e de mudanças.',
 ];
 
 // Os temas vem dos posts que ele mesmo ja escreveu; "Alcool e outras drogas"

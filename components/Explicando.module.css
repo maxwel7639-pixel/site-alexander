@@ -1,0 +1,15 @@
+.texto {
+  max-width: 64ch;
+}
+
+.texto p {
+  margin: 0 0 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--bronze);
+}
+
+.texto p:first-child {
+  font-size: 1.2rem;
+  color: var(--tinta);
+}
