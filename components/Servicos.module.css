@@ -1,20 +1,26 @@
 /* ============================ SERVIÇOS ======================================
-   Azul-ardósia, tirado da referência do cérebro de fio (13/09/2026). É a única
-   seção fria do site, e é de propósito: marca a virada de "quem ele é" pra
-   "o que dá pra contratar".
+   Areia, o bege do fundo da imagem da abertura (13/09/2026; antes era
+   azul-ardósia). Faz a ponte entre a abertura e o resto do site.
 
-   O contraste do letreiro sobre ela está medido em Letreiro.module.css.
+   Fundo claro, então tudo que era creme vira tinta, e os secundários são
+   reescritos aqui porque os de sempre reprovam sobre a areia. Medido sobre
+   #ad9c7f:
+     --tinta #2b2724 ........ 5,5:1
+     --bronze #3a3027 ....... 4,9:1   (o de sempre, #6e5c46, dá 2,5:1)
+     --ouro-texto #3f3110 ... 4,7:1
 ============================================================================ */
 .servicos {
-  --ardosia: #4e5d70;
+  --areia: #ad9c7f;
+  --bronze: #3a3027;
+  --ouro-texto: #3f3110;
 
   position: relative;
   /* `clip` e não só `hidden`: `hidden` cria contentor de rolagem e mata o
      sticky do painel. Ver o mesmo comentário em Secao.module.css. */
   overflow: hidden;
   overflow: clip;
-  background: var(--ardosia);
-  color: var(--creme-texto);
+  background: var(--areia);
+  color: var(--tinta);
   padding-bottom: 4rem;
 }
 
@@ -74,7 +80,7 @@
   /* o fio de entrada e o de saída vão até as bordas da tela, fora do viewBox */
   overflow: visible;
   fill: none;
-  stroke: var(--creme-texto);
+  stroke: var(--tinta);
   /* Em unidades do desenho, que tem 520 de largura: 1,7 dá ~1,7px no
      computador. SEM `vector-effect: non-scaling-stroke` de propósito: com ele
      o navegador mede o tracejado em pixels de tela, o JS mede o fio em

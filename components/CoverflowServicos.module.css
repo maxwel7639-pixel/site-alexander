@@ -22,7 +22,8 @@
 }
 
 .palco:focus-visible {
-  box-shadow: inset 0 0 0 2px var(--tiara);
+  /* tinta e nao ouro: o ouro some sobre a areia da secao */
+  box-shadow: inset 0 0 0 2px var(--tinta);
   border-radius: var(--raio);
 }
 
@@ -129,14 +130,14 @@
   height: 8px;
   border-radius: 999px;
   transform: translate(-50%, -50%);
-  /* sobre a ardósia da seção de serviços, desde 13/09/2026 */
-  background: color-mix(in srgb, var(--creme-texto) 40%, transparent);
+  /* sobre a areia da seção de serviços */
+  background: color-mix(in srgb, var(--tinta) 35%, transparent);
   transition: width 300ms ease, background-color 300ms ease;
 }
 
 .ligado::before {
   width: 26px;
-  background: var(--creme-texto);
+  background: var(--tinta);
 }
 
 .ponto:focus-visible::before {

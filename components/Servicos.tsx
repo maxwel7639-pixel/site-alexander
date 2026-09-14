@@ -34,7 +34,8 @@ import s from './Servicos.module.css';
  * ===================== O LETREIRO E O CEREBRO DE FIO ========================
  * Desde 13/09/2026, pedido do Maxwel com duas referencias: um cartaz de
  * psicologia ("Dizer nao tambem e uma forma de cuidado") pro letreiro, e um
- * cerebro desenhado com uma linha so, sobre azul-ardosia, pro fundo.
+ * cerebro desenhado com uma linha so pro fundo. O fundo era azul-ardosia e
+ * virou areia no mesmo dia, o bege da imagem da abertura.
  *
  * A abertura da secao fica PARADA na tela (sticky) enquanto o cerebro se
  * desenrola; quando termina, a secao segue e os cartoes sobem. Sem JS ou com
@@ -46,7 +47,7 @@ export default function Servicos() {
     <section id="servicos" aria-labelledby="servicos-titulo" className={s.servicos}>
       <div className={s.trilho} data-trilho>
         <div className={s.painel}>
-          <Eco palavra="serviços" tom="escuro" />
+          <Eco palavra="serviços" tom="claro" />
 
           <div className={s.interno}>
             {/* Sem contar quantos sao: o numero mora no array, e texto que
@@ -54,7 +55,7 @@ export default function Servicos() {
                 ela crescer. */}
             <Letreiro
               id="servicos-titulo"
-              tom="escuro"
+              tom="claro"
               etiqueta="Psicologia e psicanálise"
               faixa="As formas de trabalhar com ele"
               palavra="Serviços"
