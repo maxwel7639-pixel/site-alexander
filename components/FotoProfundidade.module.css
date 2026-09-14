@@ -1,0 +1,61 @@
+/* A cena dá a perspectiva; a foto é quem gira dentro dela. */
+.cena {
+  perspective: 1300px;
+  padding: 0.5rem 0 1.5rem;
+}
+
+.foto {
+  --rx: 3deg;
+  --ry: -7deg;
+  --sx: 18px;
+  --sy: 30px;
+  --brilho-x: 30%;
+  --brilho-y: 20%;
+  position: relative;
+  border-radius: calc(var(--raio) + 4px);
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 450ms ease;
+  /* Sombra em três camadas: contato curto, corpo médio e uma longa e difusa.
+     Uma sombra só lê como adesivo; três leem como objeto acima da página. */
+  box-shadow:
+    calc(var(--sx) * 0.15) calc(var(--sy) * 0.15) 6px -2px rgba(43, 32, 20, 0.28),
+    calc(var(--sx) * 0.5) calc(var(--sy) * 0.55) 28px -8px rgba(43, 32, 20, 0.3),
+    var(--sx) var(--sy) 70px -18px rgba(43, 32, 20, 0.42);
+  will-change: transform;
+}
+
+.foto:hover {
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+.imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--raio) + 4px);
+  /* moldura fina de papel, pra foto não encostar direto na página */
+  outline: 6px solid color-mix(in srgb, var(--creme) 88%, transparent);
+  outline-offset: -1px;
+}
+
+/* Um reflexo de luz que segue o mouse, bem sutil. */
+.brilho {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 50% at var(--brilho-x) var(--brilho-y),
+    rgba(255, 255, 255, 0.16),
+    transparent 60%
+  );
+  mix-blend-mode: soft-light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foto,
+  .foto:hover {
+    transition: none;
+  }
+}

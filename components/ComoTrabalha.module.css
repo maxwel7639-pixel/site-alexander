@@ -1,8 +1,3 @@
-.grade {
-  display: grid;
-  gap: 2.25rem;
-}
-
 .texto p {
   font-size: 1.05rem;
 }
@@ -49,17 +44,6 @@
   margin: 0;
 }
 
-.imagem {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--raio);
-  border: 1px solid var(--linha);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: 55% 35%;
-}
-
 .legenda {
   margin-top: 0.7rem;
   font-size: 0.9rem;
@@ -67,9 +51,13 @@
 }
 
 @media (min-width: 900px) {
-  .grade {
-    grid-template-columns: 1.15fr 1fr;
-    gap: 3.5rem;
-    align-items: start;
+  /* Respiro de revista entre parágrafos: a foto ao lado fica parada enquanto
+     o texto rola, e quanto mais alto o texto, mais tempo dura o efeito. */
+  .texto p {
+    margin-bottom: 1.7em;
+  }
+
+  .formatos {
+    margin-top: 2.5rem;
   }
 }

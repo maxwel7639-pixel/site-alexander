@@ -35,7 +35,8 @@
      Sem isto o "CRP 05/55353" nasce colado na borda de baixo dela. */
   padding: calc(var(--altura-topo) + 1.5rem) 1.25rem 2.75rem;
   display: grid;
-  gap: 2rem;
+  /* no celular o lado vem logo embaixo do botao, na mesma distancia de antes */
+  gap: 0;
 }
 
 .registro {
@@ -58,7 +59,9 @@
 .papel {
   margin: 0 0 1.35rem;
   display: flex;
-  align-items: center;
+  /* no alto, e nao no centro: com a especialidade o papel pode ter duas
+     linhas, e o traco acompanha a primeira */
+  align-items: flex-start;
   gap: 0.7rem;
   font-family: var(--fonte-titulo), Georgia, serif;
   font-size: clamp(1.05rem, 2.4vw, 1.25rem);
@@ -73,7 +76,16 @@
   flex: none;
   width: 26px;
   height: 2px;
+  margin-top: calc(0.875em - 1px);
   background: var(--tiara);
+}
+
+/* No celular a especialidade desce inteira pra segunda linha, em vez de
+   quebrar no meio de "outras drogas". */
+@media (max-width: 639px) {
+  .especialidade {
+    display: block;
+  }
 }
 
 .linha {
@@ -134,81 +146,26 @@
   color: var(--ouro-texto);
 }
 
-/* ---- a foto e o passe-partout ----
-   O deslocamento e o que faz a foto parecer POSTA sobre a pagina em vez de
-   impressa nela. Desenhado com pseudo-elemento: nenhum byte de imagem, e o
-   contorno acompanha qualquer proporcao que a foto assuma. */
-.moldura {
-  position: relative;
-}
-
-.moldura::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  transform: translate(0.7rem, 0.7rem);
-  /* Nasce da paleta e nao de um hex solto: e o ouro puxado pra linha clara,
-     visivel sobre o creme sem competir com o botao, que e o unico --tiara
-     cheio da tela. */
-  border: 1px solid color-mix(in srgb, var(--tiara) 40%, var(--linha));
-  border-radius: var(--raio);
-  pointer-events: none;
-}
-
-.foto {
-  position: relative;
-  border: 1px solid var(--linha);
-  border-radius: var(--raio);
-  overflow: hidden;
-  box-shadow: 0 1px 2px rgba(43, 39, 36, 0.06),
-    0 12px 32px -18px rgba(43, 39, 36, 0.4);
-}
-
-.imagem {
-  display: block;
-  width: 100%;
-  height: auto;
-  /* o rosto dele fica no terco superior da foto */
-  object-fit: cover;
-  object-position: 50% 22%;
-  aspect-ratio: 4 / 3;
-}
-
 @media (min-width: 900px) {
   .interno {
-    /* 1,05fr e nao 1fr: a coluna de texto passou a carregar o reconhecimento
-       e precisa de um pouco mais de linha antes de quebrar. */
-    grid-template-columns: 1.05fr 1fr;
+    /* texto a esquerda; a direita, onde era a foto, o reconhecimento e o
+       endereco, separados por um filete */
+    grid-template-columns: 1.3fr 0.7fr;
     align-items: center;
     gap: 3.5rem;
-    padding: calc(var(--altura-topo) + 2.5rem) 1.25rem 4.5rem;
+    padding: calc(var(--altura-topo) + 3rem) 1.25rem 4.5rem;
   }
 
   .cta {
     width: auto;
   }
 
-  .imagem {
-    aspect-ratio: 3 / 2;
-    object-position: 50% 25%;
+  .lado {
+    padding-left: 2.5rem;
+    border-left: 1px solid var(--linha);
   }
 
-  .moldura::before {
-    transform: translate(1rem, 1rem);
-  }
-
-  /* a foto vem depois no HTML porque o nome e o CRP sao o que precisa ser
-     lido primeiro por leitor de tela, mas no desktop ela fica a direita */
-  .moldura {
-    order: 2;
-  }
-}
-
-/* No celular o passe-partout sai. Ele precisa de folga em volta pra ler como
-   moldura, e la a foto ja vai de borda a borda da coluna: o contorno viraria
-   um risco solto na beirada da tela. */
-@media (max-width: 899px) {
-  .moldura::before {
-    display: none;
+  .lado .prova {
+    margin-top: 0;
   }
 }

@@ -1,0 +1,192 @@
+.halo {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+/* ------------------------------------------------------------- o anel ----- */
+/* `container-type: size` é o que deixa os cartões usarem cqw/cqh: o raio do
+   anel acompanha o palco sem o JS medir nada. Por isso o palco precisa de
+   altura explícita. */
+.palco {
+  position: relative;
+  height: var(--palco-a);
+  container-type: size;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.palco:active {
+  cursor: grabbing;
+}
+
+.carta {
+  position: absolute;
+  /* o centro do anel é a borda esquerda do palco: a metade de trás some pela
+     borda da seção, como na referência */
+  left: 0;
+  top: 50%;
+  width: var(--carta-l);
+  height: var(--carta-a);
+  margin: calc(var(--carta-a) / -2) 0 0 calc(var(--carta-l) / -2);
+  transform: translate3d(calc(var(--c) * var(--rx)), calc(var(--s) * var(--ry)), 0) scale(var(--k));
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  border-radius: 10px;
+  background:
+    radial-gradient(80% 60% at 30% 15%, color-mix(in srgb, var(--creme) 75%, transparent), transparent 70%),
+    linear-gradient(160deg, var(--palha), color-mix(in srgb, var(--mate) 82%, var(--bronze)));
+  box-shadow: 0 22px 44px -26px rgba(43, 39, 36, 0.6);
+  opacity: var(--o, 1);
+  will-change: transform, opacity;
+}
+
+/* Quanto mais ao fundo, mais escuro: reforça a profundidade que a escala já dá. */
+.carta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--tinta);
+  opacity: calc((1 - var(--k)) * 0.42);
+  pointer-events: none;
+}
+
+.imagem {
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.espera {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.8rem 0.85rem;
+  font-family: var(--fonte-titulo), Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--tinta);
+}
+
+/* ------------------------------------------------ o texto do item da frente */
+.lado {
+  position: relative;
+  z-index: 1;
+}
+
+.pilha {
+  display: grid;
+}
+
+.painel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Entra pela direita, o lado oposto ao anel. */
+.ativo {
+  opacity: 1;
+  visibility: visible;
+  animation: entra 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes entra {
+  from {
+    opacity: 0;
+    transform: translateX(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.setas {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+}
+
+.seta {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--tiara) 70%, var(--linha));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--tinta);
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.seta:hover {
+  border-color: var(--tiara);
+  background: color-mix(in srgb, var(--tiara) 18%, transparent);
+}
+
+.seta:focus-visible {
+  outline: 2px solid var(--tiara);
+  outline-offset: 3px;
+}
+
+.seta svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ------------------------------------------------------------- tamanhos --- */
+/* O palco tem que ter altura pros cartões de cima e de baixo do anel caberem
+   com o raio vertical de 38%: por isso cada formato define os três juntos. */
+.retrato {
+  --carta-l: 114px;
+  --carta-a: 156px;
+  --palco-a: 400px;
+}
+
+/* As fotos da sala são 4:3. Menores que os temas de propósito: aqui o anel é
+   uma vitrine da sala, não o assunto da seção. */
+.paisagem {
+  --carta-l: 156px;
+  --carta-a: 117px;
+  --palco-a: 300px;
+}
+
+@media (min-width: 900px) {
+  .halo {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .retrato {
+    --carta-l: 156px;
+    --carta-a: 212px;
+    --palco-a: 600px;
+  }
+
+  .paisagem {
+    --carta-l: 216px;
+    --carta-a: 162px;
+    --palco-a: 440px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ativo {
+    animation: none;
+  }
+}

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import FotoProfundidade from './FotoProfundidade';
 import Secao from './Secao';
 import { sobre } from '@/lib/dados';
 import s from './ComoTrabalha.module.css';
@@ -10,43 +10,43 @@ export default function ComoTrabalha() {
       etiqueta="Sobre mim"
       titulo="Quem vai te escutar"
       fundo="palha"
-    >
-      <div className={s.grade}>
-        <div className={s.texto}>
-          {/* O texto mora em lib/dados.ts, com a explicacao de por que ele
-              nao foi copiado do site de referencia. E a unica secao do site em
-              primeira pessoa: aqui quem fala e ele. */}
-          {sobre.map((paragrafo) => (
-            <p key={paragrafo.slice(0, 24)}>{paragrafo}</p>
-          ))}
+      lateral={
+        /*
+          O retrato que estava na abertura, desde 13/09/2026. A foto anterior
+          tinha o fundo refeito no ChatGPT e saiu: a MX não edita foto do
+          cliente com IA (fica artificial e mostra uma sala que não é a dele).
 
-          <ul className={s.formatos}>
-            <li>Individual</li>
-            <li>Casal</li>
-            <li>Familiar</li>
-            <li>Online</li>
-          </ul>
-        </div>
-
+          Aparece INTEIRA e fica AO LADO do título, parada enquanto o texto
+          rola. Ver a prop `lateral` em Secao.tsx.
+        */
         <figure className={s.figura}>
-          {/* Tres fotos empilhadas: a classe `pilha` desenha as duas de tras. */}
-          <div className="pilha">
-            <Image
-              src="/img/consultorio.webp"
-              alt={
-                'Alexander Barnabés sentado na poltrona marrom do consultório, ' +
-                'sorrindo, com um caderno e uma caneca na mesa de apoio ao lado.'
-              }
-              width={1200}
-              height={1063}
-              sizes="(max-width: 899px) 100vw, 42vw"
-              className={s.imagem}
-            />
-          </div>
-          <figcaption className={s.legenda}>
-            O consultório, no Centro de Nova Iguaçu.
-          </figcaption>
+          <FotoProfundidade
+            src="/img/alexander-barnabes-retrato.webp"
+            alt={
+              'Alexander Barnabés sentado em um sofá, de blazer branco e ' +
+              'calça mostarda, com a mão no queixo, olhando para a câmera.'
+            }
+            largura={1296}
+            altura={864}
+            sizes="(max-width: 899px) 100vw, 56vw"
+          />
         </figure>
+      }
+    >
+      <div className={s.texto}>
+        {/* O texto mora em lib/dados.ts, com a explicacao de por que ele
+            nao foi copiado do site de referencia. E a unica secao do site em
+            primeira pessoa: aqui quem fala e ele. */}
+        {sobre.map((paragrafo) => (
+          <p key={paragrafo.slice(0, 24)}>{paragrafo}</p>
+        ))}
+
+        <ul className={s.formatos}>
+          <li>Individual</li>
+          <li>Casal</li>
+          <li>Familiar</li>
+          <li>Online</li>
+        </ul>
       </div>
     </Secao>
   );

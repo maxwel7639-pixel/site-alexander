@@ -35,17 +35,17 @@
   color: var(--ouro-texto);
 }
 
-.referencia {
-  font-weight: 600;
-  color: var(--ouro-texto);
-  font-style: normal;
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
 }
 
 .mapa {
   display: inline-flex;
   align-items: center;
   min-height: 48px;
-  margin-top: 1.25rem;
   padding: 0.7rem 1.35rem;
   border: 2px solid var(--bronze);
   border-radius: var(--raio);
@@ -60,22 +60,24 @@
   border-color: var(--ouro-texto);
 }
 
-.figura {
-  margin: 0;
-}
-
-.imagem {
-  display: block;
-  width: 100%;
-  height: auto;
+.moldura {
+  overflow: hidden;
   border-radius: var(--raio);
   border: 1px solid var(--linha);
+  background: rgba(255, 255, 255, 0.55);
 }
 
-.legenda {
-  margin-top: 0.7rem;
-  font-size: 0.9rem;
-  color: var(--bronze);
+.mapaEmbutido {
+  display: block;
+  width: 100%;
+  height: 340px;
+  border: 0;
+}
+
+@media (min-width: 900px) {
+  .mapaEmbutido {
+    height: 420px;
+  }
 }
 
 @media (min-width: 900px) {

@@ -1,0 +1,7 @@
+/* O tamanho mora aqui e não no contentor da Secao: o canvas desenha pelo
+   tamanho que o CSS dá a ele, e mede de novo quando a tela muda. */
+.livro {
+  display: block;
+  width: min(30vw, 440px);
+  aspect-ratio: 1.15;
+}

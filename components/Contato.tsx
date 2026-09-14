@@ -1,4 +1,5 @@
 import { profissional } from '@/lib/dados';
+import LivroPsi from './LivroPsi';
 import BotaoWhatsApp from './BotaoWhatsApp';
 import Secao from './Secao';
 import { IconeEmail, IconeInstagram } from './Icones';
@@ -8,7 +9,10 @@ export default function Contato() {
   return (
     <Secao
       id="contato"
-      traco="arco"
+      // O livro aberto com o Ψ, no canto onde era o traço em arco. Pedido do
+      // Maxwel em 13/09/2026: primeiro subiu o divã do rodapé pra cá, depois
+      // ele trocou por este desenho.
+      desenho={<LivroPsi />}
       etiqueta="Contato"
       titulo="Dar o primeiro passo é só mandar uma mensagem"
       fundo="escuro"

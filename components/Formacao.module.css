@@ -21,18 +21,19 @@
   gap: 0.6rem;
 }
 
+.qualificacoes {
+  gap: 0;
+}
+
+/* Lista de currículo: uma linha fina entre os itens, sem ícone. */
 .qualificacoes li {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--linha);
   font-size: 1.05rem;
 }
 
-.psi {
-  flex: none;
-  width: 19px;
-  height: 19px;
-  color: var(--ouro-texto);
+.qualificacoes li:last-child {
+  border-bottom: 0;
 }
 
 .reconhecimentos {
@@ -84,16 +85,8 @@
   margin: 0;
 }
 
-.imagem {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--raio);
-  border: 1px solid var(--linha);
-}
-
 .legenda {
-  margin-top: 0.7rem;
+  margin-top: 1.6rem;
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--bronze);
@@ -105,5 +98,12 @@
     grid-template-columns: 1fr 1fr;
     gap: 3.5rem;
     align-items: start;
+  }
+
+  /* Parada enquanto a lista rola. A Secao usa `overflow: clip`, que não
+     bloqueia o sticky (ver Secao.module.css). */
+  .figura {
+    position: sticky;
+    top: calc(var(--altura-topo) + 28px);
   }
 }

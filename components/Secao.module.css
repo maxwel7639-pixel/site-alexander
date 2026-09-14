@@ -2,8 +2,15 @@
   position: relative;
   /* Contem a sangria dos dois psi. Sem isto eles empurram a largura da pagina
      e criam rolagem lateral -- o defeito mais facil de introduzir com elemento
-     posicionado e o mais chato de achar depois. */
+     posicionado e o mais chato de achar depois.
+
+     `clip` e nao so `hidden` desde 13/09/2026: `hidden` cria um contentor de
+     rolagem, e dentro dele `position: sticky` nao gruda em nada -- era o que
+     impedia a foto do "sobre mim" de ficar parada enquanto o texto sobe.
+     `clip` corta a sangria igual e nao cria esse contentor. O `hidden` fica
+     antes como reserva pra navegador que nao conhece `clip`. */
   overflow: hidden;
+  overflow: clip;
   padding: 3.25rem 0;
 }
 
@@ -95,5 +102,47 @@
 
   .cabecalho {
     margin-bottom: 2.75rem;
+  }
+}
+
+/* ============================ O DESENHO NO CANTO ============================
+   Mesmo lugar e mesma regra do traco (ver Traco.module.css): no vazio a
+   direita do titulo, atras do conteudo, e só a partir de 1100px. Abaixo disso o
+   titulo ocupa a linha inteira e o desenho passaria por cima do texto.
+   A largura quem define e o proprio desenho. */
+.desenho {
+  position: absolute;
+  z-index: 0;
+  top: 2.5rem;
+  right: 6%;
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .desenho {
+    display: block;
+  }
+}
+
+/* ====================== SEÇÃO COM CONTEÚDO AO LADO ==========================
+   Título e texto numa coluna, o `lateral` na outra, parado enquanto a primeira
+   rola. No celular empilha: o lateral vem depois do texto, sem sticky, porque
+   não há nada ao lado dele pra rolar. */
+.comLateral {
+  display: grid;
+  gap: 2.25rem;
+}
+
+@media (min-width: 900px) {
+  .comLateral {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .lateral {
+    position: sticky;
+    top: calc(var(--altura-topo) + 28px);
   }
 }

@@ -105,14 +105,16 @@ body {
   background: var(--creme);
   color: var(--tinta);
   font-family: var(--fonte-corpo), system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 17px;
-  line-height: 1.7;
+  /* maior desde 13/09/2026, pedido dele. Manrope é larga: 17,5px nela ocupa
+     o que 18px ocupava na serifa */
+  font-size: 17.5px;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
 
 @media (min-width: 768px) {
   body {
-    font-size: 18px;
+    font-size: 18.5px;
   }
 }
 
@@ -120,23 +122,25 @@ h1,
 h2,
 h3 {
   font-family: var(--fonte-titulo), Georgia, "Times New Roman", serif;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  /* Cormorant tem olho pequeno: pede peso 600 e tamanhos maiores que a
+     Newsreader pedia no mesmo lugar */
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.005em;
   margin: 0;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-size: clamp(2.5rem, 7vw, 4rem);
 }
 
 h2 {
-  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+  font-size: clamp(2rem, 5vw, 3rem);
 }
 
 h3 {
-  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  font-size: clamp(1.4rem, 2.8vw, 1.7rem);
 }
 
 p {

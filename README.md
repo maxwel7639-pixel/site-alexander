@@ -69,8 +69,9 @@ vez, e o número vive em três arquivos — `Cabecalho.module.css`,
 `BarraFixa.module.css` e o `padding-bottom` do `Rodape.module.css`. Mudar um só
 deixa a tela sem nenhum botão ou com dois.
 
-Tipografia: Newsreader nos títulos e Source Sans 3 no corpo. O corpo nunca fica
-abaixo de 17px, porque parte do público lê no celular com a vista cansada.
+Tipografia (desde 13/09/2026, pedido dele): Cormorant Garamond nos títulos e
+Manrope no corpo. O corpo nunca fica abaixo de
+18px, porque parte do público lê no celular com a vista cansada.
 
 ## Pendências com o cliente
 

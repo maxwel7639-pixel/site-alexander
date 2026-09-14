@@ -30,12 +30,12 @@ export default function QuandoProcurar() {
       id="sinais"
       traco="onda"
       etiqueta="Quando procurar ajuda"
-      titulo="Quatro sinais que ele costuma apontar"
+      titulo="Quatro sinais de que pode ser hora de procurar ajuda"
       fundo="escuro"
     >
       <p className={s.introducao}>
-        Estes quatro sinais são os que o próprio Alexander publica. Reconhecer-se
-        em algum deles não é diagnóstico. É só um bom motivo para conversar.
+        Reconhecer-se em algum deles não é um diagnóstico. É um bom motivo para
+        conversar com um profissional.
       </p>
 
       <p className={s.instrucao}>

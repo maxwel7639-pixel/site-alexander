@@ -1,0 +1,2 @@
+Fotos dos temas (uma por tema). Nome do arquivo vai em lib/dados.ts > temas[].imagem.
+Proporção 3:4 (retrato), pelo menos 600px de largura, .webp. Licença de uso livre ou foto do próprio Alexander.
