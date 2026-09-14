@@ -44,7 +44,9 @@ export default function CoverflowServicos({ itens }: { itens: ItemServico[] }) {
   const vai = useCallback((n: number) => setAtual(((n % N) + N) % N), [N]);
 
   useEffect(() => {
-    const medir = () => setLargura(Math.min(290, Math.max(window.innerWidth * 0.2, 150)));
+    // cartões de 300px desde 13/09/2026 (fotos verticais): o passo entre eles
+    // encolheu junto, senão os vizinhos se afastariam do da frente
+    const medir = () => setLargura(Math.min(230, Math.max(window.innerWidth * 0.16, 110)));
     medir();
     window.addEventListener('resize', medir);
     return () => window.removeEventListener('resize', medir);
@@ -121,9 +123,9 @@ export default function CoverflowServicos({ itens }: { itens: ItemServico[] }) {
                   <Image
                     src={`/img/servicos/${item.imagem}`}
                     alt={frente ? item.alt || '' : ''}
-                    width={900}
-                    height={675}
-                    sizes="(max-width: 639px) 86vw, 440px"
+                    width={600}
+                    height={750}
+                    sizes="(max-width: 639px) 78vw, 300px"
                     className={s.imagem}
                     draggable={false}
                   />

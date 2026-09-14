@@ -149,7 +149,7 @@ export const servicos: { titulo: string; texto: string; imagem?: string; alt?: s
   {
     titulo: 'Psicoterapia individual',
     imagem: 'psicoterapia-individual.webp',
-    alt: 'Pessoa conversando com o psicólogo em um consultório.',
+    alt: 'Mulher recostada numa poltrona, de olhos fechados, enquanto quem conduz a sessão faz anotações.',
     texto:
       'Um espaço próprio, conduzido pela psicanálise ou pela psicoterapia ' +
       'breve, conforme o que a pessoa traz e o tempo de que dispõe.',
@@ -157,7 +157,7 @@ export const servicos: { titulo: string; texto: string; imagem?: string; alt?: s
   {
     titulo: 'Terapia de casal',
     imagem: 'terapia-de-casal.webp',
-    alt: 'Casal em sessão de terapia, cada um olhando para um lado.',
+    alt: 'Casal sentado no sofá durante a sessão, com quem conduz a conversa anotando em primeiro plano.',
     texto:
       'Os dois na mesma sala, com alguém de fora para mediar a conversa que ' +
       'em casa não anda.',
@@ -165,7 +165,7 @@ export const servicos: { titulo: string; texto: string; imagem?: string; alt?: s
   {
     titulo: 'Coaching de relacionamentos',
     imagem: 'coaching-de-relacionamentos.webp',
-    alt: 'Palestra sobre relacionamentos para um grupo.',
+    alt: 'Casal de idosos caminhando de braços dados na praia, sob o título relacionamento amoroso.',
     texto:
       'Um acompanhamento voltado a objetivos combinados na vida afetiva. ' +
       'É outro formato de trabalho, e não substitui a psicoterapia.',
@@ -173,7 +173,7 @@ export const servicos: { titulo: string; texto: string; imagem?: string; alt?: s
   {
     titulo: 'Consultorias',
     imagem: 'consultorias.webp',
-    alt: 'Conversa profissional em torno de uma mesa.',
+    alt: 'Duas poltronas e uma mesinha diante de uma parede com silhuetas de rosto e o símbolo da psicologia.',
     texto:
       'Uma conversa profissional sobre uma questão específica, para quem ' +
       'procura orientação pontual e não um processo de terapia. Atende ' +
@@ -182,7 +182,7 @@ export const servicos: { titulo: string; texto: string; imagem?: string; alt?: s
   {
     titulo: 'Atendimento familiar',
     imagem: 'atendimento-familiar.webp',
-    alt: 'Família reunida em uma conversa.',
+    alt: 'Família sentada no sofá conversando com quem conduz o atendimento.',
     texto:
       'A família na mesma sala, quando o que precisa ser dito envolve mais ' +
       'de duas pessoas.',

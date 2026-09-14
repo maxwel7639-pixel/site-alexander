@@ -1,2 +1,2 @@
 Fotos dos serviços (uma por serviço). Nome do arquivo vai em lib/dados.ts > servicos[].imagem.
-Proporção 3:2, pelo menos 1200px de largura, .webp. Licença de uso livre ou foto do próprio Alexander.
+Proporção 4:5 (vertical), 600x750, .webp. As de 13/09/2026 vieram de capturas de tela pequenas (~235px de largura) e foram ampliadas: trocar pelas originais quando chegarem.
