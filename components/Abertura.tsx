@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import { atendimento, profissional, reconhecimentos } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
-import MarcaFundo from './MarcaFundo';
 import { IconeLocal, IconeRelogio } from './Icones';
 import s from './Abertura.module.css';
 
@@ -26,11 +26,17 @@ import s from './Abertura.module.css';
  * tem razao em implicar com isso. O que a linha faz e responder "ele e de
  * verdade?" antes que a pessoa precise procurar a resposta.
  *
- * ================================ SEM FOTO ==================================
- * Desde 13/09/2026 o retrato mora no "sobre mim", e a abertura é só texto. A
- * coluna da direita, onde ficava a foto, passou a guardar o reconhecimento e
- * o endereço: o mesmo conteúdo de antes, que no celular continua embaixo do
- * botão.
+ * ========================== A IMAGEM DE FUNDO ================================
+ * Desde 13/09/2026 a abertura tem de fundo a cabeça feita de fios, com uma
+ * pessoa pequena olhando pra ela (pedido do Maxwel). A cabeça ocupa a
+ * esquerda, então o texto mudou pro lado direito, no vazio da imagem, e a
+ * frase de apresentação passou a conversar com ela: pensamentos embaraçados.
+ *
+ * No celular e em tela média a imagem vira uma faixa em cima e o texto vem
+ * embaixo, no creme: sobre a imagem, numa coluna estreita, ele cairia em cima
+ * da cabeça ou da pessoa.
+ *
+ * A marca d'água do Ψ saiu daqui: por cima da imagem ela só sujaria o desenho.
  */
 export default function Abertura() {
   // O primeiro da lista e a Mocao da Camara. Ler do array em vez de escrever
@@ -39,11 +45,16 @@ export default function Abertura() {
 
   return (
     <section className={s.abertura} id="topo">
-      {/*
-        A mesma marca de todas as secoes. Ela nasceu aqui, com um psi so; virou
-        componente quando passou a valer pro site inteiro.
-      */}
-      <MarcaFundo />
+      <div className={s.imagem} aria-hidden="true">
+        <Image
+          src="/img/abertura-cabeca-de-fios.webp"
+          alt=""
+          fill
+          preload
+          sizes="100vw"
+          className={s.foto}
+        />
+      </div>
 
       <div className={s.interno}>
         <div className={s.texto}>
@@ -60,10 +71,12 @@ export default function Abertura() {
             </span>
           </p>
 
+          {/* Conversa com a imagem de fundo sem prometer resultado: a terapia
+              é o lugar de olhar, não a garantia de desfazer. */}
           <p className={s.linha}>
-            Escuta para quem está passando por um momento difícil. Atendimento
-            individual, de casal e familiar em Nova Iguaçu, no Centro, e também
-            online.
+            Quando os pensamentos se embaraçam, a terapia é um lugar para olhar
+            para eles com calma. Atendimento individual, de casal e familiar,
+            presencial em Nova Iguaçu e online.
           </p>
 
           <BotaoWhatsApp className={s.cta}>
