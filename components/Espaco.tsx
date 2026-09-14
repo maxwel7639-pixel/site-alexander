@@ -30,7 +30,11 @@ export default function Espaco() {
         // quase nao se cobrem.
         repeticoes={2}
         visiveis={3}
-        sizes="(max-width: 899px) 160px, 220px"
+        // a foto da frente bem maior que as vizinhas (13/09/2026): com o
+        // realce, as de cima e de baixo ficam com dois terços do tamanho
+        escalaFundo={0.3}
+        realce={2.2}
+        sizes="(max-width: 899px) 220px, 300px"
         rotuloAnterior="Foto anterior"
         rotuloProximo="Próxima foto"
         cartas={espaco.fotos.map((foto) => ({ src: `/img/${foto.arquivo}` }))}

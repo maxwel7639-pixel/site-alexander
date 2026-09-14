@@ -82,16 +82,6 @@
   padding-top: 1.5rem;
 }
 
-/* Mesmo corpo de antes, de proposito. E a unica informacao do rodape que pode
-   importar numa emergencia: o que saiu daqui foi espaco, nunca legibilidade. */
-.aviso {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--bronze-claro);
-  max-width: 64ch;
-}
-
 .creditos {
   display: grid;
   gap: 0.3rem;
@@ -123,17 +113,12 @@
     align-items: start;
   }
 
-  .base {
-    grid-template-columns: minmax(0, 1.6fr) auto;
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  /* Os creditos encostam na direita, que era exatamente o espaco que sobrava
-     vazio antes. */
+  /* Sem o aviso, os creditos viram uma linha: direitos a esquerda, MX a direita. */
   .creditos {
-    text-align: right;
-    justify-items: end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.3rem 2rem;
   }
 }
 

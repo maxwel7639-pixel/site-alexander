@@ -31,7 +31,8 @@
   width: var(--carta-l);
   height: var(--carta-a);
   margin: calc(var(--carta-a) / -2) 0 0 calc(var(--carta-l) / -2);
-  transform: translate3d(calc(var(--c) * var(--rx)), calc(var(--s) * var(--ry)), 0) scale(var(--k));
+  /* --cx empurra o anel inteiro pro lado; o espaço usa pra levar as fotos pro canto */
+  transform: translate3d(calc(var(--c) * var(--rx) + var(--cx, 0px)), calc(var(--s) * var(--ry)), 0) scale(var(--k));
   overflow: hidden;
   border: 1px solid var(--linha);
   border-radius: 10px;
@@ -150,18 +151,20 @@
 /* ------------------------------------------------------------- tamanhos --- */
 /* O palco tem que ter altura pros cartões de cima e de baixo do anel caberem
    com o raio vertical de 38%: por isso cada formato define os três juntos. */
+/* Cartões maiores desde 13/09/2026, porque vão receber foto; o palco cresce
+   junto pra os de cima e de baixo continuarem cabendo. */
 .retrato {
-  --carta-l: 114px;
-  --carta-a: 156px;
-  --palco-a: 400px;
+  --carta-l: 136px;
+  --carta-a: 184px;
+  --palco-a: 470px;
 }
 
 /* As fotos da sala são 4:3. Menores que os temas de propósito: aqui o anel é
    uma vitrine da sala, não o assunto da seção. */
 .paisagem {
-  --carta-l: 156px;
-  --carta-a: 117px;
-  --palco-a: 300px;
+  --carta-l: 210px;
+  --carta-a: 158px;
+  --palco-a: 360px;
 }
 
 @media (min-width: 900px) {
@@ -173,15 +176,17 @@
   }
 
   .retrato {
-    --carta-l: 156px;
-    --carta-a: 212px;
-    --palco-a: 600px;
+    --carta-l: 190px;
+    --carta-a: 258px;
+    --palco-a: 680px;
   }
 
+  /* A foto da frente maior e o anel mais pro canto esquerdo. */
   .paisagem {
-    --carta-l: 216px;
-    --carta-a: 162px;
-    --palco-a: 440px;
+    --carta-l: 300px;
+    --carta-a: 225px;
+    --palco-a: 480px;
+    --cx: -7cqw;
   }
 }
 

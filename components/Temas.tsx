@@ -34,6 +34,9 @@ export default function Temas() {
         </Letreiro>
 
         <Halo
+          // oito à vista, pedido do Maxwel em 13/09/2026: o anel inteiro
+          // mostrava onze e deixava os cartões pequenos demais pra foto
+          visiveis={8}
           rotuloAnterior="Tema anterior"
           rotuloProximo="Próximo tema"
           cartas={temas.map((tema) => ({
