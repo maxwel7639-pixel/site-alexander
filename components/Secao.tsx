@@ -1,3 +1,4 @@
+import { Eco } from './Letreiro';
 import MarcaFundo from './MarcaFundo';
 import Traco from './Traco';
 import s from './Secao.module.css';
@@ -20,6 +21,11 @@ type Props = {
    */
   desenho?: React.ReactNode;
   /**
+   * A palavra gigante e apagada do letreiro de Serviços, encostada no topo da
+   * seção como divisória. Nasceu em 13/09/2026 com "ajuda", nos quatro sinais.
+   */
+  eco?: string;
+  /**
    * Conteúdo que fica AO LADO do título e do texto, parado enquanto eles
    * rolam (sticky). Nasceu em 13/09/2026 pra foto do "sobre mim": com a foto
    * dentro do corpo da seção ela começava abaixo do título e grudava por pouco
@@ -37,6 +43,7 @@ export default function Secao({
   fundo = 'claro',
   traco,
   desenho,
+  eco,
   lateral,
   children,
 }: Props) {
@@ -56,6 +63,10 @@ export default function Secao({
         tom={fundo === 'escuro' ? 'escuro' : 'claro'}
         soEsquerda={Boolean(traco || desenho)}
       />
+
+      {eco ? (
+        <Eco palavra={eco} tom={fundo === 'escuro' ? 'escuro' : 'claro'} className={s.eco} />
+      ) : null}
 
       {traco ? (
         <Traco variante={traco} tom={fundo === 'escuro' ? 'escuro' : 'claro'} />

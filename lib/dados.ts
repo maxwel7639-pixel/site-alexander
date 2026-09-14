@@ -339,28 +339,47 @@ export const temas = [
  * E nenhuma delas afirma diagnostico nem pede consulta: todas terminam em
  * "queria conversar sobre isso". Quem esta mal precisa de uma porta, nao de um
  * compromisso assinado antes de falar.
+ *
+ * ============================== A EXPLICACAO ================================
+ * Desde 13/09/2026 cada sinal tem uma frase embaixo, pedido do Maxwel: o
+ * titulo e curto demais pra pessoa se reconhecer nele. A frase descreve a
+ * situacao, nao diagnostica nem promete o que a conversa vai resolver.
+ * TODO: o Alexander precisa ler e aprovar -- os titulos sao dele, estas nao.
  */
 export const sinais = [
   {
     texto: 'Você não consegue superar uma tristeza',
+    explicacao:
+      'Uma perda, uma mudança ou uma fase difícil que continua pesando por ' +
+      'semanas e já atrapalha o sono, o trabalho ou a vontade de estar com as pessoas.',
     mensagem:
       'Oi. Vim pelo site. Tem uma tristeza que eu não estou conseguindo ' +
       'superar e queria conversar sobre isso.',
   },
   {
     texto: 'Você está constantemente desanimado',
+    explicacao:
+      'Falta energia para o que antes dava prazer, e os dias parecem iguais, ' +
+      'mesmo sem um motivo claro.',
     mensagem:
       'Oi. Vim pelo site. Ando desanimado o tempo todo e queria conversar ' +
       'sobre isso.',
   },
   {
     texto: 'Você deseja tomar uma decisão importante',
+    explicacao:
+      'Mudar de carreira, terminar ou começar uma relação, uma escolha que ' +
+      'envolve a família. Pensar junto com alguém de fora abre espaço para ' +
+      'separar o que você quer do que você teme.',
     mensagem:
       'Oi. Vim pelo site. Preciso tomar uma decisão importante e queria ' +
       'conversar sobre isso.',
   },
   {
     texto: 'Você está enfrentando dificuldades nos relacionamentos',
+    explicacao:
+      'Brigas que se repetem, distância de quem está perto ou dificuldade de ' +
+      'dizer o que sente, no casal, na família ou no trabalho.',
     mensagem:
       'Oi. Vim pelo site. Estou enfrentando dificuldades nos meus ' +
       'relacionamentos e queria conversar sobre isso.',

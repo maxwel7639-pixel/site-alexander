@@ -105,6 +105,13 @@
   }
 }
 
+/* O eco encosta no topo e passa um pouco da borda: cortado pela seção de cima,
+   ele marca a divisão entre as duas. */
+.eco {
+  top: -0.2em;
+  bottom: auto;
+}
+
 /* ============================ O DESENHO NO CANTO ============================
    Mesmo lugar e mesma regra do traco (ver Traco.module.css): no vazio a
    direita do titulo, atras do conteudo, e só a partir de 1100px. Abaixo disso o
