@@ -13,17 +13,16 @@
      da pagina e criam rolagem lateral. */
   overflow: hidden;
   border-bottom: 1px solid var(--linha);
-  /* Um calor muito baixo vindo de cima e da direita, atras da foto, pra o
-     creme deixar de ser uma chapa. 6% e 4% sao propositalmente pouco: em
-     tela de celular no sol isso quase nao aparece, e e assim que tem que ser
-     -- gradiente que se ANUNCIA num site de saude parece propaganda. */
-  background:
-    radial-gradient(
-      62% 58% at 78% 8%,
-      color-mix(in srgb, var(--palha) 62%, transparent) 0%,
-      transparent 72%
-    ),
-    var(--creme);
+  /* A areia do fundo da imagem, em todas as larguras (13/09/2026): no celular a
+     imagem é uma faixa em cima, e o texto embaixo precisa continuar nela em
+     vez de cair no creme. Sobre a areia os secundários de sempre reprovam, e
+     são reescritos aqui. Medido sobre #ad9c7f:
+       --tinta #2b2724 ........ 5,5:1
+       --bronze #3a3027 ....... 4,9:1
+       --ouro-texto #3f3110 ... 4,7:1 */
+  background: #ad9c7f;
+  --bronze: #3a3027;
+  --ouro-texto: #3f3110;
 }
 
 .interno {
@@ -185,19 +184,25 @@
   object-position: 30% 50%;
 }
 
+/* Na faixa do celular, a base da imagem se desfaz na areia de baixo: sem isto
+   aparece a linha reta onde a imagem acaba. */
+.imagem::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 62%, #ad9c7f 100%);
+}
+
+.dados {
+  border-top-color: color-mix(in srgb, var(--tinta) 22%, transparent);
+}
+
 @media (min-width: 1100px) {
   .abertura {
     display: flex;
     align-items: center;
     /* altura que mostra a imagem quase inteira (ela é 5:3) sem virar 100vh */
     min-height: clamp(660px, 56vw, 880px);
-    /* Os secundários reescritos pro fundo da imagem, um bege médio (#ad9c7f):
-       o --bronze (2,5:1) e o --ouro-texto reprovam ali. Medido:
-         --tinta #2b2724 ........ 5,5:1
-         --bronze #3a3027 ....... 4,9:1
-         --ouro-texto #3f3110 ... 4,7:1 */
-    --bronze: #3a3027;
-    --ouro-texto: #3f3110;
   }
 
   .imagem {
@@ -251,9 +256,6 @@
     margin-top: 0.4rem;
   }
 
-  .dados {
-    border-top-color: color-mix(in srgb, var(--tinta) 22%, transparent);
-  }
 }
 
 /* Com a imagem em cima, o texto não precisa mais descontar a pílula do topo:
