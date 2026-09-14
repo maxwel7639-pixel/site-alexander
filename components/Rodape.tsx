@@ -12,12 +12,11 @@ import s from './Rodape.module.css';
  * vazio do lado direito, e uma altura que nao se justificava.
  *
  * Agora sao duas faixas. Em cima, tres colunas na mesma linha: a marca, o
- * consultorio e o atendimento. Embaixo, o aviso a esquerda e os creditos a
- * direita, lado a lado em vez de um sobre o outro.
+ * consultorio e o atendimento. Embaixo, os creditos.
  *
- * O AVISO DO CVV NAO ENCOLHEU. Ele e a unica informacao aqui que pode importar
- * numa emergencia, e continua com o mesmo corpo e a mesma linha de leitura. O
- * que saiu foi espaco vazio, nao texto.
+ * Desde 13/09/2026, a pedido do Maxwel, sem o telefone (o botao de WhatsApp
+ * ja esta no Contato e na barra fixa) e sem o aviso de que o site nao substitui
+ * consulta, que citava o CVV.
  */
 export default function Rodape() {
   const ano = new Date().getFullYear();
@@ -62,19 +61,11 @@ export default function Rodape() {
               {atendimento.horario}
               <br />
               {atendimento.modalidades}
-              <br />
-              {profissional.telefone}
             </p>
           </div>
         </div>
 
         <div className={s.base}>
-          <p className={s.aviso}>
-            Este site é informativo e não substitui uma consulta. Em situação de
-            emergência, ligue para o CVV no 188, ligação gratuita e disponível 24
-            horas, ou procure o serviço de saúde mais próximo.
-          </p>
-
           <div className={s.creditos}>
             <p>
               © {ano} {profissional.nomeCompleto}. Todos os direitos reservados.

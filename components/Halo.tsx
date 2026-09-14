@@ -25,6 +25,13 @@ type Props = {
    * somem com um fade conforme se afastam. Sem isto, aparece o anel inteiro.
    */
   visiveis?: number;
+  /** Escala do cartão no fundo do anel (o da frente é 1). */
+  escalaFundo?: number;
+  /**
+   * Acima de 1, a escala cai mais rápido saindo da frente: o cartão da frente
+   * se destaca dos vizinhos. É o que o espaço usa pra foto do meio crescer.
+   */
+  realce?: number;
   rotuloAnterior: string;
   rotuloProximo: string;
   /** Fotos com `sizes` coerente com o tamanho do cartão. */
@@ -35,26 +42,29 @@ const TAU = Math.PI * 2;
 /** Raio horizontal e vertical do anel, em fração do palco. */
 const RAIO_X = 0.62;
 const RAIO_Y = 0.38;
-/** Escala do cartão no fundo do anel. */
-const ESCALA_FUNDO = 0.42;
 /** Tempo parado na frente: dá pra ler o texto antes de girar. */
 const PARADO = 3800;
 const GIRO = 800;
 
-function pose(giro: number, i: number, passo: number, visiveis?: number) {
+type Forma = { visiveis?: number; escalaFundo: number; realce: number };
+
+function pose(giro: number, i: number, passo: number, { visiveis, escalaFundo, realce }: Forma) {
   const angulo = i * passo + giro;
   const c = Math.cos(angulo);
   const s = Math.sin(angulo);
   let o = 1;
   if (visiveis) {
-    // distância angular até a frente, e o limite dos que ficam à vista: com 3,
-    // o da frente e um vizinho de cada lado. Passou do limite, some em 60% de
-    // um passo -- é o fade de quem sai enquanto o próximo entra.
-    const distancia = Math.abs(Math.atan2(s, c));
+    // distância angular até o centro da janela, e o limite dos que ficam à
+    // vista: com 3, o da frente e um vizinho de cada lado. Passou do limite,
+    // some em 60% de um passo -- é o fade de quem sai enquanto o próximo entra.
+    // Com número PAR não existe janela simétrica em volta da frente, então ela
+    // anda meio passo pra cima: com 8, são 4 em cima e 3 embaixo.
+    const centro = visiveis % 2 === 0 ? -passo / 2 : 0;
+    const distancia = Math.abs(Math.atan2(Math.sin(angulo - centro), Math.cos(angulo - centro)));
     const limite = (passo * (visiveis - 1)) / 2;
     o = Math.min(1, Math.max(0, 1 - (distancia - limite) / (passo * 0.6)));
   }
-  return { c, s, o, k: ESCALA_FUNDO + (1 - ESCALA_FUNDO) * ((c + 1) / 2) };
+  return { c, s, o, k: escalaFundo + (1 - escalaFundo) * Math.pow((c + 1) / 2, realce) };
 }
 
 const suave = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
@@ -95,6 +105,8 @@ export default function Halo({
   formato = 'retrato',
   repeticoes = 2,
   visiveis,
+  escalaFundo = 0.42,
+  realce = 1,
   rotuloAnterior,
   rotuloProximo,
   sizes = '180px',
@@ -102,6 +114,7 @@ export default function Halo({
   const N = cartas.length;
   const vagas = N * repeticoes;
   const passo = TAU / vagas;
+  const forma: Forma = { visiveis, escalaFundo, realce };
 
   const palco = useRef<HTMLDivElement>(null);
   const elementos = useRef<(HTMLDivElement | null)[]>([]);
@@ -122,7 +135,7 @@ export default function Halo({
       giro.current = r;
       elementos.current.forEach((el, i) => {
         if (!el) return;
-        const p = pose(r, i, passo, visiveis);
+        const p = pose(r, i, passo, forma);
         el.style.setProperty('--c', p.c.toFixed(4));
         el.style.setProperty('--s', p.s.toFixed(4));
         el.style.setProperty('--k', p.k.toFixed(4));
@@ -136,7 +149,8 @@ export default function Halo({
         setAtivo(item);
       }
     },
-    [N, passo, vagas, visiveis],
+    // `forma` muda de identidade a cada render; o que importa são os números
+    [N, passo, vagas, visiveis, escalaFundo, realce],
   );
 
   const leva = useCallback(
@@ -247,7 +261,7 @@ export default function Halo({
       >
         {Array.from({ length: vagas }, (_, i) => {
           const carta = cartas[i % N];
-          const p = pose(0, i, passo, visiveis);
+          const p = pose(0, i, passo, forma);
           return (
             <div
               key={i}

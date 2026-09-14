@@ -29,6 +29,9 @@ export default function ComoTrabalha() {
             largura={1296}
             altura={864}
             sizes="(max-width: 899px) 100vw, 56vw"
+            // Sem foto na abertura, esta é a maior imagem da primeira tela no
+            // desktop: o Next aponta ela como LCP.
+            preload
           />
         </figure>
       }

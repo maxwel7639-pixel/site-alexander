@@ -10,6 +10,8 @@ type Props = {
   largura: number;
   altura: number;
   sizes: string;
+  /** Carrega antes do resto: pra foto que aparece na primeira tela. */
+  preload?: boolean;
 };
 
 /**
@@ -26,7 +28,7 @@ type Props = {
  *
  * Com prefers-reduced-motion ela fica parada na pose de repouso.
  */
-export default function FotoProfundidade({ src, alt, largura, altura, sizes }: Props) {
+export default function FotoProfundidade({ src, alt, largura, altura, sizes, preload }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   function mover(e: React.PointerEvent<HTMLDivElement>) {
@@ -54,7 +56,7 @@ export default function FotoProfundidade({ src, alt, largura, altura, sizes }: P
   return (
     <div className={s.cena}>
       <div ref={ref} className={s.foto} onPointerMove={mover} onPointerLeave={soltar}>
-        <Image src={src} alt={alt} width={largura} height={altura} sizes={sizes} className={s.imagem} />
+        <Image src={src} alt={alt} width={largura} height={altura} sizes={sizes} preload={preload} className={s.imagem} />
         <span className={s.brilho} aria-hidden="true" />
       </div>
     </div>

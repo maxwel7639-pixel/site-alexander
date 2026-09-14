@@ -11,8 +11,8 @@ import s from './LivroPsi.module.css';
  * grafite do resto do site.
  *
  * TUDO É DESENHADO AQUI, sem imagem: o livro é uma malha 3D projetada com
- * perspectiva, o Ψ é uma fita de triângulos em volta dos traços da letra, e os
- * pontos piscam. O livro e o Ψ são desenhados UMA vez em camadas fora da tela,
+ * perspectiva, o Ψ é uma malha de pontos dentro do caractere na fonte dos
+ * títulos (o mesmo da marca d'água), e os pontos piscam. O livro e o Ψ são desenhados UMA vez em camadas fora da tela,
  * com o brilho (shadowBlur, que é caro); a cada quadro só se copia as camadas
  * e se desenha os pontos.
  *
@@ -162,71 +162,103 @@ function desenhaLivro(ctx: CanvasRenderingContext2D, W: number, H: number) {
 }
 
 // --------------------------------------------------------------------- o Ψ
-/** Os traços da letra numa caixa de 100 por 120. */
-function tracosDoPsi(): { pontos: P2[]; largura: number }[] {
-  const reta = (a: P2, b: P2, n: number): P2[] =>
-    Array.from({ length: n + 1 }, (_, i) => [a[0] + ((b[0] - a[0]) * i) / n, a[1] + ((b[1] - a[1]) * i) / n]);
-  const bacia: P2[] = Array.from({ length: 13 }, (_, i) => {
-    const t = (i / 12) * Math.PI;
-    return [50 - 33 * Math.cos(t), 18 + 54 * Math.sin(t)];
-  });
-  return [
-    { pontos: reta([50, 4], [50, 116], 11), largura: 8 },
-    { pontos: bacia, largura: 7 },
-    { pontos: reta([40, 4], [60, 4], 2), largura: 4 },
-    { pontos: reta([34, 116], [66, 116], 3), largura: 4 },
-    { pontos: reta([9, 18], [25, 18], 2), largura: 4 },
-    { pontos: reta([75, 18], [91, 18], 2), largura: 4 },
-  ];
-}
+/*
+ * O MESMO Ψ DA MARCA D'ÁGUA. A marca de fundo é o caractere Ψ na fonte dos
+ * títulos (Cormorant Garamond); aqui ele é desenhado com a mesma fonte, e a
+ * malha brilhante nasce DENTRO da letra: pontos sorteados sobre o desenho do
+ * caractere, ligados aos vizinhos só quando o meio da linha também cai dentro
+ * dele. Assim a silhueta é a da fonte, e não uma letra redesenhada à mão.
+ */
+function desenhaPsi(ctx: CanvasRenderingContext2D, W: number, H: number, familia: string) {
+  const altura = H * 0.5;
+  const cx = projetor(W, H)(0, 0.2, 0)[0];
+  const y0 = H * 0.04;
 
-function desenhaPsi(ctx: CanvasRenderingContext2D, W: number, H: number) {
-  const altura = H * 0.46;
-  const k = altura / 120;
-  // centrado sobre a lombada como ela aparece na tela (o livro está girado)
-  const x0 = projetor(W, H)(0, 0.2, 0)[0] - 50 * k;
-  const y0 = H * 0.06;
-  const linhas: [P2, P2][] = [];
+  // tamanho da fonte que dá a altura pedida ao desenho da letra
+  const teste = document.createElement('canvas').getContext('2d')!;
+  teste.font = `500 100px ${familia}`;
+  const m = teste.measureText('Ψ');
+  const alto100 = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent || 70;
+  const tamanho = (altura / alto100) * 100;
+  const fonte = `500 ${tamanho}px ${familia}`;
+
+  // a letra numa máscara, na resolução lógica
+  const mw = Math.ceil(W);
+  const mh = Math.ceil(H);
+  const mascara = document.createElement('canvas');
+  mascara.width = mw;
+  mascara.height = mh;
+  const mc = mascara.getContext('2d')!;
+  mc.font = fonte;
+  mc.textAlign = 'center';
+  mc.textBaseline = 'alphabetic';
+  const base = y0 + (m.actualBoundingBoxAscent / 100) * tamanho;
+  mc.fillText('Ψ', cx, base);
+  const alfa = mc.getImageData(0, 0, mw, mh).data;
+  const dentro = (x: number, y: number) => {
+    const xi = Math.round(x);
+    const yi = Math.round(y);
+    return xi >= 0 && yi >= 0 && xi < mw && yi < mh && alfa[(yi * mw + xi) * 4 + 3] > 110;
+  };
+
+  // pontos: um por célula da grade, na borda da letra e no miolo
+  const acaso = sementeira(515);
   const pontos: P2[] = [];
-
-  for (const { pontos: traco, largura } of tracosDoPsi()) {
-    const esquerda: P2[] = [];
-    const direita: P2[] = [];
-    traco.forEach((p, i) => {
-      const a = traco[Math.max(0, i - 1)];
-      const b = traco[Math.min(traco.length - 1, i + 1)];
-      const tam = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
-      const nx = (-(b[1] - a[1]) / tam) * (largura / 2);
-      const ny = ((b[0] - a[0]) / tam) * (largura / 2);
-      esquerda.push([x0 + (p[0] + nx) * k, y0 + (p[1] + ny) * k]);
-      direita.push([x0 + (p[0] - nx) * k, y0 + (p[1] - ny) * k]);
-    });
-    for (let i = 0; i < traco.length; i++) {
-      pontos.push(esquerda[i], direita[i]);
-      linhas.push([esquerda[i], direita[i]]);
-      if (i > 0) {
-        linhas.push([esquerda[i - 1], esquerda[i]], [direita[i - 1], direita[i]]);
-        linhas.push(i % 2 ? [esquerda[i - 1], direita[i]] : [direita[i - 1], esquerda[i]]);
+  const passo = Math.max(6, tamanho / 22);
+  for (let y = 0; y < mh; y += passo) {
+    for (let x = 0; x < mw; x += passo) {
+      for (let tentativa = 0; tentativa < 6; tentativa++) {
+        const px = x + acaso() * passo;
+        const py = y + acaso() * passo;
+        if (dentro(px, py)) {
+          pontos.push([px, py]);
+          break;
+        }
       }
     }
   }
 
+  // cada ponto liga nos três vizinhos mais perto, se a linha não sair da letra
+  const linhas: [P2, P2][] = [];
+  const alcance = passo * 1.9;
+  pontos.forEach((a, i) => {
+    const vizinhos = pontos
+      .map((b, j) => [j, Math.hypot(b[0] - a[0], b[1] - a[1])] as [number, number])
+      .filter(([j, d]) => j > i && d < alcance)
+      .sort((x, y) => x[1] - y[1])
+      .slice(0, 3);
+    for (const [j] of vizinhos) {
+      const b = pontos[j];
+      if (dentro((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)) linhas.push([a, b]);
+    }
+  });
+
   // um halo atrás da letra, com raio que cabe no canvas (ver o brilho do livro)
-  const hx = x0 + 50 * k;
   const hy = y0 + altura * 0.45;
   const raio = Math.min(hy, W * 0.4);
-  const halo = ctx.createRadialGradient(hx, hy, 0, hx, hy, raio);
+  const halo = ctx.createRadialGradient(cx, hy, 0, cx, hy, raio);
   halo.addColorStop(0, `rgba(${OURO}, 0.16)`);
   halo.addColorStop(1, `rgba(${OURO}, 0)`);
   ctx.fillStyle = halo;
   ctx.beginPath();
-  ctx.arc(hx, hy, raio, 0, Math.PI * 2);
+  ctx.arc(cx, hy, raio, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.lineWidth = 1.1;
+  // a própria letra, bem de leve, pra silhueta ler inteira
+  ctx.font = fonte;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = `rgba(${OURO}, 0.12)`;
+  ctx.fillText('Ψ', cx, base);
   ctx.shadowColor = `rgba(${OURO}, 1)`;
-  ctx.shadowBlur = 10;
-  ctx.strokeStyle = `rgba(${OURO}, 0.75)`;
+  ctx.shadowBlur = 12;
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = `rgba(${OURO}, 0.55)`;
+  ctx.strokeText('Ψ', cx, base);
+
+  ctx.shadowBlur = 8;
+  ctx.lineWidth = 0.9;
+  ctx.strokeStyle = `rgba(${OURO}, 0.6)`;
   ctx.beginPath();
   for (const [a, b] of linhas) {
     ctx.moveTo(a[0], a[1]);
@@ -237,7 +269,7 @@ function desenhaPsi(ctx: CanvasRenderingContext2D, W: number, H: number) {
   ctx.fillStyle = `rgba(${CREME}, 0.95)`;
   for (const [x, y] of pontos) {
     ctx.beginPath();
-    ctx.arc(x, y, 1.2, 0, Math.PI * 2);
+    ctx.arc(x, y, 1.1, 0, Math.PI * 2);
     ctx.fill();
   }
   ctx.shadowBlur = 0;
@@ -281,6 +313,10 @@ export default function LivroPsi() {
     let quadro = 0;
     let visivel = false;
 
+    // a família que o next/font deu à fonte dos títulos, a mesma da marca d'água
+    const familia = getComputedStyle(canvas).getPropertyValue('--fonte-titulo').trim() || 'Georgia, serif';
+    let fonteCarregada = false;
+
     const camada = (desenha: (c: CanvasRenderingContext2D, w: number, h: number) => void) => {
       const c = document.createElement('canvas');
       c.width = Math.round(W * dpr);
@@ -300,18 +336,18 @@ export default function LivroPsi() {
       canvas.width = Math.round(W * dpr);
       canvas.height = Math.round(H * dpr);
       livro = camada(desenhaLivro);
-      psi = camada(desenhaPsi);
+      psi = fonteCarregada ? camada((c, w, h) => desenhaPsi(c, w, h, familia)) : null;
       pontos = espalhaPontos(W, H);
     };
 
     const pinta = (t: number) => {
-      if (!livro || !psi) return;
+      if (!livro) return;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(livro, 0, 0);
       // o Ψ flutua 3px pra cima e pra baixo, bem devagar
       const flutua = parado ? 0 : Math.sin(t / 1400) * 3 * dpr;
-      ctx.drawImage(psi, 0, flutua);
+      if (psi) ctx.drawImage(psi, 0, flutua);
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.shadowColor = `rgba(${OURO}, 1)`;
@@ -334,6 +370,12 @@ export default function LivroPsi() {
 
     monta();
     pinta(0);
+    // o Ψ espera a fonte: desenhado antes dela, sairia na fonte reserva
+    document.fonts.load(`500 100px ${familia}`).finally(() => {
+      fonteCarregada = true;
+      monta();
+      pinta(performance.now());
+    });
 
     const tamanho = new ResizeObserver(() => {
       monta();
