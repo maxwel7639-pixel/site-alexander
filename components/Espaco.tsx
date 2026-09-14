@@ -21,7 +21,14 @@ import s from './Espaco.module.css';
  */
 export default function Espaco() {
   return (
-    <Secao id="espaco" etiqueta="O espaço" titulo={espaco.titulo} fundo="claro">
+    <Secao
+      id="espaco"
+      // a palavra de fundo, igual à de Serviços, Temas e Sinais (14/09/2026)
+      eco="espaço"
+      etiqueta="O espaço"
+      titulo={espaco.titulo}
+      fundo="claro"
+    >
       <Halo
         formato="paisagem"
         // So tres a vista, a pedido do Maxwel (13/09/2026): a da frente e uma
