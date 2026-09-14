@@ -25,7 +25,9 @@
   --l-tarja: var(--mate);
   --l-tarja-texto: var(--tinta);
   --l-introducao: var(--bronze);
-  --l-eco: 0.05;
+  /* 0.05 sumia no creme e na areia; o Maxwel pediu mais visível em 14/09/2026.
+     O "ajuda" (tom escuro) já aparecia bem e ficou como estava. */
+  --l-eco: 0.1;
 }
 
 .letreiro {
