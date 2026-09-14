@@ -71,12 +71,12 @@ export const metadata: Metadata = {
     description: descricao,
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image-v2.jpg',
         width: 1200,
         height: 630,
         alt:
-          'Alexander Barnabés sentado em um sofá, de blazer claro, ao lado do ' +
-          'símbolo Ψ dourado e do seu nome.',
+          'Ilustração de uma cabeça feita de fios e uma pessoa olhando para ela, ' +
+          'ao lado do símbolo Ψ, do nome Alexander Barnabés e do CRP.',
       },
     ],
   },
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Psicólogo e Psicanalista em Nova Iguaçu | Alexander Barnabés',
     description: descricao,
-    images: ['/og-image.jpg'],
+    images: ['/og-image-v2.jpg'],
   },
   robots: {
     index: true,
@@ -116,7 +116,7 @@ const dadosEstruturados = {
   alternateName: profissional.nome,
   description: descricao,
   url: SITE_URL,
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}/og-image-v2.jpg`,
   telephone: profissional.telefoneE164,
   email: profissional.email,
   priceRange: '$$',
