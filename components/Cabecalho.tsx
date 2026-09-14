@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { marca, navegacao, profissional } from '@/lib/dados';
+import { navegacao, profissional } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
 import s from './Cabecalho.module.css';
 
@@ -60,27 +60,7 @@ export default function Cabecalho() {
             <strong>{profissional.nome}</strong>
             <small>{profissional.titulo}</small>
           </span>
-          {/*
-            O divã do cartao de visita dele, do outro lado do nome.
-
-            ELE ENTRA JUNTO DO PSI, NUNCA NO LUGAR DELE. O Psi e a marca
-            registrada da papelaria dele e continua onde sempre esteve, aqui e
-            atras de todas as secoes. O divã e a segunda metade da mesma
-            papelaria, e e a unica figura do site que diz "psicanalise" sem
-            precisar escrever a palavra.
-
-            `sizes` nao e opcional aqui: o arquivo original tem 1348px de
-            largura e 284KB, e sem essa dica o next/image serviria um recorte
-            grande demais para um desenho de 72px.
-          */}
-          <Image
-            src={marca.diva.src}
-            alt=""
-            width={marca.diva.largura}
-            height={marca.diva.altura}
-            sizes="72px"
-            className={s.diva}
-          />
+          {/* Sem o divã desde 13/09/2026, a pedido do Maxwel: fica só o Psi e o nome. */}
         </a>
 
         <nav className={s.nav} aria-label="Seções do site">
