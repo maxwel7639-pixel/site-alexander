@@ -1,5 +1,6 @@
 import { sinais, whatsappCom } from '@/lib/dados';
 import BotaoWhatsApp from './BotaoWhatsApp';
+import EntradaLateral from './EntradaLateral';
 import Secao from './Secao';
 import { IconeCheck, IconeWhatsApp } from './Icones';
 import s from './QuandoProcurar.module.css';
@@ -29,6 +30,8 @@ export default function QuandoProcurar() {
     <Secao
       id="sinais"
       traco="onda"
+      // a palavra de fundo do letreiro de Serviços, dividindo as seções
+      eco="ajuda"
       etiqueta="Quando procurar ajuda"
       titulo="Quatro sinais de que pode ser hora de procurar ajuda"
       fundo="escuro"
@@ -43,7 +46,8 @@ export default function QuandoProcurar() {
         você lê e muda o que quiser antes de enviar.
       </p>
 
-      <ul className={s.lista}>
+      {/* Os cartões entram de fora pra dentro com a rolagem (13/09/2026). */}
+      <EntradaLateral className={s.lista}>
         {sinais.map((sinal) => (
           <li key={sinal.texto}>
             <a
@@ -64,7 +68,7 @@ export default function QuandoProcurar() {
             </a>
           </li>
         ))}
-      </ul>
+      </EntradaLateral>
 
       <div className={s.rodape}>
         {/*
