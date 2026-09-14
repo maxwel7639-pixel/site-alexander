@@ -13,9 +13,8 @@ import s from './Temas.module.css';
  * "Psicologia", e os temas giram num anel de cartões (Halo) em vez da
  * grade de três colunas. Pedido do Maxwel, com a referência do Halo Reel.
  *
- * As fotos dos cartões ainda não chegaram: cada tema já tem o nome do arquivo
- * em lib/dados.ts, e o cartão só usa a foto quando ela existe em
- * public/img/temas. Sem ela, o cartão mostra o nome do tema.
+ * As fotos dos cartões moram em public/img/temas, com o nome do arquivo em
+ * lib/dados.ts. Tema sem foto mostra o nome no próprio cartão.
  */
 export default function Temas() {
   return (
@@ -37,6 +36,10 @@ export default function Temas() {
           // oito à vista, pedido do Maxwel em 13/09/2026: o anel inteiro
           // mostrava onze e deixava os cartões pequenos demais pra foto
           visiveis={8}
+          // o da frente bem maior que os outros, pra foto ler (13/09/2026)
+          escalaFundo={0.35}
+          realce={3}
+          sizes="(max-width: 899px) 150px, 200px"
           rotuloAnterior="Tema anterior"
           rotuloProximo="Próximo tema"
           cartas={temas.map((tema) => ({

@@ -151,12 +151,12 @@
 /* ------------------------------------------------------------- tamanhos --- */
 /* O palco tem que ter altura pros cartões de cima e de baixo do anel caberem
    com o raio vertical de 38%: por isso cada formato define os três juntos. */
-/* Cartões maiores desde 13/09/2026, porque vão receber foto; o palco cresce
-   junto pra os de cima e de baixo continuarem cabendo. */
+/* 2:3 desde 13/09/2026, o formato das fotos dos temas. O palco tem a altura
+   que faz caber os cartões de cima e de baixo com o realce que os temas usam. */
 .retrato {
-  --carta-l: 136px;
-  --carta-a: 184px;
-  --palco-a: 470px;
+  --carta-l: 150px;
+  --carta-a: 225px;
+  --palco-a: 460px;
 }
 
 /* As fotos da sala são 4:3. Menores que os temas de propósito: aqui o anel é
@@ -176,9 +176,9 @@
   }
 
   .retrato {
-    --carta-l: 190px;
-    --carta-a: 258px;
-    --palco-a: 680px;
+    --carta-l: 200px;
+    --carta-a: 300px;
+    --palco-a: 640px;
   }
 
   /* A foto da frente maior e o anel mais pro canto esquerdo. */

@@ -56,13 +56,15 @@ function pose(giro: number, i: number, passo: number, { visiveis, escalaFundo, r
   if (visiveis) {
     // distância angular até o centro da janela, e o limite dos que ficam à
     // vista: com 3, o da frente e um vizinho de cada lado. Passou do limite,
-    // some em 60% de um passo -- é o fade de quem sai enquanto o próximo entra.
+    // some em meio passo -- é o fade de quem sai enquanto o próximo entra. Meio
+    // passo e não mais: parado, o vizinho de fora do limite tem que estar em
+    // zero, senão ele aparece apagado e a conta de cartões à vista não fecha.
     // Com número PAR não existe janela simétrica em volta da frente, então ela
     // anda meio passo pra cima: com 8, são 4 em cima e 3 embaixo.
     const centro = visiveis % 2 === 0 ? -passo / 2 : 0;
     const distancia = Math.abs(Math.atan2(Math.sin(angulo - centro), Math.cos(angulo - centro)));
     const limite = (passo * (visiveis - 1)) / 2;
-    o = Math.min(1, Math.max(0, 1 - (distancia - limite) / (passo * 0.6)));
+    o = Math.min(1, Math.max(0, 1 - (distancia - limite) / (passo * 0.5)));
   }
   return { c, s, o, k: escalaFundo + (1 - escalaFundo) * Math.pow((c + 1) / 2, realce) };
 }
