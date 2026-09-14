@@ -169,3 +169,97 @@
     margin-top: 0;
   }
 }
+
+/* ============================ A IMAGEM DE FUNDO =============================
+   Até 1099px: uma faixa em cima, com a cabeça e a pessoa, e o texto embaixo
+   no creme. A partir de 1100px: fundo da abertura inteira, com o texto na
+   direita, no vazio da imagem. Abaixo disso a coluna da direita começaria em
+   cima da pessoa pequena do desenho. */
+.imagem {
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+
+.foto {
+  object-fit: cover;
+  object-position: 30% 50%;
+}
+
+@media (min-width: 1100px) {
+  .abertura {
+    display: flex;
+    align-items: center;
+    /* altura que mostra a imagem quase inteira (ela é 5:3) sem virar 100vh */
+    min-height: clamp(660px, 56vw, 880px);
+    /* Os secundários reescritos pro fundo da imagem, um bege médio (#ad9c7f):
+       o --bronze (2,5:1) e o --ouro-texto reprovam ali. Medido:
+         --tinta #2b2724 ........ 5,5:1
+         --bronze #3a3027 ....... 4,9:1
+         --ouro-texto #3f3110 ... 4,7:1 */
+    --bronze: #3a3027;
+    --ouro-texto: #3f3110;
+  }
+
+  .imagem {
+    position: absolute;
+    /* 14% sobrando pra esquerda: empurra a pessoa do desenho pra longe da
+       coluna de texto (medido em 1180, 1440 e 1920px), e a cabeça perde só a
+       nuca */
+    inset: 0 0 0 -14%;
+    aspect-ratio: auto;
+  }
+
+  .foto {
+    object-position: 50% 50%;
+  }
+
+  /* Um véu claro só atrás do texto, pra leitura, sem apagar a imagem. */
+  .imagem::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      55% 70% at 80% 50%,
+      rgba(246, 241, 231, 0.3),
+      transparent 72%
+    );
+  }
+
+  .interno {
+    width: 100%;
+    grid-template-columns: 1fr minmax(0, 28rem);
+    row-gap: 1.25rem;
+    column-gap: 0;
+  }
+
+  .texto,
+  .lado {
+    grid-column: 2;
+  }
+
+  .lado {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  /* na coluna estreita a especialidade desce inteira, como no celular */
+  .especialidade {
+    display: block;
+  }
+
+  .lado .prova {
+    margin-top: 0.4rem;
+  }
+
+  .dados {
+    border-top-color: color-mix(in srgb, var(--tinta) 22%, transparent);
+  }
+}
+
+/* Com a imagem em cima, o texto não precisa mais descontar a pílula do topo:
+   quem passa por baixo dela é a imagem. */
+@media (max-width: 1099px) {
+  .interno {
+    padding-top: 1.75rem;
+  }
+}
