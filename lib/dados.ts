@@ -56,6 +56,9 @@ export const profissional = {
  * ninguem consegue corrigir depois. Ele fica no repositorio so como
  * referencia de onde o divã foi recortado.
  */
+// Desde 13/09/2026 o divã não aparece em lugar nenhum do site: saiu do rodapé
+// (foi pro Contato e depois virou o livro com o Ψ) e saiu da pílula do topo. O
+// dado fica aqui pra quando ele voltar a ser usado.
 export const marca = {
   diva: {
     src: '/marca/diva.png',

@@ -100,44 +100,6 @@
   white-space: nowrap;
 }
 
-/* ============================= O DIVÃ NA PILULA =============================
-   Do outro lado do nome, com o Psi de um lado e ele do outro: os dois pedacos
-   da papelaria dele emoldurando a assinatura.
-
-   ================================ O TAMANHO =================================
-   72px de largura da 38px de altura, exatamente a altura do Psi ao lado. A
-   pilula nao cresce um pixel por causa dele, e --altura-topo continua valendo.
-
-   E 72 e nao menos porque o desenho e feito de traco fino: a 56px, testado
-   contra o arquivo, as pernas do divã comecam a se dissolver na reamostragem.
-   Menor que isso ele deixa de ser um divã e vira um risco.
-
-   ============================== SEM ENFEITE =================================
-   Sem sombra, sem moldura e sem opacidade. A tinta dele e #9d9876 e da 5,18:1
-   sobre o grafite da pilula -- ja aparece sozinha, e qualquer veu por cima so
-   apagaria um traco que ja e fino.
-
-   A folga a esquerda e maior que o gap de 0,7rem do resto da marca: desenho de
-   linha encostado em texto le como sujeira, e este precisa de ar para ser
-   lido como objeto.
-============================================================================ */
-.diva {
-  flex: none;
-  width: 72px;
-  height: auto;
-  margin-left: 0.45rem;
-}
-
-/* Abaixo de 900px a pilula guarda so a marca, e cada pixel de largura conta
-   numa tela de 360. O divã encolhe junto, mas nao some: ele e metade do pedido
-   do cliente e o celular e onde a maioria vai ver. */
-@media (max-width: 599px) {
-  .diva {
-    width: 58px;
-    margin-left: 0.25rem;
-  }
-}
-
 /* A navegacao some na tela estreita. O que importa la e o botao, e a lista de
    links roubaria a linha inteira do topo. Ela volta em 1120px -- ver a nota
    sobre a troca de guarda, mais abaixo. */
