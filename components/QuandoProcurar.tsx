@@ -58,7 +58,10 @@ export default function QuandoProcurar() {
               aria-label={`${sinal.texto} — abrir o WhatsApp com essa mensagem escrita`}
             >
               <IconeCheck className={s.icone} />
-              <span className={s.texto}>{sinal.texto}</span>
+              <span className={s.texto}>
+                <span className={s.titulo}>{sinal.texto}</span>
+                <span className={s.explicacao}>{sinal.explicacao}</span>
+              </span>
               {/*
                 O icone do WhatsApp e nao uma seta: seta diz "tem mais adiante",
                 e quem esta prestes a falar de um assunto dificil merece saber
