@@ -16,11 +16,16 @@
  * nenhum link deste site abria com imagem no WhatsApp; e o canonical, o @id e
  * o sitemap declaravam ao Google um dominio de terceiro.
  *
- * PENDENTE: dominio proprio. `.vercel.app` num site de profissional de saude
- * e fraco pra confianca e pra busca local, e o dia em que ele comprar um, esta
- * linha e a unica que muda.
+ * RESOLVIDO em 17/09/2026: dominio proprio no ar, e esta linha foi mesmo a
+ * unica que mudou. Com `www` de proposito -- e o que a Vercel serve com 200;
+ * `alexander.inf.br` sem www devolve 308 pra ca. Canonical tem que apontar pro
+ * endereco que responde, nao pro que redireciona, senao o Google recebe uma
+ * indirecao a toa em cada pagina.
+ *
+ * O `.vercel.app` antigo continua respondendo e nao foi removido do projeto:
+ * link velho ja compartilhado no WhatsApp segue abrindo.
  * ========================================================================== */
-export const SITE_URL = 'https://site-alexander-mu.vercel.app';
+export const SITE_URL = 'https://www.alexander.inf.br';
 
 export const profissional = {
   nome: 'Alexander Barnabés',
